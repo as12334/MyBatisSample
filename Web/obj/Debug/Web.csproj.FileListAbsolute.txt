@@ -1,0 +1,16 @@
+E:\WORK\MyBatisSample\Web\bin\Maps\ProductMap.xml
+E:\WORK\MyBatisSample\Web\bin\Providers.config
+E:\WORK\MyBatisSample\Web\bin\SqlMap.config
+E:\WORK\MyBatisSample\Web\bin\Web.dll
+E:\WORK\MyBatisSample\Web\bin\Web.pdb
+E:\WORK\MyBatisSample\Web\bin\Castle.DynamicProxy.dll
+E:\WORK\MyBatisSample\Web\bin\IBatisNet.Common.dll
+E:\WORK\MyBatisSample\Web\bin\IBatisNet.Common.Logging.Log4Net.dll
+E:\WORK\MyBatisSample\Web\bin\IBatisNet.DataAccess.dll
+E:\WORK\MyBatisSample\Web\bin\IBatisNet.DataMapper.dll
+E:\WORK\MyBatisSample\Web\bin\log4net.dll
+E:\WORK\MyBatisSample\Web\obj\Debug\Web.csprojAssemblyReference.cache
+E:\WORK\MyBatisSample\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
+E:\WORK\MyBatisSample\Web\obj\Debug\Web.csproj.CopyComplete
+E:\WORK\MyBatisSample\Web\obj\Debug\Web.dll
+E:\WORK\MyBatisSample\Web\obj\Debug\Web.pdb
