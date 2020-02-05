@@ -62,6 +62,12 @@
       <HintPath>..\BinLibrary\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MyBatis.Common, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\NET\mybatisnet\src\MyBatis.DataMapper.SqlClient.Test\bin\Debug\MyBatis.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MyBatis.DataMapper, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\NET\mybatisnet\src\MyBatis.DataMapper.SqlClient.Test\bin\Debug\MyBatis.DataMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -79,7 +85,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataBase.config" />
     <Content Include="Default.aspx" />
+    <Content Include="provider.xsd" />
+    <Content Include="SqlMap.xsd" />
+    <Content Include="SqlMapConfig.xsd" />
     <Content Include="SqlScript\create_table_sequence.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -90,6 +100,33 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business.Implements\AccountManager.cs" />
+    <Compile Include="Business.Implements\Cz_userManager.cs" />
+    <Compile Include="Business.Interface\IAccountManager.cs" />
+    <Compile Include="Business.Interface\ICz_userManager.cs" />
+    <Compile Include="Business\BaseManager.cs" />
+    <Compile Include="Business\IBaseManager.cs" />
+    <Compile Include="Data.Components\PageResult.cs" />
+    <Compile Include="Data.Implements\AccountService.cs" />
+    <Compile Include="Data.Implements\Cz_userService.cs" />
+    <Compile Include="Data.Interface\IAccountService.cs" />
+    <Compile Include="Data.Interface\ICz_userService.cs" />
+    <Compile Include="Data\BaseService.cs" />
+    <Compile Include="Data\DBHelper.cs" />
+    <Compile Include="Data\IBaseService.cs" />
+    <Compile Include="Data\ScriptBase.cs" />
+    <EmbeddedResource Include="SqlMap.xsd">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlMapConfig.xsd">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <Content Include="provider.xsd">
+      <SubType>
+      </SubType>
+    </Content>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -110,7 +147,16 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{af8c92a0-980e-408b-95e2-ca17797829c0}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mapper\Mapper.csproj">
+      <Project>{3a08af3c-ac67-47bd-aa56-9a6564a2de34}</Project>
+      <Name>Mapper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,6 @@
+E:\WORK\MyBatisSample\Entity\bin\Debug\Entity.dll
+E:\WORK\MyBatisSample\Entity\bin\Debug\Entity.pdb
+E:\WORK\MyBatisSample\Entity\obj\Debug\Entity.csprojAssemblyReference.cache
+E:\WORK\MyBatisSample\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+E:\WORK\MyBatisSample\Entity\obj\Debug\Entity.dll
+E:\WORK\MyBatisSample\Entity\obj\Debug\Entity.pdb

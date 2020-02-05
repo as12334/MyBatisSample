@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Account"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="Account" type="Entity.Account, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="Account">
+            <result property="Account_ID" column="Account_ID"/>
+            <result property="Account_FirstName" column="Account_FirstName"/>
+            <result property="Account_LastName" column="Account_LastName"/>
+            <result property="Account_Email" column="Account_Email"/>
+            <result property="Account_Banner_Option" column="Account_Banner_Option"/>
+            <result property="Account_Cart_Option" column="Account_Cart_Option"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="Account_ID" column="Account_ID"/>
+            <result property="Account_FirstName" column="Account_FirstName"/>
+            <result property="Account_LastName" column="Account_LastName"/>
+            <result property="Account_Email" column="Account_Email"/>
+            <result property="Account_Banner_Option" column="Account_Banner_Option"/>
+            <result property="Account_Cart_Option" column="Account_Cart_Option"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="Account.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="Account.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="Account.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="Account.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+        </select>
+        <select id="Account.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[Accounts]
+        </select>
+		<select id="Account.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[Accounts] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="Account.GetById" parameterClass="map" resultClass="Account">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts] WHERE ([Account_ID] = #Account_ID#)
+        </select>
+
+        <select id="Account.GetListByWhere"  parameterClass="map" resultClass="Account">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            <dynamic prepend="WHERE">
+                <isNotNull property="Account_ID" prepend="AND">
+                    [Account_ID] = #Account_ID#
+                </isNotNull>
+                <isNotNull property="Account_FirstName" prepend="AND">
+                    [Account_FirstName] = #Account_FirstName#
+                </isNotNull>
+                <isNotNull property="Account_LastName" prepend="AND">
+                    [Account_LastName] = #Account_LastName#
+                </isNotNull>
+                <isNotNull property="Account_Email" prepend="AND">
+                    [Account_Email] = #Account_Email#
+                </isNotNull>
+                <isNotNull property="Account_Banner_Option" prepend="AND">
+                    [Account_Banner_Option] = #Account_Banner_Option#
+                </isNotNull>
+                <isNotNull property="Account_Cart_Option" prepend="AND">
+                    [Account_Cart_Option] = #Account_Cart_Option#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="Account.GetListByWhereStr"  parameterClass="map" resultClass="Account">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="Account.GetListByWhereAndOrder"  parameterClass="map" resultClass="Account">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            <dynamic prepend="WHERE">
+                <isNotNull property="Account_ID" prepend="AND">
+                    [Account_ID] = #Account_ID#
+                </isNotNull>
+                <isNotNull property="Account_FirstName" prepend="AND">
+                    [Account_FirstName] = #Account_FirstName#
+                </isNotNull>
+                <isNotNull property="Account_LastName" prepend="AND">
+                    [Account_LastName] = #Account_LastName#
+                </isNotNull>
+                <isNotNull property="Account_Email" prepend="AND">
+                    [Account_Email] = #Account_Email#
+                </isNotNull>
+                <isNotNull property="Account_Banner_Option" prepend="AND">
+                    [Account_Banner_Option] = #Account_Banner_Option#
+                </isNotNull>
+                <isNotNull property="Account_Cart_Option" prepend="AND">
+                    [Account_Cart_Option] = #Account_Cart_Option#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="Account.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="Account">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="Account.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            <dynamic prepend="WHERE">
+                <isNotNull property="Account_ID" prepend="AND">
+                    [Account_ID] = #Account_ID#
+                </isNotNull>
+                <isNotNull property="Account_FirstName" prepend="AND">
+                    [Account_FirstName] = #Account_FirstName#
+                </isNotNull>
+                <isNotNull property="Account_LastName" prepend="AND">
+                    [Account_LastName] = #Account_LastName#
+                </isNotNull>
+                <isNotNull property="Account_Email" prepend="AND">
+                    [Account_Email] = #Account_Email#
+                </isNotNull>
+                <isNotNull property="Account_Banner_Option" prepend="AND">
+                    [Account_Banner_Option] = #Account_Banner_Option#
+                </isNotNull>
+                <isNotNull property="Account_Cart_Option" prepend="AND">
+                    [Account_Cart_Option] = #Account_Cart_Option#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="Account.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="Account.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[Accounts]
+            <dynamic prepend="WHERE">
+                <isNotNull property="Account_ID" prepend="AND">
+                    [Account_ID] = #Account_ID#
+                </isNotNull>
+                <isNotNull property="Account_FirstName" prepend="AND">
+                    [Account_FirstName] = #Account_FirstName#
+                </isNotNull>
+                <isNotNull property="Account_LastName" prepend="AND">
+                    [Account_LastName] = #Account_LastName#
+                </isNotNull>
+                <isNotNull property="Account_Email" prepend="AND">
+                    [Account_Email] = #Account_Email#
+                </isNotNull>
+                <isNotNull property="Account_Banner_Option" prepend="AND">
+                    [Account_Banner_Option] = #Account_Banner_Option#
+                </isNotNull>
+                <isNotNull property="Account_Cart_Option" prepend="AND">
+                    [Account_Cart_Option] = #Account_Cart_Option#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="Account.GetAllListOrder" parameterClass="map" resultClass="Account">
+            SELECT 
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option] 
+            FROM [dbo].[Accounts]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="Account.GetTopNListWhereOrder" parameterClass="map" resultClass="Account">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option]
+            FROM [dbo].[Accounts]
+            <dynamic prepend="WHERE">
+                <isNotNull property="Account_ID" prepend="AND">
+                    [Account_ID] = #Account_ID#
+                </isNotNull>
+                <isNotNull property="Account_FirstName" prepend="AND">
+                    [Account_FirstName] = #Account_FirstName#
+                </isNotNull>
+                <isNotNull property="Account_LastName" prepend="AND">
+                    [Account_LastName] = #Account_LastName#
+                </isNotNull>
+                <isNotNull property="Account_Email" prepend="AND">
+                    [Account_Email] = #Account_Email#
+                </isNotNull>
+                <isNotNull property="Account_Banner_Option" prepend="AND">
+                    [Account_Banner_Option] = #Account_Banner_Option#
+                </isNotNull>
+                <isNotNull property="Account_Cart_Option" prepend="AND">
+                    [Account_Cart_Option] = #Account_Cart_Option#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="Account.GetTopNListWhereOrderStr" parameterClass="map" resultClass="Account">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option]
+            FROM [dbo].[Accounts]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="Account.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[Accounts]
+            <dynamic prepend="WHERE">
+                <isNotNull property="Account_ID" prepend="AND">
+                    [Account_ID] = #Account_ID#
+                </isNotNull>
+                <isNotNull property="Account_FirstName" prepend="AND">
+                    [Account_FirstName] = #Account_FirstName#
+                </isNotNull>
+                <isNotNull property="Account_LastName" prepend="AND">
+                    [Account_LastName] = #Account_LastName#
+                </isNotNull>
+                <isNotNull property="Account_Email" prepend="AND">
+                    [Account_Email] = #Account_Email#
+                </isNotNull>
+                <isNotNull property="Account_Banner_Option" prepend="AND">
+                    [Account_Banner_Option] = #Account_Banner_Option#
+                </isNotNull>
+                <isNotNull property="Account_Cart_Option" prepend="AND">
+                    [Account_Cart_Option] = #Account_Cart_Option#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="Account.Insert" parameterClass="Account" resultClass="Int32">
+            INSERT INTO [dbo].[Accounts] (
+            [Account_ID],[Account_FirstName],[Account_LastName],[Account_Email],[Account_Banner_Option],[Account_Cart_Option]
+            ) VALUES (
+            #Account_ID#,#Account_FirstName#,#Account_LastName#,#Account_Email#,#Account_Banner_Option#,#Account_Cart_Option#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="Account.Update" parameterClass="Account">
+            UPDATE [dbo].[Accounts] SET
+            [Account_FirstName] = #Account_FirstName#,[Account_LastName] = #Account_LastName#,[Account_Email] = #Account_Email#,[Account_Banner_Option] = #Account_Banner_Option#,[Account_Cart_Option] = #Account_Cart_Option#
+            WHERE
+            ([Account_ID] = #Account_ID#)
+            SELECT @@rowcount
+        </update>
+
+		<update id="Account.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[Accounts] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="Account.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[Accounts]
+            WHERE
+            ([Account_ID] = #Account_ID#)
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="Account.DeleteByEntity" parameterClass="Account">
+            DELETE FROM [dbo].[Accounts]
+            WHERE
+            ([Account_ID] = #Account_ID#)
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="Account.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[Accounts]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="Account.ClearData">
+            truncate table [Accounts]
+        </statement>
+    </statements>
+</sqlMap>

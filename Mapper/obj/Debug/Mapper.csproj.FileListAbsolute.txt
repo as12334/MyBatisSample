@@ -1,0 +1,6 @@
+E:\WORK\MyBatisSample\Mapper\bin\Debug\Mapper.dll
+E:\WORK\MyBatisSample\Mapper\bin\Debug\Mapper.pdb
+E:\WORK\MyBatisSample\Mapper\obj\Debug\Mapper.csprojAssemblyReference.cache
+E:\WORK\MyBatisSample\Mapper\obj\Debug\Mapper.csproj.CoreCompileInputs.cache
+E:\WORK\MyBatisSample\Mapper\obj\Debug\Mapper.dll
+E:\WORK\MyBatisSample\Mapper\obj\Debug\Mapper.pdb

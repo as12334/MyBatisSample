@@ -13,3 +13,15 @@ E:\WORK\MyBatisSample\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 E:\WORK\MyBatisSample\Web\obj\Debug\Web.csproj.CopyComplete
 E:\WORK\MyBatisSample\Web\obj\Debug\Web.dll
 E:\WORK\MyBatisSample\Web\obj\Debug\Web.pdb
+E:\WORK\MyBatisSample\Web\bin\Entity.dll
+E:\WORK\MyBatisSample\Web\bin\Mapper.dll
+E:\WORK\MyBatisSample\Web\bin\MyBatis.Common.dll
+E:\WORK\MyBatisSample\Web\bin\MyBatis.DataMapper.dll
+E:\WORK\MyBatisSample\Web\bin\Castle.Core.dll
+E:\WORK\MyBatisSample\Web\bin\Castle.DynamicProxy2.dll
+E:\WORK\MyBatisSample\Web\bin\Entity.pdb
+E:\WORK\MyBatisSample\Web\bin\Mapper.pdb
+E:\WORK\MyBatisSample\Web\bin\MyBatis.Common.pdb
+E:\WORK\MyBatisSample\Web\bin\MyBatis.DataMapper.pdb
+E:\WORK\MyBatisSample\Web\bin\Castle.Core.xml
+E:\WORK\MyBatisSample\Web\bin\Castle.DynamicProxy2.xml

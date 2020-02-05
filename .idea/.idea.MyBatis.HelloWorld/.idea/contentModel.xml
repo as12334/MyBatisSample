@@ -4,10 +4,62 @@
     <e p="C:\Users\block\.Rider2019.1\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\block\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_MyBatis.HelloWorld.-1775276520.00" t="ExcludeRecursive" />
     <e p="E:\WORK\MyBatisSample" t="IncludeFlat">
+      <e p="Entity" t="IncludeRecursive">
+        <e p="Account.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Cz_user.cs" t="Include" />
+        <e p="Entity.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Mapper" t="IncludeRecursive">
+        <e p="BasicMapper" t="Include">
+          <e p="Account.xml" t="Include" />
+          <e p="Cz_user.xml" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Mapper.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
       <e p="MyBatis.HelloWorld.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Web" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Business" t="Include">
+          <e p="BaseManager.cs" t="Include" />
+          <e p="IBaseManager.cs" t="Include" />
+        </e>
+        <e p="Business.Implements" t="Include">
+          <e p="AccountManager.cs" t="Include" />
+          <e p="Cz_userManager.cs" t="Include" />
+        </e>
+        <e p="Business.Interface" t="Include">
+          <e p="IAccountManager.cs" t="Include" />
+          <e p="ICz_userManager.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="BaseService.cs" t="Include" />
+          <e p="DBHelper.cs" t="Include" />
+          <e p="IBaseService.cs" t="Include" />
+          <e p="ScriptBase.cs" t="Include" />
+        </e>
+        <e p="Data.Components" t="Include">
+          <e p="PageResult.cs" t="Include" />
+        </e>
+        <e p="Data.Implements" t="Include">
+          <e p="AccountService.cs" t="Include" />
+          <e p="Cz_userService.cs" t="Include" />
+        </e>
+        <e p="Data.Interface" t="Include">
+          <e p="IAccountService.cs" t="Include" />
+          <e p="ICz_userService.cs" t="Include" />
+        </e>
+        <e p="DataBase.config" t="Include" />
         <e p="Default.aspx" t="Include" />
         <e p="Default.aspx.cs" t="Include" />
         <e p="Default.aspx.designer.cs" t="Include" />
@@ -15,8 +67,11 @@
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
+        <e p="provider.xsd" t="Include" />
         <e p="Providers.config" t="Include" />
         <e p="SqlMap.config" t="Include" />
+        <e p="SqlMap.xsd" t="Include" />
+        <e p="SqlMapConfig.xsd" t="Include" />
         <e p="SqlScript" t="Include">
           <e p="create_table_sequence.sql" t="Include" />
         </e>
