@@ -13,6 +13,7 @@
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
+        <e p="ReturnResult.cs" t="Include" />
       </e>
       <e p="Mapper" t="IncludeRecursive">
         <e p="BasicMapper" t="Include">
@@ -29,6 +30,47 @@
       <e p="MyBatis.HelloWorld.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Web" t="IncludeRecursive">
+        <e p="Agent" t="Include">
+          <e p="Web" t="Include">
+            <e p="Handler" t="Include">
+              <e p="LoginHandler.cs" t="Include" />
+              <e p="ValidateImgHandler.cs" t="Include" />
+            </e>
+            <e p="LoginUserControl" t="Include">
+              <e p="Login1" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login2" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login3" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login4" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login5" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login6" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login7" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login8" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+              <e p="Login9" t="Include">
+                <e p="LoginControl.cs" t="Include" />
+              </e>
+            </e>
+            <e p="WebBase" t="Include">
+              <e p="CallBLL.cs" t="Include" />
+              <e p="MemberPageBase.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Business" t="Include">
           <e p="BaseManager.cs" t="Include" />
@@ -41,6 +83,25 @@
         <e p="Business.Interface" t="Include">
           <e p="IAccountManager.cs" t="Include" />
           <e p="ICz_userManager.cs" t="Include" />
+        </e>
+        <e p="Common" t="Include">
+          <e p="CookieHelper.cs" t="Include" />
+          <e p="DESEncrypt.cs" t="Include" />
+          <e p="JsonHandle.cs" t="Include" />
+          <e p="JsonHelper.cs" t="Include" />
+          <e p="LSRequest.cs" t="Include" />
+          <e p="PageBase.cs" t="Include" />
+          <e p="Redis" t="Include">
+            <e p="CacheHelper.cs" t="Include" />
+            <e p="FileCacheHelper.cs" t="Include" />
+            <e p="RedisConfiguration.cs" t="Include" />
+            <e p="RedisConnectType.cs" t="Include" />
+            <e p="RedisExpires.cs" t="Include" />
+            <e p="RedisKeys.cs" t="Include" />
+            <e p="RedisManager.cs" t="Include" />
+          </e>
+          <e p="SQL" t="Include" />
+          <e p="Utils.cs" t="Include" />
         </e>
         <e p="Data" t="Include">
           <e p="BaseService.cs" t="Include" />
@@ -64,6 +125,7 @@
         <e p="Default.aspx.cs" t="Include" />
         <e p="Default.aspx.designer.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>

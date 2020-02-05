@@ -1,7 +1,7 @@
 /************************************************************************************
  *      Copyright (C) 2011 mesnac.com,All Rights Reserved
  *      File:
- *				Cz_user.cs
+ *				cz_users.cs
  *      Description:
  *		
  *      Author:
@@ -9,63 +9,63 @@
  *				zhenglb@mesnac.com
  *				http://www.mesnac.com
  *      Finish DateTime:
- *				2020年02月05日
+ *				2020年02月06日
  *      History:
  ***********************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entity
+namespace LotterySystem.Model
 {
     /// <summary>
-    /// 实体类Cz_user
+    /// 实体类cz_users
     /// </summary>
     [Serializable]
-    public class Cz_user
+    public class cz_users
     {
         #region 私有字段
 
-        private string _u_id;
-        private string _u_name;
-        private string _salt;
-        private string _u_nicker;
-        private string _u_skin;
-        private string _sup_name;
-        private string _u_type;
-        private string _su_type;
-        private DateTime? _add_date;
-        private DateTime? _last_changedate;
-        private int? _six_rate;
-        private double? _six_credit;
-        private double? _six_usable_credit;
-        private string _six_kind;
-        private int? _a_state;
-        private int? _allow_sale;
-        private int? _allow_view_report;
-        private int? _six_allow_maxrate;
-        private int? _six_low_maxrate;
-        private int? _six_rate_owner;
-        private int? _six_iscash;
-        private int? _allow_opt;
-        private int? _is_changed;
-        private int? _kc_rate;
-        private double? _kc_credit;
-        private double? _kc_usable_credit;
-        private string _kc_kind;
-        private int? _kc_allow_sale;
-        private int? _negative_sale;
-        private int? _kc_allow_maxrate;
-        private int? _kc_low_maxrate;
-        private int? _kc_rate_owner;
-        private int? _kc_crash_payment;
-        private int? _kc_iscash;
-        private int? _six_op_odds;
-        private int? _kc_op_odds;
-        private int? _kc_isauto_back;
-        private int? _six_isauto_back;
-        private int? _retry_times;
-        private string _u_psw;
+        private string u_id;
+        private string u_name;
+        private string salt;
+        private string u_nicker;
+        private string u_skin;
+        private string sup_name;
+        private string u_type;
+        private string su_type;
+        private DateTime? add_date;
+        private DateTime? last_changedate;
+        private int? six_rate;
+        private double? six_credit;
+        private double? six_usable_credit;
+        private string six_kind;
+        private int? a_state;
+        private int? allow_sale;
+        private int? allow_view_report;
+        private int? six_allow_maxrate;
+        private int? six_low_maxrate;
+        private int? six_rate_owner;
+        private int? six_iscash;
+        private int? allow_opt;
+        private int? is_changed;
+        private int? kc_rate;
+        private double? kc_credit;
+        private double? kc_usable_credit;
+        private string kc_kind;
+        private int? kc_allow_sale;
+        private int? negative_sale;
+        private int? kc_allow_maxrate;
+        private int? kc_low_maxrate;
+        private int? kc_rate_owner;
+        private int? kc_crash_payment;
+        private int? kc_iscash;
+        private int? six_op_odds;
+        private int? kc_op_odds;
+        private int? kc_isauto_back;
+        private int? six_isauto_back;
+        private int? retry_times;
+        private string u_psw;
 
 
         #endregion
@@ -73,283 +73,643 @@ namespace Entity
         #region 公有属性
 
 
-        public string U_id
+        public string UId
         {
-            set { this._u_id = value; }
-            get { return this._u_id; }
+           get => u_id;
+           set => u_id = value;
+        }
+
+        public void set_u_id (string u_id)
+        {
+            this.u_id = u_id;
+        }
+        public string get_u_id()
+        {
+           return  this.u_id;
         }
 
 
-        public string U_name
+        public string UName
         {
-            set { this._u_name = value; }
-            get { return this._u_name; }
+           get => u_name;
+           set => u_name = value;
+        }
+
+        public void set_u_name (string u_name)
+        {
+            this.u_name = u_name;
+        }
+        public string get_u_name()
+        {
+           return  this.u_name;
         }
 
 
         public string Salt
         {
-            set { this._salt = value; }
-            get { return this._salt; }
+           get => salt;
+           set => salt = value;
+        }
+
+        public void set_salt (string salt)
+        {
+            this.salt = salt;
+        }
+        public string get_salt()
+        {
+           return  this.salt;
         }
 
 
-        public string U_nicker
+        public string UNicker
         {
-            set { this._u_nicker = value; }
-            get { return this._u_nicker; }
+           get => u_nicker;
+           set => u_nicker = value;
+        }
+
+        public void set_u_nicker (string u_nicker)
+        {
+            this.u_nicker = u_nicker;
+        }
+        public string get_u_nicker()
+        {
+           return  this.u_nicker;
         }
 
 
-        public string U_skin
+        public string USkin
         {
-            set { this._u_skin = value; }
-            get { return this._u_skin; }
+           get => u_skin;
+           set => u_skin = value;
+        }
+
+        public void set_u_skin (string u_skin)
+        {
+            this.u_skin = u_skin;
+        }
+        public string get_u_skin()
+        {
+           return  this.u_skin;
         }
 
 
-        public string Sup_name
+        public string SupName
         {
-            set { this._sup_name = value; }
-            get { return this._sup_name; }
+           get => sup_name;
+           set => sup_name = value;
+        }
+
+        public void set_sup_name (string sup_name)
+        {
+            this.sup_name = sup_name;
+        }
+        public string get_sup_name()
+        {
+           return  this.sup_name;
         }
 
 
-        public string U_type
+        public string UType
         {
-            set { this._u_type = value; }
-            get { return this._u_type; }
+           get => u_type;
+           set => u_type = value;
+        }
+
+        public void set_u_type (string u_type)
+        {
+            this.u_type = u_type;
+        }
+        public string get_u_type()
+        {
+           return  this.u_type;
         }
 
 
-        public string Su_type
+        public string SuType
         {
-            set { this._su_type = value; }
-            get { return this._su_type; }
+           get => su_type;
+           set => su_type = value;
+        }
+
+        public void set_su_type (string su_type)
+        {
+            this.su_type = su_type;
+        }
+        public string get_su_type()
+        {
+           return  this.su_type;
         }
 
 
-        public DateTime? Add_date
+        public DateTime? AddDate
         {
-            set { this._add_date = value; }
-            get { return this._add_date; }
+           get => add_date;
+           set => add_date = value;
+        }
+
+        public void set_add_date (DateTime? add_date)
+        {
+            this.add_date = add_date;
+        }
+        public DateTime? get_add_date()
+        {
+           return  this.add_date;
         }
 
 
-        public DateTime? Last_changedate
+        public DateTime? LastChangedate
         {
-            set { this._last_changedate = value; }
-            get { return this._last_changedate; }
+           get => last_changedate;
+           set => last_changedate = value;
+        }
+
+        public void set_last_changedate (DateTime? last_changedate)
+        {
+            this.last_changedate = last_changedate;
+        }
+        public DateTime? get_last_changedate()
+        {
+           return  this.last_changedate;
         }
 
 
-        public int? Six_rate
+        public int? SixRate
         {
-            set { this._six_rate = value; }
-            get { return this._six_rate; }
+           get => six_rate;
+           set => six_rate = value;
+        }
+
+        public void set_six_rate (int? six_rate)
+        {
+            this.six_rate = six_rate;
+        }
+        public int? get_six_rate()
+        {
+           return  this.six_rate;
         }
 
 
-        public double? Six_credit
+        public double? SixCredit
         {
-            set { this._six_credit = value; }
-            get { return this._six_credit; }
+           get => six_credit;
+           set => six_credit = value;
+        }
+
+        public void set_six_credit (double? six_credit)
+        {
+            this.six_credit = six_credit;
+        }
+        public double? get_six_credit()
+        {
+           return  this.six_credit;
         }
 
 
-        public double? Six_usable_credit
+        public double? SixUsableCredit
         {
-            set { this._six_usable_credit = value; }
-            get { return this._six_usable_credit; }
+           get => six_usable_credit;
+           set => six_usable_credit = value;
+        }
+
+        public void set_six_usable_credit (double? six_usable_credit)
+        {
+            this.six_usable_credit = six_usable_credit;
+        }
+        public double? get_six_usable_credit()
+        {
+           return  this.six_usable_credit;
         }
 
 
-        public string Six_kind
+        public string SixKind
         {
-            set { this._six_kind = value; }
-            get { return this._six_kind; }
+           get => six_kind;
+           set => six_kind = value;
+        }
+
+        public void set_six_kind (string six_kind)
+        {
+            this.six_kind = six_kind;
+        }
+        public string get_six_kind()
+        {
+           return  this.six_kind;
         }
 
 
-        public int? A_state
+        public int? AState
         {
-            set { this._a_state = value; }
-            get { return this._a_state; }
+           get => a_state;
+           set => a_state = value;
+        }
+
+        public void set_a_state (int? a_state)
+        {
+            this.a_state = a_state;
+        }
+        public int? get_a_state()
+        {
+           return  this.a_state;
         }
 
 
-        public int? Allow_sale
+        public int? AllowSale
         {
-            set { this._allow_sale = value; }
-            get { return this._allow_sale; }
+           get => allow_sale;
+           set => allow_sale = value;
+        }
+
+        public void set_allow_sale (int? allow_sale)
+        {
+            this.allow_sale = allow_sale;
+        }
+        public int? get_allow_sale()
+        {
+           return  this.allow_sale;
         }
 
 
-        public int? Allow_view_report
+        public int? AllowViewReport
         {
-            set { this._allow_view_report = value; }
-            get { return this._allow_view_report; }
+           get => allow_view_report;
+           set => allow_view_report = value;
+        }
+
+        public void set_allow_view_report (int? allow_view_report)
+        {
+            this.allow_view_report = allow_view_report;
+        }
+        public int? get_allow_view_report()
+        {
+           return  this.allow_view_report;
         }
 
 
-        public int? Six_allow_maxrate
+        public int? SixAllowMaxrate
         {
-            set { this._six_allow_maxrate = value; }
-            get { return this._six_allow_maxrate; }
+           get => six_allow_maxrate;
+           set => six_allow_maxrate = value;
+        }
+
+        public void set_six_allow_maxrate (int? six_allow_maxrate)
+        {
+            this.six_allow_maxrate = six_allow_maxrate;
+        }
+        public int? get_six_allow_maxrate()
+        {
+           return  this.six_allow_maxrate;
         }
 
 
-        public int? Six_low_maxrate
+        public int? SixLowMaxrate
         {
-            set { this._six_low_maxrate = value; }
-            get { return this._six_low_maxrate; }
+           get => six_low_maxrate;
+           set => six_low_maxrate = value;
+        }
+
+        public void set_six_low_maxrate (int? six_low_maxrate)
+        {
+            this.six_low_maxrate = six_low_maxrate;
+        }
+        public int? get_six_low_maxrate()
+        {
+           return  this.six_low_maxrate;
         }
 
 
-        public int? Six_rate_owner
+        public int? SixRateOwner
         {
-            set { this._six_rate_owner = value; }
-            get { return this._six_rate_owner; }
+           get => six_rate_owner;
+           set => six_rate_owner = value;
+        }
+
+        public void set_six_rate_owner (int? six_rate_owner)
+        {
+            this.six_rate_owner = six_rate_owner;
+        }
+        public int? get_six_rate_owner()
+        {
+           return  this.six_rate_owner;
         }
 
 
-        public int? Six_iscash
+        public int? SixIscash
         {
-            set { this._six_iscash = value; }
-            get { return this._six_iscash; }
+           get => six_iscash;
+           set => six_iscash = value;
+        }
+
+        public void set_six_iscash (int? six_iscash)
+        {
+            this.six_iscash = six_iscash;
+        }
+        public int? get_six_iscash()
+        {
+           return  this.six_iscash;
         }
 
 
-        public int? Allow_opt
+        public int? AllowOpt
         {
-            set { this._allow_opt = value; }
-            get { return this._allow_opt; }
+           get => allow_opt;
+           set => allow_opt = value;
+        }
+
+        public void set_allow_opt (int? allow_opt)
+        {
+            this.allow_opt = allow_opt;
+        }
+        public int? get_allow_opt()
+        {
+           return  this.allow_opt;
         }
 
 
-        public int? Is_changed
+        public int? IsChanged
         {
-            set { this._is_changed = value; }
-            get { return this._is_changed; }
+           get => is_changed;
+           set => is_changed = value;
+        }
+
+        public void set_is_changed (int? is_changed)
+        {
+            this.is_changed = is_changed;
+        }
+        public int? get_is_changed()
+        {
+           return  this.is_changed;
         }
 
 
-        public int? Kc_rate
+        public int? KcRate
         {
-            set { this._kc_rate = value; }
-            get { return this._kc_rate; }
+           get => kc_rate;
+           set => kc_rate = value;
+        }
+
+        public void set_kc_rate (int? kc_rate)
+        {
+            this.kc_rate = kc_rate;
+        }
+        public int? get_kc_rate()
+        {
+           return  this.kc_rate;
         }
 
 
-        public double? Kc_credit
+        public double? KcCredit
         {
-            set { this._kc_credit = value; }
-            get { return this._kc_credit; }
+           get => kc_credit;
+           set => kc_credit = value;
+        }
+
+        public void set_kc_credit (double? kc_credit)
+        {
+            this.kc_credit = kc_credit;
+        }
+        public double? get_kc_credit()
+        {
+           return  this.kc_credit;
         }
 
 
-        public double? Kc_usable_credit
+        public double? KcUsableCredit
         {
-            set { this._kc_usable_credit = value; }
-            get { return this._kc_usable_credit; }
+           get => kc_usable_credit;
+           set => kc_usable_credit = value;
+        }
+
+        public void set_kc_usable_credit (double? kc_usable_credit)
+        {
+            this.kc_usable_credit = kc_usable_credit;
+        }
+        public double? get_kc_usable_credit()
+        {
+           return  this.kc_usable_credit;
         }
 
 
-        public string Kc_kind
+        public string KcKind
         {
-            set { this._kc_kind = value; }
-            get { return this._kc_kind; }
+           get => kc_kind;
+           set => kc_kind = value;
+        }
+
+        public void set_kc_kind (string kc_kind)
+        {
+            this.kc_kind = kc_kind;
+        }
+        public string get_kc_kind()
+        {
+           return  this.kc_kind;
         }
 
 
-        public int? Kc_allow_sale
+        public int? KcAllowSale
         {
-            set { this._kc_allow_sale = value; }
-            get { return this._kc_allow_sale; }
+           get => kc_allow_sale;
+           set => kc_allow_sale = value;
+        }
+
+        public void set_kc_allow_sale (int? kc_allow_sale)
+        {
+            this.kc_allow_sale = kc_allow_sale;
+        }
+        public int? get_kc_allow_sale()
+        {
+           return  this.kc_allow_sale;
         }
 
 
-        public int? Negative_sale
+        public int? NegativeSale
         {
-            set { this._negative_sale = value; }
-            get { return this._negative_sale; }
+           get => negative_sale;
+           set => negative_sale = value;
+        }
+
+        public void set_negative_sale (int? negative_sale)
+        {
+            this.negative_sale = negative_sale;
+        }
+        public int? get_negative_sale()
+        {
+           return  this.negative_sale;
         }
 
 
-        public int? Kc_allow_maxrate
+        public int? KcAllowMaxrate
         {
-            set { this._kc_allow_maxrate = value; }
-            get { return this._kc_allow_maxrate; }
+           get => kc_allow_maxrate;
+           set => kc_allow_maxrate = value;
+        }
+
+        public void set_kc_allow_maxrate (int? kc_allow_maxrate)
+        {
+            this.kc_allow_maxrate = kc_allow_maxrate;
+        }
+        public int? get_kc_allow_maxrate()
+        {
+           return  this.kc_allow_maxrate;
         }
 
 
-        public int? Kc_low_maxrate
+        public int? KcLowMaxrate
         {
-            set { this._kc_low_maxrate = value; }
-            get { return this._kc_low_maxrate; }
+           get => kc_low_maxrate;
+           set => kc_low_maxrate = value;
+        }
+
+        public void set_kc_low_maxrate (int? kc_low_maxrate)
+        {
+            this.kc_low_maxrate = kc_low_maxrate;
+        }
+        public int? get_kc_low_maxrate()
+        {
+           return  this.kc_low_maxrate;
         }
 
 
-        public int? Kc_rate_owner
+        public int? KcRateOwner
         {
-            set { this._kc_rate_owner = value; }
-            get { return this._kc_rate_owner; }
+           get => kc_rate_owner;
+           set => kc_rate_owner = value;
+        }
+
+        public void set_kc_rate_owner (int? kc_rate_owner)
+        {
+            this.kc_rate_owner = kc_rate_owner;
+        }
+        public int? get_kc_rate_owner()
+        {
+           return  this.kc_rate_owner;
         }
 
 
-        public int? Kc_crash_payment
+        public int? KcCrashPayment
         {
-            set { this._kc_crash_payment = value; }
-            get { return this._kc_crash_payment; }
+           get => kc_crash_payment;
+           set => kc_crash_payment = value;
+        }
+
+        public void set_kc_crash_payment (int? kc_crash_payment)
+        {
+            this.kc_crash_payment = kc_crash_payment;
+        }
+        public int? get_kc_crash_payment()
+        {
+           return  this.kc_crash_payment;
         }
 
 
-        public int? Kc_iscash
+        public int? KcIscash
         {
-            set { this._kc_iscash = value; }
-            get { return this._kc_iscash; }
+           get => kc_iscash;
+           set => kc_iscash = value;
+        }
+
+        public void set_kc_iscash (int? kc_iscash)
+        {
+            this.kc_iscash = kc_iscash;
+        }
+        public int? get_kc_iscash()
+        {
+           return  this.kc_iscash;
         }
 
 
-        public int? Six_op_odds
+        public int? SixOpOdds
         {
-            set { this._six_op_odds = value; }
-            get { return this._six_op_odds; }
+           get => six_op_odds;
+           set => six_op_odds = value;
+        }
+
+        public void set_six_op_odds (int? six_op_odds)
+        {
+            this.six_op_odds = six_op_odds;
+        }
+        public int? get_six_op_odds()
+        {
+           return  this.six_op_odds;
         }
 
 
-        public int? Kc_op_odds
+        public int? KcOpOdds
         {
-            set { this._kc_op_odds = value; }
-            get { return this._kc_op_odds; }
+           get => kc_op_odds;
+           set => kc_op_odds = value;
+        }
+
+        public void set_kc_op_odds (int? kc_op_odds)
+        {
+            this.kc_op_odds = kc_op_odds;
+        }
+        public int? get_kc_op_odds()
+        {
+           return  this.kc_op_odds;
         }
 
 
-        public int? Kc_isauto_back
+        public int? KcIsautoBack
         {
-            set { this._kc_isauto_back = value; }
-            get { return this._kc_isauto_back; }
+           get => kc_isauto_back;
+           set => kc_isauto_back = value;
+        }
+
+        public void set_kc_isauto_back (int? kc_isauto_back)
+        {
+            this.kc_isauto_back = kc_isauto_back;
+        }
+        public int? get_kc_isauto_back()
+        {
+           return  this.kc_isauto_back;
         }
 
 
-        public int? Six_isauto_back
+        public int? SixIsautoBack
         {
-            set { this._six_isauto_back = value; }
-            get { return this._six_isauto_back; }
+           get => six_isauto_back;
+           set => six_isauto_back = value;
+        }
+
+        public void set_six_isauto_back (int? six_isauto_back)
+        {
+            this.six_isauto_back = six_isauto_back;
+        }
+        public int? get_six_isauto_back()
+        {
+           return  this.six_isauto_back;
         }
 
 
-        public int? Retry_times
+        public int? RetryTimes
         {
-            set { this._retry_times = value; }
-            get { return this._retry_times; }
+           get => retry_times;
+           set => retry_times = value;
+        }
+
+        public void set_retry_times (int? retry_times)
+        {
+            this.retry_times = retry_times;
+        }
+        public int? get_retry_times()
+        {
+           return  this.retry_times;
         }
 
 
-        public string U_psw
+        public string UPsw
         {
-            set { this._u_psw = value; }
-            get { return this._u_psw; }
+           get => u_psw;
+           set => u_psw = value;
+        }
+
+        public void set_u_psw (string u_psw)
+        {
+            this.u_psw = u_psw;
+        }
+        public string get_u_psw()
+        {
+           return  this.u_psw;
         }
 
 
