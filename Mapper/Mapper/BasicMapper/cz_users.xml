@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_users"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_users" type="Entity.cz_users, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_users">
+            <result property="u_id" column="u_id"/>
+            <result property="u_name" column="u_name"/>
+            <result property="salt" column="salt"/>
+            <result property="u_nicker" column="u_nicker"/>
+            <result property="u_skin" column="u_skin"/>
+            <result property="sup_name" column="sup_name"/>
+            <result property="u_type" column="u_type"/>
+            <result property="su_type" column="su_type"/>
+            <result property="add_date" column="add_date"/>
+            <result property="last_changedate" column="last_changedate"/>
+            <result property="six_rate" column="six_rate"/>
+            <result property="six_credit" column="six_credit"/>
+            <result property="six_usable_credit" column="six_usable_credit"/>
+            <result property="six_kind" column="six_kind"/>
+            <result property="a_state" column="a_state"/>
+            <result property="allow_sale" column="allow_sale"/>
+            <result property="allow_view_report" column="allow_view_report"/>
+            <result property="six_allow_maxrate" column="six_allow_maxrate"/>
+            <result property="six_low_maxrate" column="six_low_maxrate"/>
+            <result property="six_rate_owner" column="six_rate_owner"/>
+            <result property="six_iscash" column="six_iscash"/>
+            <result property="allow_opt" column="allow_opt"/>
+            <result property="is_changed" column="is_changed"/>
+            <result property="kc_rate" column="kc_rate"/>
+            <result property="kc_credit" column="kc_credit"/>
+            <result property="kc_usable_credit" column="kc_usable_credit"/>
+            <result property="kc_kind" column="kc_kind"/>
+            <result property="kc_allow_sale" column="kc_allow_sale"/>
+            <result property="negative_sale" column="negative_sale"/>
+            <result property="kc_allow_maxrate" column="kc_allow_maxrate"/>
+            <result property="kc_low_maxrate" column="kc_low_maxrate"/>
+            <result property="kc_rate_owner" column="kc_rate_owner"/>
+            <result property="kc_crash_payment" column="kc_crash_payment"/>
+            <result property="kc_iscash" column="kc_iscash"/>
+            <result property="six_op_odds" column="six_op_odds"/>
+            <result property="kc_op_odds" column="kc_op_odds"/>
+            <result property="kc_isauto_back" column="kc_isauto_back"/>
+            <result property="six_isauto_back" column="six_isauto_back"/>
+            <result property="retry_times" column="retry_times"/>
+            <result property="u_psw" column="u_psw"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="u_id" column="u_id"/>
+            <result property="u_name" column="u_name"/>
+            <result property="salt" column="salt"/>
+            <result property="u_nicker" column="u_nicker"/>
+            <result property="u_skin" column="u_skin"/>
+            <result property="sup_name" column="sup_name"/>
+            <result property="u_type" column="u_type"/>
+            <result property="su_type" column="su_type"/>
+            <result property="add_date" column="add_date"/>
+            <result property="last_changedate" column="last_changedate"/>
+            <result property="six_rate" column="six_rate"/>
+            <result property="six_credit" column="six_credit"/>
+            <result property="six_usable_credit" column="six_usable_credit"/>
+            <result property="six_kind" column="six_kind"/>
+            <result property="a_state" column="a_state"/>
+            <result property="allow_sale" column="allow_sale"/>
+            <result property="allow_view_report" column="allow_view_report"/>
+            <result property="six_allow_maxrate" column="six_allow_maxrate"/>
+            <result property="six_low_maxrate" column="six_low_maxrate"/>
+            <result property="six_rate_owner" column="six_rate_owner"/>
+            <result property="six_iscash" column="six_iscash"/>
+            <result property="allow_opt" column="allow_opt"/>
+            <result property="is_changed" column="is_changed"/>
+            <result property="kc_rate" column="kc_rate"/>
+            <result property="kc_credit" column="kc_credit"/>
+            <result property="kc_usable_credit" column="kc_usable_credit"/>
+            <result property="kc_kind" column="kc_kind"/>
+            <result property="kc_allow_sale" column="kc_allow_sale"/>
+            <result property="negative_sale" column="negative_sale"/>
+            <result property="kc_allow_maxrate" column="kc_allow_maxrate"/>
+            <result property="kc_low_maxrate" column="kc_low_maxrate"/>
+            <result property="kc_rate_owner" column="kc_rate_owner"/>
+            <result property="kc_crash_payment" column="kc_crash_payment"/>
+            <result property="kc_iscash" column="kc_iscash"/>
+            <result property="six_op_odds" column="six_op_odds"/>
+            <result property="kc_op_odds" column="kc_op_odds"/>
+            <result property="kc_isauto_back" column="kc_isauto_back"/>
+            <result property="six_isauto_back" column="six_isauto_back"/>
+            <result property="retry_times" column="retry_times"/>
+            <result property="u_psw" column="u_psw"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_users.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_users.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_users.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_users.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+        </select>
+        <select id="cz_users.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_users]
+        </select>
+        <select id="cz_users.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_users] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_users.GetById" parameterClass="map" resultClass="cz_users">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users] WHERE ()
+        </select>
+
+        <select id="cz_users.GetListByWhere"  parameterClass="map" resultClass="cz_users">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="sup_name" prepend="AND">
+                    [sup_name] = #sup_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="su_type" prepend="AND">
+                    [su_type] = #su_type#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="six_rate" prepend="AND">
+                    [six_rate] = #six_rate#
+                </isNotNull>
+                <isNotNull property="six_credit" prepend="AND">
+                    [six_credit] = #six_credit#
+                </isNotNull>
+                <isNotNull property="six_usable_credit" prepend="AND">
+                    [six_usable_credit] = #six_usable_credit#
+                </isNotNull>
+                <isNotNull property="six_kind" prepend="AND">
+                    [six_kind] = #six_kind#
+                </isNotNull>
+                <isNotNull property="a_state" prepend="AND">
+                    [a_state] = #a_state#
+                </isNotNull>
+                <isNotNull property="allow_sale" prepend="AND">
+                    [allow_sale] = #allow_sale#
+                </isNotNull>
+                <isNotNull property="allow_view_report" prepend="AND">
+                    [allow_view_report] = #allow_view_report#
+                </isNotNull>
+                <isNotNull property="six_allow_maxrate" prepend="AND">
+                    [six_allow_maxrate] = #six_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="six_low_maxrate" prepend="AND">
+                    [six_low_maxrate] = #six_low_maxrate#
+                </isNotNull>
+                <isNotNull property="six_rate_owner" prepend="AND">
+                    [six_rate_owner] = #six_rate_owner#
+                </isNotNull>
+                <isNotNull property="six_iscash" prepend="AND">
+                    [six_iscash] = #six_iscash#
+                </isNotNull>
+                <isNotNull property="allow_opt" prepend="AND">
+                    [allow_opt] = #allow_opt#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+                <isNotNull property="kc_rate" prepend="AND">
+                    [kc_rate] = #kc_rate#
+                </isNotNull>
+                <isNotNull property="kc_credit" prepend="AND">
+                    [kc_credit] = #kc_credit#
+                </isNotNull>
+                <isNotNull property="kc_usable_credit" prepend="AND">
+                    [kc_usable_credit] = #kc_usable_credit#
+                </isNotNull>
+                <isNotNull property="kc_kind" prepend="AND">
+                    [kc_kind] = #kc_kind#
+                </isNotNull>
+                <isNotNull property="kc_allow_sale" prepend="AND">
+                    [kc_allow_sale] = #kc_allow_sale#
+                </isNotNull>
+                <isNotNull property="negative_sale" prepend="AND">
+                    [negative_sale] = #negative_sale#
+                </isNotNull>
+                <isNotNull property="kc_allow_maxrate" prepend="AND">
+                    [kc_allow_maxrate] = #kc_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_low_maxrate" prepend="AND">
+                    [kc_low_maxrate] = #kc_low_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_rate_owner" prepend="AND">
+                    [kc_rate_owner] = #kc_rate_owner#
+                </isNotNull>
+                <isNotNull property="kc_crash_payment" prepend="AND">
+                    [kc_crash_payment] = #kc_crash_payment#
+                </isNotNull>
+                <isNotNull property="kc_iscash" prepend="AND">
+                    [kc_iscash] = #kc_iscash#
+                </isNotNull>
+                <isNotNull property="six_op_odds" prepend="AND">
+                    [six_op_odds] = #six_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_op_odds" prepend="AND">
+                    [kc_op_odds] = #kc_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_isauto_back" prepend="AND">
+                    [kc_isauto_back] = #kc_isauto_back#
+                </isNotNull>
+                <isNotNull property="six_isauto_back" prepend="AND">
+                    [six_isauto_back] = #six_isauto_back#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <select id="cz_users.GetListByWhereStr"  parameterClass="map" resultClass="cz_users">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_users.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_users">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="sup_name" prepend="AND">
+                    [sup_name] = #sup_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="su_type" prepend="AND">
+                    [su_type] = #su_type#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="six_rate" prepend="AND">
+                    [six_rate] = #six_rate#
+                </isNotNull>
+                <isNotNull property="six_credit" prepend="AND">
+                    [six_credit] = #six_credit#
+                </isNotNull>
+                <isNotNull property="six_usable_credit" prepend="AND">
+                    [six_usable_credit] = #six_usable_credit#
+                </isNotNull>
+                <isNotNull property="six_kind" prepend="AND">
+                    [six_kind] = #six_kind#
+                </isNotNull>
+                <isNotNull property="a_state" prepend="AND">
+                    [a_state] = #a_state#
+                </isNotNull>
+                <isNotNull property="allow_sale" prepend="AND">
+                    [allow_sale] = #allow_sale#
+                </isNotNull>
+                <isNotNull property="allow_view_report" prepend="AND">
+                    [allow_view_report] = #allow_view_report#
+                </isNotNull>
+                <isNotNull property="six_allow_maxrate" prepend="AND">
+                    [six_allow_maxrate] = #six_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="six_low_maxrate" prepend="AND">
+                    [six_low_maxrate] = #six_low_maxrate#
+                </isNotNull>
+                <isNotNull property="six_rate_owner" prepend="AND">
+                    [six_rate_owner] = #six_rate_owner#
+                </isNotNull>
+                <isNotNull property="six_iscash" prepend="AND">
+                    [six_iscash] = #six_iscash#
+                </isNotNull>
+                <isNotNull property="allow_opt" prepend="AND">
+                    [allow_opt] = #allow_opt#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+                <isNotNull property="kc_rate" prepend="AND">
+                    [kc_rate] = #kc_rate#
+                </isNotNull>
+                <isNotNull property="kc_credit" prepend="AND">
+                    [kc_credit] = #kc_credit#
+                </isNotNull>
+                <isNotNull property="kc_usable_credit" prepend="AND">
+                    [kc_usable_credit] = #kc_usable_credit#
+                </isNotNull>
+                <isNotNull property="kc_kind" prepend="AND">
+                    [kc_kind] = #kc_kind#
+                </isNotNull>
+                <isNotNull property="kc_allow_sale" prepend="AND">
+                    [kc_allow_sale] = #kc_allow_sale#
+                </isNotNull>
+                <isNotNull property="negative_sale" prepend="AND">
+                    [negative_sale] = #negative_sale#
+                </isNotNull>
+                <isNotNull property="kc_allow_maxrate" prepend="AND">
+                    [kc_allow_maxrate] = #kc_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_low_maxrate" prepend="AND">
+                    [kc_low_maxrate] = #kc_low_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_rate_owner" prepend="AND">
+                    [kc_rate_owner] = #kc_rate_owner#
+                </isNotNull>
+                <isNotNull property="kc_crash_payment" prepend="AND">
+                    [kc_crash_payment] = #kc_crash_payment#
+                </isNotNull>
+                <isNotNull property="kc_iscash" prepend="AND">
+                    [kc_iscash] = #kc_iscash#
+                </isNotNull>
+                <isNotNull property="six_op_odds" prepend="AND">
+                    [six_op_odds] = #six_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_op_odds" prepend="AND">
+                    [kc_op_odds] = #kc_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_isauto_back" prepend="AND">
+                    [kc_isauto_back] = #kc_isauto_back#
+                </isNotNull>
+                <isNotNull property="six_isauto_back" prepend="AND">
+                    [six_isauto_back] = #six_isauto_back#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_users">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="sup_name" prepend="AND">
+                    [sup_name] = #sup_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="su_type" prepend="AND">
+                    [su_type] = #su_type#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="six_rate" prepend="AND">
+                    [six_rate] = #six_rate#
+                </isNotNull>
+                <isNotNull property="six_credit" prepend="AND">
+                    [six_credit] = #six_credit#
+                </isNotNull>
+                <isNotNull property="six_usable_credit" prepend="AND">
+                    [six_usable_credit] = #six_usable_credit#
+                </isNotNull>
+                <isNotNull property="six_kind" prepend="AND">
+                    [six_kind] = #six_kind#
+                </isNotNull>
+                <isNotNull property="a_state" prepend="AND">
+                    [a_state] = #a_state#
+                </isNotNull>
+                <isNotNull property="allow_sale" prepend="AND">
+                    [allow_sale] = #allow_sale#
+                </isNotNull>
+                <isNotNull property="allow_view_report" prepend="AND">
+                    [allow_view_report] = #allow_view_report#
+                </isNotNull>
+                <isNotNull property="six_allow_maxrate" prepend="AND">
+                    [six_allow_maxrate] = #six_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="six_low_maxrate" prepend="AND">
+                    [six_low_maxrate] = #six_low_maxrate#
+                </isNotNull>
+                <isNotNull property="six_rate_owner" prepend="AND">
+                    [six_rate_owner] = #six_rate_owner#
+                </isNotNull>
+                <isNotNull property="six_iscash" prepend="AND">
+                    [six_iscash] = #six_iscash#
+                </isNotNull>
+                <isNotNull property="allow_opt" prepend="AND">
+                    [allow_opt] = #allow_opt#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+                <isNotNull property="kc_rate" prepend="AND">
+                    [kc_rate] = #kc_rate#
+                </isNotNull>
+                <isNotNull property="kc_credit" prepend="AND">
+                    [kc_credit] = #kc_credit#
+                </isNotNull>
+                <isNotNull property="kc_usable_credit" prepend="AND">
+                    [kc_usable_credit] = #kc_usable_credit#
+                </isNotNull>
+                <isNotNull property="kc_kind" prepend="AND">
+                    [kc_kind] = #kc_kind#
+                </isNotNull>
+                <isNotNull property="kc_allow_sale" prepend="AND">
+                    [kc_allow_sale] = #kc_allow_sale#
+                </isNotNull>
+                <isNotNull property="negative_sale" prepend="AND">
+                    [negative_sale] = #negative_sale#
+                </isNotNull>
+                <isNotNull property="kc_allow_maxrate" prepend="AND">
+                    [kc_allow_maxrate] = #kc_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_low_maxrate" prepend="AND">
+                    [kc_low_maxrate] = #kc_low_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_rate_owner" prepend="AND">
+                    [kc_rate_owner] = #kc_rate_owner#
+                </isNotNull>
+                <isNotNull property="kc_crash_payment" prepend="AND">
+                    [kc_crash_payment] = #kc_crash_payment#
+                </isNotNull>
+                <isNotNull property="kc_iscash" prepend="AND">
+                    [kc_iscash] = #kc_iscash#
+                </isNotNull>
+                <isNotNull property="six_op_odds" prepend="AND">
+                    [six_op_odds] = #six_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_op_odds" prepend="AND">
+                    [kc_op_odds] = #kc_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_isauto_back" prepend="AND">
+                    [kc_isauto_back] = #kc_isauto_back#
+                </isNotNull>
+                <isNotNull property="six_isauto_back" prepend="AND">
+                    [six_isauto_back] = #six_isauto_back#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <select id="cz_users.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_users.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_users]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="sup_name" prepend="AND">
+                    [sup_name] = #sup_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="su_type" prepend="AND">
+                    [su_type] = #su_type#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="six_rate" prepend="AND">
+                    [six_rate] = #six_rate#
+                </isNotNull>
+                <isNotNull property="six_credit" prepend="AND">
+                    [six_credit] = #six_credit#
+                </isNotNull>
+                <isNotNull property="six_usable_credit" prepend="AND">
+                    [six_usable_credit] = #six_usable_credit#
+                </isNotNull>
+                <isNotNull property="six_kind" prepend="AND">
+                    [six_kind] = #six_kind#
+                </isNotNull>
+                <isNotNull property="a_state" prepend="AND">
+                    [a_state] = #a_state#
+                </isNotNull>
+                <isNotNull property="allow_sale" prepend="AND">
+                    [allow_sale] = #allow_sale#
+                </isNotNull>
+                <isNotNull property="allow_view_report" prepend="AND">
+                    [allow_view_report] = #allow_view_report#
+                </isNotNull>
+                <isNotNull property="six_allow_maxrate" prepend="AND">
+                    [six_allow_maxrate] = #six_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="six_low_maxrate" prepend="AND">
+                    [six_low_maxrate] = #six_low_maxrate#
+                </isNotNull>
+                <isNotNull property="six_rate_owner" prepend="AND">
+                    [six_rate_owner] = #six_rate_owner#
+                </isNotNull>
+                <isNotNull property="six_iscash" prepend="AND">
+                    [six_iscash] = #six_iscash#
+                </isNotNull>
+                <isNotNull property="allow_opt" prepend="AND">
+                    [allow_opt] = #allow_opt#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+                <isNotNull property="kc_rate" prepend="AND">
+                    [kc_rate] = #kc_rate#
+                </isNotNull>
+                <isNotNull property="kc_credit" prepend="AND">
+                    [kc_credit] = #kc_credit#
+                </isNotNull>
+                <isNotNull property="kc_usable_credit" prepend="AND">
+                    [kc_usable_credit] = #kc_usable_credit#
+                </isNotNull>
+                <isNotNull property="kc_kind" prepend="AND">
+                    [kc_kind] = #kc_kind#
+                </isNotNull>
+                <isNotNull property="kc_allow_sale" prepend="AND">
+                    [kc_allow_sale] = #kc_allow_sale#
+                </isNotNull>
+                <isNotNull property="negative_sale" prepend="AND">
+                    [negative_sale] = #negative_sale#
+                </isNotNull>
+                <isNotNull property="kc_allow_maxrate" prepend="AND">
+                    [kc_allow_maxrate] = #kc_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_low_maxrate" prepend="AND">
+                    [kc_low_maxrate] = #kc_low_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_rate_owner" prepend="AND">
+                    [kc_rate_owner] = #kc_rate_owner#
+                </isNotNull>
+                <isNotNull property="kc_crash_payment" prepend="AND">
+                    [kc_crash_payment] = #kc_crash_payment#
+                </isNotNull>
+                <isNotNull property="kc_iscash" prepend="AND">
+                    [kc_iscash] = #kc_iscash#
+                </isNotNull>
+                <isNotNull property="six_op_odds" prepend="AND">
+                    [six_op_odds] = #six_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_op_odds" prepend="AND">
+                    [kc_op_odds] = #kc_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_isauto_back" prepend="AND">
+                    [kc_isauto_back] = #kc_isauto_back#
+                </isNotNull>
+                <isNotNull property="six_isauto_back" prepend="AND">
+                    [six_isauto_back] = #six_isauto_back#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <select id="cz_users.GetAllListOrder" parameterClass="map" resultClass="cz_users">
+            SELECT
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_users">
+            SELECT
+            <isPropertyAvailable property="Top" prepend="">
+                Top (#Top#)
+            </isPropertyAvailable>
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="sup_name" prepend="AND">
+                    [sup_name] = #sup_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="su_type" prepend="AND">
+                    [su_type] = #su_type#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="six_rate" prepend="AND">
+                    [six_rate] = #six_rate#
+                </isNotNull>
+                <isNotNull property="six_credit" prepend="AND">
+                    [six_credit] = #six_credit#
+                </isNotNull>
+                <isNotNull property="six_usable_credit" prepend="AND">
+                    [six_usable_credit] = #six_usable_credit#
+                </isNotNull>
+                <isNotNull property="six_kind" prepend="AND">
+                    [six_kind] = #six_kind#
+                </isNotNull>
+                <isNotNull property="a_state" prepend="AND">
+                    [a_state] = #a_state#
+                </isNotNull>
+                <isNotNull property="allow_sale" prepend="AND">
+                    [allow_sale] = #allow_sale#
+                </isNotNull>
+                <isNotNull property="allow_view_report" prepend="AND">
+                    [allow_view_report] = #allow_view_report#
+                </isNotNull>
+                <isNotNull property="six_allow_maxrate" prepend="AND">
+                    [six_allow_maxrate] = #six_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="six_low_maxrate" prepend="AND">
+                    [six_low_maxrate] = #six_low_maxrate#
+                </isNotNull>
+                <isNotNull property="six_rate_owner" prepend="AND">
+                    [six_rate_owner] = #six_rate_owner#
+                </isNotNull>
+                <isNotNull property="six_iscash" prepend="AND">
+                    [six_iscash] = #six_iscash#
+                </isNotNull>
+                <isNotNull property="allow_opt" prepend="AND">
+                    [allow_opt] = #allow_opt#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+                <isNotNull property="kc_rate" prepend="AND">
+                    [kc_rate] = #kc_rate#
+                </isNotNull>
+                <isNotNull property="kc_credit" prepend="AND">
+                    [kc_credit] = #kc_credit#
+                </isNotNull>
+                <isNotNull property="kc_usable_credit" prepend="AND">
+                    [kc_usable_credit] = #kc_usable_credit#
+                </isNotNull>
+                <isNotNull property="kc_kind" prepend="AND">
+                    [kc_kind] = #kc_kind#
+                </isNotNull>
+                <isNotNull property="kc_allow_sale" prepend="AND">
+                    [kc_allow_sale] = #kc_allow_sale#
+                </isNotNull>
+                <isNotNull property="negative_sale" prepend="AND">
+                    [negative_sale] = #negative_sale#
+                </isNotNull>
+                <isNotNull property="kc_allow_maxrate" prepend="AND">
+                    [kc_allow_maxrate] = #kc_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_low_maxrate" prepend="AND">
+                    [kc_low_maxrate] = #kc_low_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_rate_owner" prepend="AND">
+                    [kc_rate_owner] = #kc_rate_owner#
+                </isNotNull>
+                <isNotNull property="kc_crash_payment" prepend="AND">
+                    [kc_crash_payment] = #kc_crash_payment#
+                </isNotNull>
+                <isNotNull property="kc_iscash" prepend="AND">
+                    [kc_iscash] = #kc_iscash#
+                </isNotNull>
+                <isNotNull property="six_op_odds" prepend="AND">
+                    [six_op_odds] = #six_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_op_odds" prepend="AND">
+                    [kc_op_odds] = #kc_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_isauto_back" prepend="AND">
+                    [kc_isauto_back] = #kc_isauto_back#
+                </isNotNull>
+                <isNotNull property="six_isauto_back" prepend="AND">
+                    [six_isauto_back] = #six_isauto_back#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_users">
+            SELECT
+            <isPropertyAvailable property="Top" prepend="">
+                Top (#Top#)
+            </isPropertyAvailable>
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            FROM [dbo].[cz_users]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_users]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="sup_name" prepend="AND">
+                    [sup_name] = #sup_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="su_type" prepend="AND">
+                    [su_type] = #su_type#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="six_rate" prepend="AND">
+                    [six_rate] = #six_rate#
+                </isNotNull>
+                <isNotNull property="six_credit" prepend="AND">
+                    [six_credit] = #six_credit#
+                </isNotNull>
+                <isNotNull property="six_usable_credit" prepend="AND">
+                    [six_usable_credit] = #six_usable_credit#
+                </isNotNull>
+                <isNotNull property="six_kind" prepend="AND">
+                    [six_kind] = #six_kind#
+                </isNotNull>
+                <isNotNull property="a_state" prepend="AND">
+                    [a_state] = #a_state#
+                </isNotNull>
+                <isNotNull property="allow_sale" prepend="AND">
+                    [allow_sale] = #allow_sale#
+                </isNotNull>
+                <isNotNull property="allow_view_report" prepend="AND">
+                    [allow_view_report] = #allow_view_report#
+                </isNotNull>
+                <isNotNull property="six_allow_maxrate" prepend="AND">
+                    [six_allow_maxrate] = #six_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="six_low_maxrate" prepend="AND">
+                    [six_low_maxrate] = #six_low_maxrate#
+                </isNotNull>
+                <isNotNull property="six_rate_owner" prepend="AND">
+                    [six_rate_owner] = #six_rate_owner#
+                </isNotNull>
+                <isNotNull property="six_iscash" prepend="AND">
+                    [six_iscash] = #six_iscash#
+                </isNotNull>
+                <isNotNull property="allow_opt" prepend="AND">
+                    [allow_opt] = #allow_opt#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+                <isNotNull property="kc_rate" prepend="AND">
+                    [kc_rate] = #kc_rate#
+                </isNotNull>
+                <isNotNull property="kc_credit" prepend="AND">
+                    [kc_credit] = #kc_credit#
+                </isNotNull>
+                <isNotNull property="kc_usable_credit" prepend="AND">
+                    [kc_usable_credit] = #kc_usable_credit#
+                </isNotNull>
+                <isNotNull property="kc_kind" prepend="AND">
+                    [kc_kind] = #kc_kind#
+                </isNotNull>
+                <isNotNull property="kc_allow_sale" prepend="AND">
+                    [kc_allow_sale] = #kc_allow_sale#
+                </isNotNull>
+                <isNotNull property="negative_sale" prepend="AND">
+                    [negative_sale] = #negative_sale#
+                </isNotNull>
+                <isNotNull property="kc_allow_maxrate" prepend="AND">
+                    [kc_allow_maxrate] = #kc_allow_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_low_maxrate" prepend="AND">
+                    [kc_low_maxrate] = #kc_low_maxrate#
+                </isNotNull>
+                <isNotNull property="kc_rate_owner" prepend="AND">
+                    [kc_rate_owner] = #kc_rate_owner#
+                </isNotNull>
+                <isNotNull property="kc_crash_payment" prepend="AND">
+                    [kc_crash_payment] = #kc_crash_payment#
+                </isNotNull>
+                <isNotNull property="kc_iscash" prepend="AND">
+                    [kc_iscash] = #kc_iscash#
+                </isNotNull>
+                <isNotNull property="six_op_odds" prepend="AND">
+                    [six_op_odds] = #six_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_op_odds" prepend="AND">
+                    [kc_op_odds] = #kc_op_odds#
+                </isNotNull>
+                <isNotNull property="kc_isauto_back" prepend="AND">
+                    [kc_isauto_back] = #kc_isauto_back#
+                </isNotNull>
+                <isNotNull property="six_isauto_back" prepend="AND">
+                    [six_isauto_back] = #six_isauto_back#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <insert id="cz_users.Insert" parameterClass="cz_users" resultClass="Int32">
+            INSERT INTO [dbo].[cz_users] (
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]
+            ) VALUES (
+            #u_id#,#u_name#,#salt#,#u_nicker#,#u_skin#,#sup_name#,#u_type#,#su_type#,#add_date#,#last_changedate#,#six_rate#,#six_credit#,#six_usable_credit#,#six_kind#,#a_state#,#allow_sale#,#allow_view_report#,#six_allow_maxrate#,#six_low_maxrate#,#six_rate_owner#,#six_iscash#,#allow_opt#,#is_changed#,#kc_rate#,#kc_credit#,#kc_usable_credit#,#kc_kind#,#kc_allow_sale#,#negative_sale#,#kc_allow_maxrate#,#kc_low_maxrate#,#kc_rate_owner#,#kc_crash_payment#,#kc_iscash#,#six_op_odds#,#kc_op_odds#,#kc_isauto_back#,#six_isauto_back#,#retry_times#,#u_psw#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_users.Update" parameterClass="cz_users">
+            UPDATE [dbo].[cz_users] SET
+            [u_id] = #u_id#,[u_name] = #u_name#,[salt] = #salt#,[u_nicker] = #u_nicker#,[u_skin] = #u_skin#,[sup_name] = #sup_name#,[u_type] = #u_type#,[su_type] = #su_type#,[add_date] = #add_date#,[last_changedate] = #last_changedate#,[six_rate] = #six_rate#,[six_credit] = #six_credit#,[six_usable_credit] = #six_usable_credit#,[six_kind] = #six_kind#,[a_state] = #a_state#,[allow_sale] = #allow_sale#,[allow_view_report] = #allow_view_report#,[six_allow_maxrate] = #six_allow_maxrate#,[six_low_maxrate] = #six_low_maxrate#,[six_rate_owner] = #six_rate_owner#,[six_iscash] = #six_iscash#,[allow_opt] = #allow_opt#,[is_changed] = #is_changed#,[kc_rate] = #kc_rate#,[kc_credit] = #kc_credit#,[kc_usable_credit] = #kc_usable_credit#,[kc_kind] = #kc_kind#,[kc_allow_sale] = #kc_allow_sale#,[negative_sale] = #negative_sale#,[kc_allow_maxrate] = #kc_allow_maxrate#,[kc_low_maxrate] = #kc_low_maxrate#,[kc_rate_owner] = #kc_rate_owner#,[kc_crash_payment] = #kc_crash_payment#,[kc_iscash] = #kc_iscash#,[six_op_odds] = #six_op_odds#,[kc_op_odds] = #kc_op_odds#,[kc_isauto_back] = #kc_isauto_back#,[six_isauto_back] = #six_isauto_back#,[retry_times] = #retry_times#,[u_psw] = #u_psw#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+        <update id="cz_users.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_users] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_users.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_users]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_users.DeleteByEntity" parameterClass="cz_users">
+            DELETE FROM [dbo].[cz_users]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_users.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_users]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_users.ClearData">
+            truncate table [cz_users]
+        </statement>
+    </statements>
+</sqlMap>

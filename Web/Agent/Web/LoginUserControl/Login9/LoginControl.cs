@@ -3,7 +3,7 @@
     using System;
     using System.Web.UI;
 
-    public class LoginControl : UserControl
+    public class LoginControl : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

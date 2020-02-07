@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Entity
+namespace LotterySystem.Model
 {
     public class ReturnResult
     {

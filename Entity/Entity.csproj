@@ -38,9 +38,16 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Account.cs" />
-        <Compile Include="Cz_user.cs" />
+        <Compile Include="agent_userinfo_session.cs" />
+        <Compile Include="CommandText.cs" />
+        <Compile Include="cz_login_log.cs" />
+        <Compile Include="cz_rate_kc.cs" />
+        <Compile Include="cz_stat_online.cs" />
+        <Compile Include="cz_users.cs" />
+        <Compile Include="cz_users_child.cs" />
+        <Compile Include="EffentNextType.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="RedisConnectSplit.cs" />
         <Compile Include="ReturnResult.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

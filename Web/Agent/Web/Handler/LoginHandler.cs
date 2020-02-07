@@ -155,7 +155,7 @@ namespace Agent.Web.Handler
                     }
                 }
                 cz_users _users = CallBLL.cz_users_bll.AgentLogin(loginName.ToLower());
-                Cz_user_child _child = null;
+                cz_users_child _child = null;
                 if (_users == null)
                 {
                     _child = CallBLL.cz_users_child_bll.AgentLogin(loginName.ToLower());

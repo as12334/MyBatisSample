@@ -1,0 +1,1 @@
+<%@ WebHandler Language="C#" CodeBehind="ValidateImgHandler.ashx.cs" Class="Agent.Web.Handler.ValidateImgHandler" %>

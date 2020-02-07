@@ -5,22 +5,33 @@
     <e p="C:\Users\block\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_MyBatis.HelloWorld.-1775276520.00" t="ExcludeRecursive" />
     <e p="E:\WORK\MyBatisSample" t="IncludeFlat">
       <e p="Entity" t="IncludeRecursive">
-        <e p="Account.cs" t="Include" />
+        <e p="agent_userinfo_session.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Cz_user.cs" t="Include" />
+        <e p="CommandText.cs" t="Include" />
+        <e p="cz_login_log.cs" t="Include" />
+        <e p="cz_rate_kc.cs" t="Include" />
+        <e p="cz_stat_online.cs" t="Include" />
+        <e p="cz_users.cs" t="Include" />
+        <e p="cz_users_child.cs" t="Include" />
+        <e p="EffentNextType.cs" t="Include" />
         <e p="Entity.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
+        <e p="RedisConnectSplit.cs" t="Include" />
         <e p="ReturnResult.cs" t="Include" />
       </e>
       <e p="Mapper" t="IncludeRecursive">
-        <e p="BasicMapper" t="Include">
-          <e p="Account.xml" t="Include" />
-          <e p="Cz_user.xml" t="Include" />
-        </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Mapper" t="Include">
+          <e p="BasicMapper" t="Include">
+            <e p="cz_login_log.xml" t="Include" />
+            <e p="cz_rate_kc.xml" t="Include" />
+            <e p="cz_users.xml" t="Include" />
+            <e p="cz_users_child.xml" t="Include" />
+          </e>
+        </e>
         <e p="Mapper.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
@@ -72,17 +83,34 @@
           </e>
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="BLL" t="Include">
+          <e p="cz_admin_sysconfigBLL.cs" t="Include" />
+          <e p="cz_credit_flowBLL.cs" t="Include" />
+          <e p="cz_login_logBLL.cs" t="Include" />
+          <e p="cz_lotteryBLL.cs" t="Include" />
+          <e p="cz_phase_kl10BLL.cs" t="Include" />
+          <e p="cz_rate_kcBLL.cs" t="Include" />
+          <e p="cz_stat_onlineBLL.cs" t="Include" />
+          <e p="cz_stat_top_onlineBLL.cs" t="Include" />
+          <e p="cz_user_psw_err_logBLL.cs" t="Include" />
+          <e p="cz_users_childBLL.cs" t="Include" />
+          <e p="cz_usersBLL.cs" t="Include" />
+        </e>
         <e p="Business" t="Include">
           <e p="BaseManager.cs" t="Include" />
           <e p="IBaseManager.cs" t="Include" />
         </e>
         <e p="Business.Implements" t="Include">
-          <e p="AccountManager.cs" t="Include" />
-          <e p="Cz_userManager.cs" t="Include" />
+          <e p="cz_login_logLottery.cs" t="Include" />
+          <e p="cz_rate_kcLottery.cs" t="Include" />
+          <e p="cz_users_childLottery.cs" t="Include" />
+          <e p="cz_usersLottery.cs" t="Include" />
         </e>
         <e p="Business.Interface" t="Include">
-          <e p="IAccountManager.cs" t="Include" />
-          <e p="ICz_userManager.cs" t="Include" />
+          <e p="Icz_login_logLottery.cs" t="Include" />
+          <e p="Icz_rate_kcLottery.cs" t="Include" />
+          <e p="Icz_users_childLottery.cs" t="Include" />
+          <e p="Icz_usersLottery.cs" t="Include" />
         </e>
         <e p="Common" t="Include">
           <e p="CookieHelper.cs" t="Include" />
@@ -113,17 +141,26 @@
           <e p="PageResult.cs" t="Include" />
         </e>
         <e p="Data.Implements" t="Include">
-          <e p="AccountService.cs" t="Include" />
-          <e p="Cz_userService.cs" t="Include" />
+          <e p="cz_login_logService.cs" t="Include" />
+          <e p="cz_rate_kcService.cs" t="Include" />
+          <e p="cz_users_childService.cs" t="Include" />
+          <e p="cz_usersService.cs" t="Include" />
         </e>
         <e p="Data.Interface" t="Include">
-          <e p="IAccountService.cs" t="Include" />
-          <e p="ICz_userService.cs" t="Include" />
+          <e p="Icz_login_logService.cs" t="Include" />
+          <e p="Icz_rate_kcService.cs" t="Include" />
+          <e p="Icz_users_childService.cs" t="Include" />
+          <e p="Icz_usersService.cs" t="Include" />
         </e>
         <e p="DataBase.config" t="Include" />
         <e p="Default.aspx" t="Include" />
         <e p="Default.aspx.cs" t="Include" />
         <e p="Default.aspx.designer.cs" t="Include" />
+        <e p="Global.asax" t="Include" />
+        <e p="Handler" t="Include">
+          <e p="LoginHandler.ashx" t="Include" />
+          <e p="ValidateImgHandler.ashx" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Properties" t="Include">
@@ -131,6 +168,74 @@
         </e>
         <e p="provider.xsd" t="Include" />
         <e p="Providers.config" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="activeX_Embed.js" t="Include" />
+          <e p="addUser.js" t="Include" />
+          <e p="alert.js" t="Include" />
+          <e p="array.js" t="Include" />
+          <e p="awardPeriod.js" t="Include" />
+          <e p="Betimes.js" t="Include" />
+          <e p="Betimes.pack.js" t="Include" />
+          <e p="Betimes.pack.min.js" t="Include" />
+          <e p="billsearch.js" t="Include" />
+          <e p="checkPwd.js" t="Include" />
+          <e p="config.js" t="Include" />
+          <e p="DD_belatedPNG_0.0.8a.js" t="Include" />
+          <e p="dialog-config.js" t="Include" />
+          <e p="dialog-plus-min.js" t="Include" />
+          <e p="dialog-plus.js" t="Include" />
+          <e p="dialog.js" t="Include" />
+          <e p="doubleMyLayer.js" t="Include" />
+          <e p="drag.js" t="Include" />
+          <e p="drawback.js" t="Include" />
+          <e p="fastFlyAway.js" t="Include" />
+          <e p="fixed.js" t="Include" />
+          <e p="flv.min.js" t="Include" />
+          <e p="fullmask.js" t="Include" />
+          <e p="gameHall.js" t="Include" />
+          <e p="get_ad.js" t="Include" />
+          <e p="getBaseDataAjax.js" t="Include" />
+          <e p="hy_profit.js" t="Include" />
+          <e p="index.js" t="Include" />
+          <e p="jquery-1.10.2.js" t="Include" />
+          <e p="json2.js" t="Include" />
+          <e p="juicer-min.js" t="Include" />
+          <e p="listHover.js" t="Include" />
+          <e p="login.js" t="Include" />
+          <e p="lottery_add.js" t="Include" />
+          <e p="lotteryConfig.js" t="Include" />
+          <e p="ManageZJProfit.js" t="Include" />
+          <e p="myLayer.js" t="Include" />
+          <e p="myLayer1.js" t="Include" />
+          <e p="newBet.js" t="Include" />
+          <e p="news.js" t="Include" />
+          <e p="noopen.js" t="Include" />
+          <e p="oddsSet.js" t="Include" />
+          <e p="oddswt.js" t="Include" />
+          <e p="otherConfig.js" t="Include" />
+          <e p="pageLoad.js" t="Include" />
+          <e p="plus.js" t="Include" />
+          <e p="popup.js" t="Include" />
+          <e p="recharge.js" t="Include" />
+          <e p="report.js" t="Include" />
+          <e p="reportCurrentphase.js" t="Include" />
+          <e p="reportList.js" t="Include" />
+          <e p="reportNew.js" t="Include" />
+          <e p="reportNew_bak.js" t="Include" />
+          <e p="sea.js" t="Include" />
+          <e p="seajs-css.js" t="Include" />
+          <e p="setUserStatus.js" t="Include" />
+          <e p="setUserStatus1.js" t="Include" />
+          <e p="sound.js" t="Include" />
+          <e p="sub.js" t="Include" />
+          <e p="tabEvent.js" t="Include" />
+          <e p="tips.js" t="Include" />
+          <e p="toRMB.js" t="Include" />
+          <e p="video.min.js" t="Include" />
+          <e p="videojs-flvjs.min.js" t="Include" />
+          <e p="xgplayer-flv.js" t="Include" />
+          <e p="xgplayer.js" t="Include" />
+        </e>
         <e p="SqlMap.config" t="Include" />
         <e p="SqlMap.xsd" t="Include" />
         <e p="SqlMapConfig.xsd" t="Include" />
@@ -141,6 +246,9 @@
         <e p="Web.csproj" t="IncludeRecursive" />
         <e p="Web.Debug.config" t="Include" />
         <e p="Web.Release.config" t="Include" />
+        <e p="WebGame" t="Include">
+          <e p="Global.asax.cs" t="Include" />
+        </e>
       </e>
     </e>
   </component>

@@ -1,7 +1,7 @@
 /************************************************************************************
  *      Copyright (C) 2011 mesnac.com,All Rights Reserved
  *      File:
- *				BaseManager.cs
+ *				BaseLottery.cs
  *      Description:
  *				 业务逻辑抽象基类
  *      Author:
@@ -9,7 +9,7 @@
  *				zhenglb@mesnac.com
  *				http://www.mesnac.com
  *      Finish DateTime:
- *				2020年02月05日
+ *				2020年02月06日
  *      History:
  *      
  ***********************************************************************************/
@@ -22,7 +22,7 @@ namespace Business
 {
     using Data.Components;
     using Data;
-    public abstract class BaseManager<T> : IBaseManager<T> where T : new()
+    public abstract class BaseLottery<T> : IBaseLottery<T> where T : new()
     {
         private IBaseService<T> baseService;
 

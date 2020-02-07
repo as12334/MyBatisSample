@@ -41,8 +41,13 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-      <EmbeddedResource Include="BasicMapper\Account.xml" />
-      <EmbeddedResource Include="BasicMapper\Cz_user.xml" />
+      <Folder Include="Mapper" />
+    </ItemGroup>
+    <ItemGroup>
+          <EmbeddedResource Include="Mapper\BasicMapper\cz_users.xml" />
+          <EmbeddedResource Include="Mapper\BasicMapper\cz_login_log.xml" />   
+          <EmbeddedResource Include="Mapper\BasicMapper\cz_rate_kc.xml" />
+          <EmbeddedResource Include="Mapper\BasicMapper\cz_users_child.xml" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

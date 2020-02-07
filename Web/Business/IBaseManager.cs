@@ -1,7 +1,7 @@
 /************************************************************************************
  *      Copyright (C) 2011 mesnac.com,All Rights Reserved
  *      File:
- *				IBaseManager.cs
+ *				IBaseLottery.cs
  *      Description:
  *				 业务逻辑基础接口
  *      Author:
@@ -9,7 +9,7 @@
  *				zhenglb@mesnac.com
  *				http://www.mesnac.com
  *      Finish DateTime:
- *				2020年02月05日
+ *				2020年02月06日
  *      History:
  ***********************************************************************************/
 using System;
@@ -19,7 +19,7 @@ using System.Text;
 namespace Business
 {
     using Data;
-    public interface IBaseManager<T> : IBaseService<T> where T : new()
+    public interface IBaseLottery<T> : IBaseService<T> where T : new()
     {
 
     }
