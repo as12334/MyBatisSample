@@ -82,7 +82,7 @@ namespace Agent.Web.Handler
                 }
                 if (context.Session["lottery_session_img_code_display"] == null)
                 {
-                    if (CallBLL.cz_user_psw_err_log_bll.IsExistUser(loginName))
+                    if (CallBLL.CzUserPswErrLogService.IsExistUser(loginName))
                     {
 //                        TODO 登录超时
 //                        if (PageBase.IsErrTimesAbove(ref time, str5))
@@ -186,13 +186,13 @@ namespace Agent.Web.Handler
                             strResult = JsonHandle.ObjectToJson(result);
                             if (context.Session["lottery_session_img_code_display"].ToString() == "0")
                             {
-                                if (CallBLL.cz_user_psw_err_log_bll.IsExistUser(loginName))
+                                if (CallBLL.CzUserPswErrLogService.IsExistUser(loginName))
                                 {
-                                    CallBLL.cz_user_psw_err_log_bll.UpdateErrTimes(loginName);
+                                    CallBLL.CzUserPswErrLogService.UpdateErrTimes(loginName);
                                 }
                                 else
                                 {
-                                    CallBLL.cz_user_psw_err_log_bll.AddUser(loginName);
+                                    CallBLL.CzUserPswErrLogService.AddUser(loginName);
                                 }
                                 if (PageBase.IsErrTimesAbove(ref time, loginName))
                                 {
@@ -273,13 +273,13 @@ namespace Agent.Web.Handler
                         strResult = JsonHandle.ObjectToJson(result);
                         if (context.Session["lottery_session_img_code_display"].ToString() == "0")
                         {
-                            if (CallBLL.cz_user_psw_err_log_bll.IsExistUser(loginName))
+                            if (CallBLL.CzUserPswErrLogService.IsExistUser(loginName))
                             {
-                                CallBLL.cz_user_psw_err_log_bll.UpdateErrTimes(loginName);
+                                CallBLL.CzUserPswErrLogService.UpdateErrTimes(loginName);
                             }
                             else
                             {
-                                CallBLL.cz_user_psw_err_log_bll.AddUser(loginName);
+                                CallBLL.CzUserPswErrLogService.AddUser(loginName);
                             }
                             if (PageBase.IsErrTimesAbove(ref time, loginName))
                             {
@@ -496,7 +496,7 @@ namespace Agent.Web.Handler
                 {
                     PageBase.ZeroIsOutFlag(loginName);
                 }
-                CallBLL.cz_user_psw_err_log_bll.ZeroErrTimes(loginName);
+                CallBLL.CzUserPswErrLogService.ZeroErrTimes(loginName);
                 cz_login_log _log = new cz_login_log();
                 _log.set_ip(LSRequest.GetIP());
                 _log.set_login_time(new DateTime?(DateTime.Now));

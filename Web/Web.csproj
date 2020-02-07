@@ -223,15 +223,16 @@
     <Compile Include="BLL\cz_phase_kl10BLL.cs" />
     <Compile Include="BLL\cz_stat_onlineBLL.cs" />
     <Compile Include="BLL\cz_stat_top_onlineBLL.cs" />
-    <Compile Include="BLL\cz_user_psw_err_logBLL.cs" />
     <Compile Include="Business.Implements\cz_login_logLottery.cs" />
     <Compile Include="Business.Implements\cz_rate_kcLottery.cs" />
     <Compile Include="Business.Implements\cz_usersLottery.cs" />
     <Compile Include="Business.Implements\cz_users_childLottery.cs" />
+    <Compile Include="Business.Implements\cz_user_psw_err_logLottery.cs" />
     <Compile Include="Business.Interface\Icz_login_logLottery.cs" />
     <Compile Include="Business.Interface\Icz_rate_kcLottery.cs" />
     <Compile Include="Business.Interface\Icz_usersLottery.cs" />
     <Compile Include="Business.Interface\Icz_users_childLottery.cs" />
+    <Compile Include="Business.Interface\Icz_user_psw_err_logLottery.cs" />
     <Compile Include="Business\BaseManager.cs" />
     <Compile Include="Business\IBaseManager.cs" />
     <Compile Include="Common\CookieHelper.cs" />
@@ -251,9 +252,11 @@
     <Compile Include="Data.Implements\cz_login_logService.cs" />
     <Compile Include="Data.Implements\cz_rate_kcService.cs" />
     <Compile Include="Data.Implements\cz_users_childService.cs" />
+    <Compile Include="Data.Implements\cz_user_psw_err_logService.cs" />
     <Compile Include="Data.Interface\Icz_login_logService.cs" />
     <Compile Include="Data.Interface\Icz_rate_kcService.cs" />
     <Compile Include="Data.Interface\Icz_users_childService.cs" />
+    <Compile Include="Data.Interface\Icz_user_psw_err_logService.cs" />
     <Compile Include="WebGame\Global.asax.cs" />
     <EmbeddedResource Include="SqlMap.xsd">
       <SubType>

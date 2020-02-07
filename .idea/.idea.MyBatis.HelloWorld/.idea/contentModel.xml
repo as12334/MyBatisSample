@@ -11,6 +11,7 @@
         <e p="cz_login_log.cs" t="Include" />
         <e p="cz_rate_kc.cs" t="Include" />
         <e p="cz_stat_online.cs" t="Include" />
+        <e p="cz_user_psw_err_log.cs" t="Include" />
         <e p="cz_users.cs" t="Include" />
         <e p="cz_users_child.cs" t="Include" />
         <e p="EffentNextType.cs" t="Include" />
@@ -28,6 +29,7 @@
           <e p="BasicMapper" t="Include">
             <e p="cz_login_log.xml" t="Include" />
             <e p="cz_rate_kc.xml" t="Include" />
+            <e p="cz_user_psw_err_log.xml" t="Include" />
             <e p="cz_users.xml" t="Include" />
             <e p="cz_users_child.xml" t="Include" />
           </e>
@@ -90,7 +92,6 @@
           <e p="cz_phase_kl10BLL.cs" t="Include" />
           <e p="cz_stat_onlineBLL.cs" t="Include" />
           <e p="cz_stat_top_onlineBLL.cs" t="Include" />
-          <e p="cz_user_psw_err_logBLL.cs" t="Include" />
         </e>
         <e p="Business" t="Include">
           <e p="BaseManager.cs" t="Include" />
@@ -99,12 +100,14 @@
         <e p="Business.Implements" t="Include">
           <e p="cz_login_logLottery.cs" t="Include" />
           <e p="cz_rate_kcLottery.cs" t="Include" />
+          <e p="cz_user_psw_err_logLottery.cs" t="Include" />
           <e p="cz_users_childLottery.cs" t="Include" />
           <e p="cz_usersLottery.cs" t="Include" />
         </e>
         <e p="Business.Interface" t="Include">
           <e p="Icz_login_logLottery.cs" t="Include" />
           <e p="Icz_rate_kcLottery.cs" t="Include" />
+          <e p="Icz_user_psw_err_logLottery.cs" t="Include" />
           <e p="Icz_users_childLottery.cs" t="Include" />
           <e p="Icz_usersLottery.cs" t="Include" />
         </e>
@@ -139,12 +142,14 @@
         <e p="Data.Implements" t="Include">
           <e p="cz_login_logService.cs" t="Include" />
           <e p="cz_rate_kcService.cs" t="Include" />
+          <e p="cz_user_psw_err_logService.cs" t="Include" />
           <e p="cz_users_childService.cs" t="Include" />
           <e p="cz_usersService.cs" t="Include" />
         </e>
         <e p="Data.Interface" t="Include">
           <e p="Icz_login_logService.cs" t="Include" />
           <e p="Icz_rate_kcService.cs" t="Include" />
+          <e p="Icz_user_psw_err_logService.cs" t="Include" />
           <e p="Icz_users_childService.cs" t="Include" />
           <e p="Icz_usersService.cs" t="Include" />
         </e>

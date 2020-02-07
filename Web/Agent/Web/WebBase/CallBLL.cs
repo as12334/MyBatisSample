@@ -6,7 +6,7 @@ namespace Agent.Web.WebBase
 {
     public class CallBLL
     {
-        public static cz_user_psw_err_logBLL cz_user_psw_err_log_bll;
+        public static cz_user_psw_err_logService CzUserPswErrLogService;
         public static cz_usersService CzUsersService;
         public static cz_users_childService CzUsersChildService;
         public static cz_admin_sysconfigBLL cz_admin_sysconfig_bll;
@@ -23,9 +23,9 @@ namespace Agent.Web.WebBase
 
         public static void Call()
         {
-            if (cz_user_psw_err_log_bll == null)
+            if (CzUserPswErrLogService == null)
             {
-                cz_user_psw_err_log_bll = new cz_user_psw_err_logBLL();
+                CzUserPswErrLogService = new cz_user_psw_err_logService();
             }
             if (CzUsersService == null)
             {

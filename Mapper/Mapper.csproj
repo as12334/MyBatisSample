@@ -48,6 +48,10 @@
           <EmbeddedResource Include="Mapper\BasicMapper\cz_login_log.xml" />   
           <EmbeddedResource Include="Mapper\BasicMapper\cz_rate_kc.xml" />
           <EmbeddedResource Include="Mapper\BasicMapper\cz_users_child.xml" />
+          <EmbeddedResource Include="Mapper\BasicMapper\cz_user_psw_err_log.xml" />
+
+    </ItemGroup>
+    <ItemGroup>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

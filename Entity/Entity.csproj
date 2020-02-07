@@ -45,6 +45,7 @@
         <Compile Include="cz_stat_online.cs" />
         <Compile Include="cz_users.cs" />
         <Compile Include="cz_users_child.cs" />
+        <Compile Include="cz_user_psw_err_log.cs" />
         <Compile Include="EffentNextType.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RedisConnectSplit.cs" />
