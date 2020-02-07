@@ -219,14 +219,10 @@
     <Compile Include="Agent\Web\WebBase\MemberPageBase.cs" />
     <Compile Include="BLL\cz_admin_sysconfigBLL.cs" />
     <Compile Include="BLL\cz_credit_flowBLL.cs" />
-    <Compile Include="BLL\cz_login_logBLL.cs" />
     <Compile Include="BLL\cz_lotteryBLL.cs" />
     <Compile Include="BLL\cz_phase_kl10BLL.cs" />
-    <Compile Include="BLL\cz_rate_kcBLL.cs" />
     <Compile Include="BLL\cz_stat_onlineBLL.cs" />
     <Compile Include="BLL\cz_stat_top_onlineBLL.cs" />
-    <Compile Include="BLL\cz_usersBLL.cs" />
-    <Compile Include="BLL\cz_users_childBLL.cs" />
     <Compile Include="BLL\cz_user_psw_err_logBLL.cs" />
     <Compile Include="Business.Implements\cz_login_logLottery.cs" />
     <Compile Include="Business.Implements\cz_rate_kcLottery.cs" />

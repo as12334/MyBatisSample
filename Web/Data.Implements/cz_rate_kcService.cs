@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Data.Implements
@@ -15,5 +16,15 @@ namespace Data.Implements
         public cz_rate_kcService(string language) : base(language) { }
 
         #endregion
+
+        public cz_rate_kc GetRateKCByUserName(string getUName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataTable GetUserOpOdds(string getUName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Data.Implements
@@ -15,5 +16,27 @@ namespace Data.Implements
         public cz_usersService(string language) : base(language) { }
 
         #endregion
+
+        public cz_users AgentLogin(string toLower)
+        {
+            IList<cz_users> listByWhere = GetListByWhere(String.Format("u_name = '{0}'" , toLower));
+            if (listByWhere.Count > 0)
+            {
+                return listByWhere[0];
+            }
+
+            return null;
+        }
+
+        public cz_users GetZJInfo()
+        {
+            IList<cz_users> listByWhere = GetListByWhere("u_type = 'zj'");
+            if (listByWhere.Count > 0)
+            {
+                return listByWhere[0];
+            }
+
+            return null;
+        }
     }
 }

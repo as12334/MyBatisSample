@@ -15,5 +15,10 @@ namespace Data.Implements
         public cz_login_logService(string language) : base(language) { }
 
         #endregion
+
+        public bool Add(cz_login_log log)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -86,15 +86,11 @@
         <e p="BLL" t="Include">
           <e p="cz_admin_sysconfigBLL.cs" t="Include" />
           <e p="cz_credit_flowBLL.cs" t="Include" />
-          <e p="cz_login_logBLL.cs" t="Include" />
           <e p="cz_lotteryBLL.cs" t="Include" />
           <e p="cz_phase_kl10BLL.cs" t="Include" />
-          <e p="cz_rate_kcBLL.cs" t="Include" />
           <e p="cz_stat_onlineBLL.cs" t="Include" />
           <e p="cz_stat_top_onlineBLL.cs" t="Include" />
           <e p="cz_user_psw_err_logBLL.cs" t="Include" />
-          <e p="cz_users_childBLL.cs" t="Include" />
-          <e p="cz_usersBLL.cs" t="Include" />
         </e>
         <e p="Business" t="Include">
           <e p="BaseManager.cs" t="Include" />

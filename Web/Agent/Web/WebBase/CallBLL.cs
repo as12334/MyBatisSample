@@ -1,4 +1,5 @@
 
+using Data.Implements;
 using LotterySystem.BLL;
 
 namespace Agent.Web.WebBase
@@ -6,12 +7,12 @@ namespace Agent.Web.WebBase
     public class CallBLL
     {
         public static cz_user_psw_err_logBLL cz_user_psw_err_log_bll;
-        public static cz_usersBLL cz_users_bll;
-        public static cz_users_childBLL cz_users_child_bll;
+        public static cz_usersService CzUsersService;
+        public static cz_users_childService CzUsersChildService;
         public static cz_admin_sysconfigBLL cz_admin_sysconfig_bll;
 //        public static cz_rate_sixBLL cz_rate_six_bll;
-        public static cz_rate_kcBLL cz_rate_kc_bll;
-        public static cz_login_logBLL cz_login_log_bll;
+        public static cz_rate_kcService CzRateKcService;
+        public static cz_login_logService CzLoginLogService;
         public static cz_phase_kl10BLL cz_phase_kl10_bll;
         public static cz_lotteryBLL cz_lottery_bll;
         public static cz_stat_onlineBLL cz_stat_online_bll;
@@ -26,9 +27,24 @@ namespace Agent.Web.WebBase
             {
                 cz_user_psw_err_log_bll = new cz_user_psw_err_logBLL();
             }
-            if (cz_users_bll == null)
+            if (CzUsersService == null)
             {
-                cz_users_bll = new cz_usersBLL();
+                CzUsersService = new cz_usersService();
+            }
+            
+            if (CzUsersChildService == null)
+            {
+                CzUsersChildService = new cz_users_childService();
+            }
+            
+            if (CzRateKcService == null)
+            {
+                CzRateKcService = new cz_rate_kcService();
+            }
+            
+            if (CzLoginLogService == null)
+            {
+                CzLoginLogService = new cz_login_logService();
             }
             
         }

@@ -154,11 +154,11 @@ namespace Agent.Web.Handler
                         return;
                     }
                 }
-                cz_users _users = CallBLL.cz_users_bll.AgentLogin(loginName.ToLower());
+                cz_users _users = CallBLL.CzUsersService.AgentLogin(loginName.ToLower());
                 cz_users_child _child = null;
                 if (_users == null)
                 {
-                    _child = CallBLL.cz_users_child_bll.AgentLogin(loginName.ToLower());
+                    _child = CallBLL.CzUsersChildService.AgentLogin(loginName.ToLower());
                     if (_child != null)
                     {
                         retry_times = _child.get_retry_times().ToString();
@@ -209,7 +209,7 @@ namespace Agent.Web.Handler
                         }
                         str2 = _child.get_status().ToString();
                         str3 = PageBase.upper_user_status(_child.get_parent_u_name());
-                        _users = CallBLL.cz_users_bll.AgentLogin(_child.get_parent_u_name());
+                        _users = CallBLL.CzUsersService.AgentLogin(_child.get_parent_u_name());
                     }
                     else
                     {
@@ -435,19 +435,19 @@ namespace Agent.Web.Handler
                     _child.set_salt("");
                 }
                 _session.set_users_child_session(_child);
-                DataTable zJInfo = CallBLL.cz_users_bll.GetZJInfo();
+                cz_users zJInfo = CallBLL.CzUsersService.GetZJInfo();
                 if (zJInfo != null)
                 {
-                    _session.set_zjname(zJInfo.Rows[0]["u_name"].ToString().Trim());
+                    _session.set_zjname(zJInfo.get_u_name().ToString().Trim());
                 }
                 if (!_session.get_u_type().ToLower().Equals("zj"))
                 {
-                    cz_rate_kc rateKCByUserName = CallBLL.cz_rate_kc_bll.GetRateKCByUserName(_session.get_u_name());
+                    cz_rate_kc rateKCByUserName = CallBLL.CzRateKcService.GetRateKCByUserName(_session.get_u_name());
                     _session.set_fgs_name(rateKCByUserName.get_fgs_name());
                     _session.set_gd_name(rateKCByUserName.get_gd_name());
                     _session.set_zd_name(rateKCByUserName.get_zd_name());
                     _session.set_dl_name(rateKCByUserName.get_dl_name());
-                    DataTable userOpOdds = CallBLL.cz_rate_kc_bll.GetUserOpOdds(_session.get_u_name());
+                    DataTable userOpOdds = CallBLL.CzRateKcService.GetUserOpOdds(_session.get_u_name());
                     if (userOpOdds != null)
                     {
                         if ((userOpOdds.Rows[0]["six_op_odds"] != null) && (userOpOdds.Rows[0]["six_op_odds"].ToString() != ""))
@@ -503,7 +503,7 @@ namespace Agent.Web.Handler
                 _log.set_u_name(loginName);
                 PageBase base2 = new PageBase();
 //                _log.set_browser_type(Utils.GetBrowserInfo(HttpContext.Current));
-                bool flag5 = CallBLL.cz_login_log_bll.Add(_log);
+                bool flag5 = CallBLL.CzLoginLogService.Add(_log);
                 if (_child == null)
                 {
                     str14 = _users.get_is_changed().ToString();
