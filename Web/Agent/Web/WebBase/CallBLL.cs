@@ -1,18 +1,19 @@
 
 using Data.Implements;
+using Data.Interface;
 using LotterySystem.BLL;
 
 namespace Agent.Web.WebBase
 {
     public class CallBLL
     {
-        public static cz_user_psw_err_logService CzUserPswErrLogService;
-        public static cz_usersService CzUsersService;
-        public static cz_users_childService CzUsersChildService;
+        public static Icz_user_psw_err_logService CzUserPswErrLogService;
+        public static Icz_usersService CzUsersService;
+        public static Icz_users_childService CzUsersChildService;
         public static cz_admin_sysconfigBLL cz_admin_sysconfig_bll;
 //        public static cz_rate_sixBLL cz_rate_six_bll;
-        public static cz_rate_kcService CzRateKcService;
-        public static cz_login_logService CzLoginLogService;
+        public static Icz_rate_kcService CzRateKcService;
+        public static Icz_login_logService CzLoginLogService;
         public static cz_phase_kl10BLL cz_phase_kl10_bll;
         public static cz_lotteryBLL cz_lottery_bll;
         public static cz_stat_onlineBLL cz_stat_online_bll;

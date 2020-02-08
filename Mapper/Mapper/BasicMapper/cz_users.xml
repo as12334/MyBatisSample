@@ -135,6 +135,22 @@
         <procedure id="cz_users.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
             MesnacPaging
         </procedure>
+
+
+
+<!--        <select id="cz_users.upperUsers" parameterClass="map" resultClass="cz_users">-->
+<!--            with CTE as-->
+<!--            (-->
+<!--                select * from [manager].[dbo].[cz_users] WHERE u_name = #u_name#-->
+<!--                union all-->
+<!--                select G.* from CTE inner join [manager].[dbo].[cz_users] as G-->
+<!--                on CTE.sup_name=G.u_name-->
+<!--            )-->
+<!--            select * from CTE  where u_name != #u_name#-->
+<!--        </select>-->
+        
+        
+        
         <select id="cz_users.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
             SELECT
             [u_id],[u_name],[salt],[u_nicker],[u_skin],[sup_name],[u_type],[su_type],[add_date],[last_changedate],[six_rate],[six_credit],[six_usable_credit],[six_kind],[a_state],[allow_sale],[allow_view_report],[six_allow_maxrate],[six_low_maxrate],[six_rate_owner],[six_iscash],[allow_opt],[is_changed],[kc_rate],[kc_credit],[kc_usable_credit],[kc_kind],[kc_allow_sale],[negative_sale],[kc_allow_maxrate],[kc_low_maxrate],[kc_rate_owner],[kc_crash_payment],[kc_iscash],[six_op_odds],[kc_op_odds],[kc_isauto_back],[six_isauto_back],[retry_times],[u_psw]

@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using Data.Implements;
+using Data.Interface;
+using Entity;
 
 namespace LotterySystem.Common
 {
@@ -44,14 +48,22 @@ namespace LotterySystem.Common
             throw new NotImplementedException();
         }
 
+//        ÉÏ¼¶×´Ì¬
         public static string upper_user_status(string getParentUName)
         {
-            throw new NotImplementedException();
+            Icz_usersService czUsersService = new cz_usersService();
+            IList<cz_users>  users = czUsersService.GetListByWhere(String.Format(" u_name = '{0}'",getParentUName));
+            if (users.Count > 0)
+            {
+                return users[0].get_a_state().ToString();
+            }
+            return null;
         }
 
         public static void zero_retry_times(string str5)
         {
-            throw new NotImplementedException();
+            Icz_usersService czUsersService = new cz_usersService();
+            czUsersService.UpdateFields("retry_times = 0", String.Format("u_name = '{0}'",str5));
         }
 
         public static void inc_retry_times(string str5)

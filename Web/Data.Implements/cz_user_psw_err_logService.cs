@@ -18,7 +18,8 @@ namespace Data.Implements
 
         public bool IsExistUser(string loginName)
         {
-            throw new NotImplementedException();
+            //todo Î´Íê³É
+            return false;
         }
 
         public void ZeroErrTimes(string loginName)

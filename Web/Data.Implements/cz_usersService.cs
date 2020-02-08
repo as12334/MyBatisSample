@@ -38,5 +38,16 @@ namespace Data.Implements
 
             return null;
         }
+        
+//        查询所有上级
+        public IList<cz_users> upperUsers(string u_name)
+        {
+            string stmtId = "upperUsers";
+            stmtId = String.Format("{0}.{1}", this.stmtPrefix, stmtId);
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("u_name", u_name);
+            IList<cz_users> resultList = DbHelper.Instance.DataMapper.QueryForList<cz_users>(stmtId, parameters);
+            return resultList;
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace Data.Interface
     using Entity;
     public interface Icz_login_logService : IBaseService<cz_login_log>
     {
+        bool Add(cz_login_log log);
     }
 }
