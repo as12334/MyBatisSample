@@ -30,6 +30,8 @@ namespace LotterySystem.Common.Redis
 
         public static int get_RedisStatOnline()
         {
+            //0:未使用缓存  1：单节点  2：集群
+            return 0;
             throw new System.NotImplementedException();
         }
 

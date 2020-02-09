@@ -40,9 +40,11 @@
     <ItemGroup>
         <Compile Include="agent_userinfo_session.cs" />
         <Compile Include="CommandText.cs" />
+        <Compile Include="cz_admin_sysconfig.cs" />
         <Compile Include="cz_login_log.cs" />
         <Compile Include="cz_rate_kc.cs" />
         <Compile Include="cz_stat_online.cs" />
+        <Compile Include="cz_stat_top_online.cs" />
         <Compile Include="cz_users.cs" />
         <Compile Include="cz_users_child.cs" />
         <Compile Include="cz_user_psw_err_log.cs" />

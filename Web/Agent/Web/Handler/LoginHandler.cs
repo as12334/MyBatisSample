@@ -417,7 +417,7 @@ namespace Agent.Web.Handler
                 {
                     _session.set_allow_view_report(_users.get_allow_view_report());
                 }
-                DataRow item = CallBLL.cz_admin_sysconfig_bll.GetItem();
+                DataRow item = CallBLL.CzAdminSysconfigService.GetItem();
                 if (item == null)
                 {
                     _session.set_u_skin("Blue");
@@ -477,14 +477,14 @@ namespace Agent.Web.Handler
                     }
                     if (!flag4)
                     {
-//                        if (FileCacheHelper.get_RedisStatOnline().Equals(1))
-//                        {
-//                            new PageBase_Redis().InitUserOnlineTopToRedis(str5, _session.get_u_type());
-//                        }
-//                        if (FileCacheHelper.get_RedisStatOnline().Equals(2))
-//                        {
-//                            new PageBase_Redis().InitUserOnlineTopToRedisStack(str5, _session.get_u_type());
-//                        }
+                        if (FileCacheHelper.get_RedisStatOnline().Equals(1))
+                        {
+                            new PageBase_Redis().InitUserOnlineTopToRedis(loginName, _session.get_u_type());
+                        }
+                        if (FileCacheHelper.get_RedisStatOnline().Equals(2))
+                        {
+                            new PageBase_Redis().InitUserOnlineTopToRedisStack(loginName, _session.get_u_type());
+                        }
                     }
                 }
                 else

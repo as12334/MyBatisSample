@@ -10,14 +10,14 @@ namespace Agent.Web.WebBase
         public static Icz_user_psw_err_logService CzUserPswErrLogService;
         public static Icz_usersService CzUsersService;
         public static Icz_users_childService CzUsersChildService;
-        public static cz_admin_sysconfigBLL cz_admin_sysconfig_bll;
+        public static Icz_admin_sysconfigService CzAdminSysconfigService;
 //        public static cz_rate_sixBLL cz_rate_six_bll;
         public static Icz_rate_kcService CzRateKcService;
         public static Icz_login_logService CzLoginLogService;
         public static cz_phase_kl10BLL cz_phase_kl10_bll;
         public static cz_lotteryBLL cz_lottery_bll;
-        public static cz_stat_onlineBLL cz_stat_online_bll;
-        public static cz_stat_top_onlineBLL cz_stat_top_online_bll;
+        public static Icz_stat_onlineService CzStatOnlineService;
+        public static Icz_stat_top_onlineService CzStatTopOnlineService;
 
 //        public static HashSet<string> redisHelper;
         public static object redisHelper { get; set; }
@@ -46,6 +46,20 @@ namespace Agent.Web.WebBase
             if (CzLoginLogService == null)
             {
                 CzLoginLogService = new cz_login_logService();
+            }           
+            if (CzAdminSysconfigService == null)
+            {
+                CzAdminSysconfigService = new cz_admin_sysconfigService();
+            }
+                        
+            if (CzStatOnlineService == null)
+            {
+                CzStatOnlineService = new cz_stat_onlineService();
+            }
+                        
+            if (CzStatTopOnlineService == null)
+            {
+                CzStatTopOnlineService = new cz_stat_top_onlineService();
             }
             
         }

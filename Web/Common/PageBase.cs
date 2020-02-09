@@ -48,7 +48,7 @@ namespace LotterySystem.Common
             throw new NotImplementedException();
         }
 
-//        ÉÏ¼¶×´Ì¬
+//        ?????
         public static string upper_user_status(string getParentUName)
         {
             Icz_usersService czUsersService = new cz_usersService();
@@ -73,7 +73,7 @@ namespace LotterySystem.Common
 
         public static void SetAppcationFlag(string str5)
         {
-            throw new NotImplementedException();
+            //todo ????¦Ä???
         }
 
         public static void ZeroIsOutFlag(string str5)

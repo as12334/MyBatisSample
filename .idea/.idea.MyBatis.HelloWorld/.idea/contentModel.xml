@@ -8,9 +8,11 @@
         <e p="agent_userinfo_session.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="CommandText.cs" t="Include" />
+        <e p="cz_admin_sysconfig.cs" t="Include" />
         <e p="cz_login_log.cs" t="Include" />
         <e p="cz_rate_kc.cs" t="Include" />
         <e p="cz_stat_online.cs" t="Include" />
+        <e p="cz_stat_top_online.cs" t="Include" />
         <e p="cz_user_psw_err_log.cs" t="Include" />
         <e p="cz_users.cs" t="Include" />
         <e p="cz_users_child.cs" t="Include" />
@@ -27,8 +29,11 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Mapper" t="Include">
           <e p="BasicMapper" t="Include">
+            <e p="cz_admin_sysconfig.xml" t="Include" />
             <e p="cz_login_log.xml" t="Include" />
             <e p="cz_rate_kc.xml" t="Include" />
+            <e p="cz_stat_online.xml" t="Include" />
+            <e p="cz_stat_top_online.xml" t="Include" />
             <e p="cz_user_psw_err_log.xml" t="Include" />
             <e p="cz_users.xml" t="Include" />
             <e p="cz_users_child.xml" t="Include" />
@@ -97,22 +102,12 @@
           <e p="BaseManager.cs" t="Include" />
           <e p="IBaseManager.cs" t="Include" />
         </e>
-        <e p="Business.Implements" t="Include">
-          <e p="cz_login_logLottery.cs" t="Include" />
-          <e p="cz_rate_kcLottery.cs" t="Include" />
-          <e p="cz_user_psw_err_logLottery.cs" t="Include" />
-          <e p="cz_users_childLottery.cs" t="Include" />
-          <e p="cz_usersLottery.cs" t="Include" />
-        </e>
-        <e p="Business.Interface" t="Include">
-          <e p="Icz_login_logLottery.cs" t="Include" />
-          <e p="Icz_rate_kcLottery.cs" t="Include" />
-          <e p="Icz_user_psw_err_logLottery.cs" t="Include" />
-          <e p="Icz_users_childLottery.cs" t="Include" />
-          <e p="Icz_usersLottery.cs" t="Include" />
-        </e>
         <e p="Common" t="Include">
           <e p="CookieHelper.cs" t="Include" />
+          <e p="DB" t="Include">
+            <e p="DbHelperSQL.cs" t="Include" />
+            <e p="PubConstant.cs" t="Include" />
+          </e>
           <e p="DESEncrypt.cs" t="Include" />
           <e p="JsonHandle.cs" t="Include" />
           <e p="JsonHelper.cs" t="Include" />
@@ -121,6 +116,7 @@
           <e p="Redis" t="Include">
             <e p="CacheHelper.cs" t="Include" />
             <e p="FileCacheHelper.cs" t="Include" />
+            <e p="PageBase_Redis.cs" t="Include" />
             <e p="RedisConfiguration.cs" t="Include" />
             <e p="RedisConnectType.cs" t="Include" />
             <e p="RedisExpires.cs" t="Include" />
@@ -140,15 +136,21 @@
           <e p="PageResult.cs" t="Include" />
         </e>
         <e p="Data.Implements" t="Include">
+          <e p="cz_admin_sysconfigService.cs" t="Include" />
           <e p="cz_login_logService.cs" t="Include" />
           <e p="cz_rate_kcService.cs" t="Include" />
+          <e p="cz_stat_onlineService.cs" t="Include" />
+          <e p="cz_stat_top_onlineService.cs" t="Include" />
           <e p="cz_user_psw_err_logService.cs" t="Include" />
           <e p="cz_users_childService.cs" t="Include" />
           <e p="cz_usersService.cs" t="Include" />
         </e>
         <e p="Data.Interface" t="Include">
+          <e p="Icz_admin_sysconfigService.cs" t="Include" />
           <e p="Icz_login_logService.cs" t="Include" />
           <e p="Icz_rate_kcService.cs" t="Include" />
+          <e p="Icz_stat_onlineService.cs" t="Include" />
+          <e p="Icz_stat_top_onlineService.cs" t="Include" />
           <e p="Icz_user_psw_err_logService.cs" t="Include" />
           <e p="Icz_users_childService.cs" t="Include" />
           <e p="Icz_usersService.cs" t="Include" />

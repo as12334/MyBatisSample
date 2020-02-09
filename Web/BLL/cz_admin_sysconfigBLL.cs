@@ -6,6 +6,7 @@ namespace LotterySystem.BLL
     {
         public DataRow GetItem()
         {
+            
             throw new System.NotImplementedException();
         }
     }

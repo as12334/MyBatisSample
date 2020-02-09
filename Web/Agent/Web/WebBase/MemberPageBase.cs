@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web;
+using Entity;
 using LotterySystem.Common;
 using LotterySystem.Common.Redis;
 using LotterySystem.DBUtility;
@@ -138,7 +139,7 @@ namespace Agent.Web.WebBase
             string str3 = $"update  cz_stat_online  set  first_time = '{now}',last_time= '{now}'  where u_name =@u_name ";
             SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@u_name", SqlDbType.NVarChar) };
             parameterArray[0].Value = loginname;
-            CallBLL.cz_stat_online_bll.executte_sql(str3, parameterArray);
+            CallBLL.CzStatOnlineService.executte_sql(str3, parameterArray);
             string str4 = "";
             if (HttpContext.Current.Application[str] == null)
             {
@@ -146,36 +147,36 @@ namespace Agent.Web.WebBase
                 HttpContext.Current.Application[str2] = now;
                 HttpContext.Current.Application.UnLock();
                 str4 = $" select * from cz_stat_top_online  with(NOLOCK) where update_time > '{DateTime.Today}' and update_time < '{DateTime.Today.AddHours(24.0)}' ";
-                if (CallBLL.cz_stat_top_online_bll.query_sql(str4).Rows.Count <= 0)
+                if (CallBLL.CzStatTopOnlineService.query_sql(str4).Rows.Count <= 0)
                 {
                     str4 = $"insert into cz_stat_top_online values({1},'{DateTime.Now}') ";
-                    CallBLL.cz_stat_top_online_bll.executte_sql(str4);
+                    CallBLL.CzStatTopOnlineService.executte_sql(str4);
                 }
             }
             else
             {
                 int num = 1;
                 string str5 = $" select count(1)  from cz_stat_online  with(NOLOCK) where last_time > '{now.AddMinutes(-3.0)}' ";
-                DataTable table2 = CallBLL.cz_stat_online_bll.query_sql(str5, parameterArray);
+                DataTable table2 = CallBLL.CzStatOnlineService.query_sql(str5, parameterArray);
                 if (table2.Rows.Count > 0)
                 {
                     num = int.Parse(table2.Rows[0][0].ToString());
                 }
                 str4 = $"select * from cz_stat_top_online with(NOLOCK) where update_time > '{DateTime.Today}' and update_time < '{DateTime.Today.AddHours(24.0)}' ";
-                DataTable table3 = CallBLL.cz_stat_top_online_bll.query_sql(str4);
+                DataTable table3 = CallBLL.CzStatTopOnlineService.query_sql(str4);
                 if (table3.Rows.Count > 0)
                 {
                     string s = table3.Rows[0]["top_cnt"].ToString();
                     if (num > int.Parse(s))
                     {
                         str4 = $"update cz_stat_top_online set top_cnt = {num}, update_time = '{now}' where update_time > '{DateTime.Today}' and update_time < '{DateTime.Today.AddHours(24.0)}' ";
-                        CallBLL.cz_stat_top_online_bll.executte_sql(str4);
+                        CallBLL.CzStatTopOnlineService.executte_sql(str4);
                     }
                 }
                 else
                 {
                     str4 = $"insert into cz_stat_top_online values({num},'{now}') ";
-                    CallBLL.cz_stat_top_online_bll.executte_sql(str4);
+                    CallBLL.CzStatTopOnlineService.executte_sql(str4);
                 }
             }
         }
@@ -184,7 +185,7 @@ namespace Agent.Web.WebBase
             string str = " select u_name from cz_stat_online with(NOLOCK) where u_name =@u_name ";
             SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@u_name", SqlDbType.NVarChar) };
             parameterArray[0].Value = user.Trim();
-            if (CallBLL.cz_stat_online_bll.query_sql(str, parameterArray).Rows.Count > 0)
+            if (CallBLL.CzStatOnlineService.query_sql(str, parameterArray).Rows.Count > 0)
             {
                 str = "update cz_stat_online set ip=@ip, first_time=@first_time, last_time=@last_time where u_name =@u_name ";
                 SqlParameter[] parameterArray2 = new SqlParameter[] { new SqlParameter("@ip", SqlDbType.NVarChar), new SqlParameter("@first_time", SqlDbType.DateTime), new SqlParameter("@last_time", SqlDbType.DateTime), new SqlParameter("@u_name", SqlDbType.NVarChar) };
@@ -192,7 +193,7 @@ namespace Agent.Web.WebBase
                 parameterArray2[1].Value = first_time;
                 parameterArray2[2].Value = last_time;
                 parameterArray2[3].Value = user.Trim();
-                CallBLL.cz_stat_online_bll.executte_sql(str, parameterArray2);
+                CallBLL.CzStatOnlineService.executte_sql(str, parameterArray2);
             }
             else
             {
@@ -205,7 +206,7 @@ namespace Agent.Web.WebBase
                 parameterArray3[4].Value = userIP;
                 try
                 {
-                    CallBLL.cz_stat_online_bll.executte_sql(str2, parameterArray3);
+                    CallBLL.CzStatOnlineService.executte_sql(str2, parameterArray3);
                 }
                 catch (SqlException exception)
                 {
@@ -314,7 +315,7 @@ namespace Agent.Web.WebBase
             }
             if (list.Count > 0)
             {
-                CallBLL.cz_stat_online_bll.executte_sql(list);
+                CallBLL.CzStatOnlineService.executte_sql(list);
             }
         }
         protected bool IsLotteryExist(string lotteryId)
