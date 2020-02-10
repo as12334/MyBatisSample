@@ -28,7 +28,7 @@ namespace Data.Implements
 
         public void executte_sql(string str4)
         {
-            DbHelperSQL.ExecuteSql(str4);
+            DbHelperSQL.executte_sql(str4);
         }
         #endregion
 

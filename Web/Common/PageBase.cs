@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BuilderDALSQL;
 using Data.Implements;
 using Data.Interface;
 using Entity;
@@ -18,14 +19,30 @@ namespace LotterySystem.Common
             return "";
         }
 
-        public static bool IsLockedTimeout(string str5, string child)
+        public static bool IsLockedTimeout(string loginName, string type)
         {
-            throw new System.NotImplementedException();
+            string sql = String.Format("update cz_users set a_state = {0} where u_name = '{1}'",1,loginName);
+            if (type.Equals("child"))
+            {
+                sql = String.Format("update cz_users_child set status = {0} where u_name = '{1}'",1,loginName);
+            }
+
+            int executteSql = DbHelperSQL.executte_sql(sql);
+
+            if (executteSql > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public static void zero_retry_times_children(string str5)
         {
-            throw new System.NotImplementedException();
+            var sql = String.Format("update cz_users_child set retry_times = 0 where u_name = '{0}'",str5);
+            DbHelperSQL.executte_sql(sql);
         }
 
         public static void inc_retry_times_children(string str5)
@@ -68,7 +85,8 @@ namespace LotterySystem.Common
 
         public static void inc_retry_times(string str5)
         {
-            throw new NotImplementedException();
+            Icz_usersService czUsersService = new cz_usersService();
+            czUsersService.UpdateFields("retry_times = retry_times + 1", String.Format("u_name = '{0}'",str5));
         }
 
         public static void SetAppcationFlag(string str5)
@@ -78,12 +96,14 @@ namespace LotterySystem.Common
 
         public static void ZeroIsOutFlag(string str5)
         {
-            throw new NotImplementedException();
+            //todo 未清楚流程
+//            throw new NotImplementedException();
         }
 
         public static int PasswordExpire()
         {
-            throw new NotImplementedException();
+            //密码过期时间/天
+            return 7;
         }
 
         public EventHandler Load { get; set; }

@@ -36,7 +36,25 @@ namespace LotterySystem.Common
 
         public static string GetIP()
         {
-            throw new System.NotImplementedException();
+            string text = string.Empty;
+            if (HttpContext.Current.Request.ServerVariables["HTTP_VIA"] != null)
+            {
+                text = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
+            }
+            else
+            {
+                text = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+            }
+            string result;
+            if (text == "::1")
+            {
+                result = "127.0.0.1";
+            }
+            else
+            {
+                result = text;
+            }
+            return result;
         }
     }
 }

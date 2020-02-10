@@ -33,22 +33,22 @@ namespace LotterySystem.Model
             this.data = data;
         }
 
-        public int Success
-        {
-            get => success;
-            set => success = value;
-        }
-
-        public string Tipinfo
-        {
-            get => tipinfo;
-            set => tipinfo = value;
-        }
-
-        public Dictionary<string, object> Data
-        {
-            get => data;
-            set => data = value;
-        }
+//        public int Success
+//        {
+//            get => success;
+//            set => success = value;
+//        }
+//
+//        public string Tipinfo
+//        {
+//            get => tipinfo;
+//            set => tipinfo = value;
+//        }
+//
+//        public Dictionary<string, object> Data
+//        {
+//            get => data;
+//            set => data = value;
+//        }
     }
 }

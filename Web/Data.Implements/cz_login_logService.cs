@@ -18,7 +18,12 @@ namespace Data.Implements
 
         public bool Add(cz_login_log log)
         {
-            throw new NotImplementedException();
+            int insert = Insert(log);
+            if (insert > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

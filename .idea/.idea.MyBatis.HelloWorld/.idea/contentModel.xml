@@ -96,7 +96,6 @@
           <e p="cz_lotteryBLL.cs" t="Include" />
           <e p="cz_phase_kl10BLL.cs" t="Include" />
           <e p="cz_stat_onlineBLL.cs" t="Include" />
-          <e p="cz_stat_top_onlineBLL.cs" t="Include" />
         </e>
         <e p="Business" t="Include">
           <e p="BaseManager.cs" t="Include" />

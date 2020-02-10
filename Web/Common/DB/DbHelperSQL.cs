@@ -93,7 +93,7 @@ namespace BuilderDALSQL
 			return reader2;
 		}
 
-		public static int ExecuteSql(string SQLString)
+		public static int executte_sql(string SQLString)
 		{
 			int result;
 			using (SqlConnection connection = new SqlConnection(DbHelperSQL.connectionString))

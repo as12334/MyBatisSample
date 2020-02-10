@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using BuilderDALSQL;
 
 namespace Data.Implements
 {
@@ -18,23 +19,32 @@ namespace Data.Implements
 
         public bool IsExistUser(string loginName)
         {
-            //todo Î´Íê³É
+            IList<cz_user_psw_err_log> czUserPswErrLogs = GetListByWhere(String.Format(" u_name = '{0}'", loginName));
+            if (czUserPswErrLogs.Count > 0)
+            {
+                return true;
+            }
             return false;
         }
 
         public void ZeroErrTimes(string loginName)
         {
-            throw new NotImplementedException();
+            var sql = String.Format("update cz_user_psw_err_log set err_times = 0 where u_name = '{0}'",loginName);
+            DbHelperSQL.executte_sql(sql);
         }
 
         public void UpdateErrTimes(string loginName)
         {
-            throw new NotImplementedException();
+            UpdateFields("err_times = err_times + 1", String.Format("u_name = '{0}'",loginName));
         }
 
         public void AddUser(string loginName)
         {
-            throw new NotImplementedException();
+            cz_user_psw_err_log czUserPswErrLog = new cz_user_psw_err_log();
+            czUserPswErrLog.set_u_name(loginName);
+            czUserPswErrLog.set_err_times(1);
+            czUserPswErrLog.set_update_date(new DateTime());
+            Insert(czUserPswErrLog);
         }
     }
 }
