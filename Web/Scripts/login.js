@@ -39,9 +39,9 @@ define(function(require, exports, module) {
 				success: function (d) {
 					// 550:强制修改密码(登录接口)
 					// 560:密碼被鎖定(登录接口,不用跳转)
-                    if (d.data) {
-                        if (d.data.hasOwnProperty('is_display_code')) {
-                            if (d.data.is_display_code == '1') {
+                    if (d.Data) {
+                        if (d.Data.hasOwnProperty('is_display_code')) {
+                            if (d.Data.is_display_code == '1') {
 								objBtn.prop('disabled', false).html('登錄').removeClass('btnD');
                                 pic_input.attr('data-isSubmit', '1');
                                 oLi.show();
@@ -52,13 +52,13 @@ define(function(require, exports, module) {
                     }
 
 					pic_input.val("");
-					if (d.success == 200) {
-						if (d.tipinfo != "") {
+					if (d.Success == 200) {
+						if (d.Tipinfo != "") {
 							$("body").myLayer({
 								title: '提示',
 								isMiddle: true,
 								isShowBtn: true,
-								content: d.tipinfo,
+								content: d.Tipinfo,
 								okText: '確定',
 								isCancelBtn: false,
 								okCallBack: function () {
@@ -68,26 +68,26 @@ define(function(require, exports, module) {
 						}else{
 							window.location.href = "./index.aspx";
 						}
-					} else if (d.success == 550) {
+					} else if (d.Success == 550) {
 						objBtn.prop('disabled', false).html('登錄').removeClass('btnD');
 						$("body").myLayer({
 							title: '錯誤提示',
 							isMiddle: true,
 							isShowBtn: true,
-							content: d.tipinfo,
+							content: d.Tipinfo,
 							okText: '確定',
 							isCancelBtn: false,
 							okCallBack: function () {
 								window.location.href = "./ResetPasswd.aspx";
 							}
 						});
-					} else if (d.success == 560) {
+					} else if (d.Success == 560) {
 						objBtn.prop('disabled', false).html('登錄').removeClass('btnD');
 						$("body").myLayer({
 							title: '錯誤提示',
 							isMiddle: true,
 							isShowBtn: true,
-							content: d.tipinfo,
+							content: d.Tipinfo,
 							okText: '確定',
 							isCancelBtn: false,
 							okCallBack: function () {
@@ -98,12 +98,12 @@ define(function(require, exports, module) {
 						});
 					} else {
 						objBtn.prop('disabled', false).html('登錄').removeClass('btnD');
-						if (d.tipinfo != '') {
+						if (d.Tipinfo != '') {
 							$("body").myLayer({
 								title: '錯誤提示',
 								isMiddle: true,
 								isShowBtn: true,
-								content: d.tipinfo,
+								content: d.Tipinfo,
 								isCancelBtn: false,
 								okText: '確定',
 								okCallBack: function () {

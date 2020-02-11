@@ -1909,11 +1909,11 @@ define(function(require, exports, module) {
 					}
 
 					if(data.fast == 1 && p.pathFolder != 'L_SIX'){
-						$("#result_" + nowIndex).html('<div class="red">'+ d.tipinfo +'</div>');
+						$("#result_" + nowIndex).html('<div class="red">'+ d.Tipinfo +'</div>');
 					}else{
 						$.myLayer.close(true, window.top.myLayerIndex);
 						tips.msgTips({
-							msg: d.tipinfo,
+							msg: d.Tipinfo,
 							type : "error"
 						});
 						_this.flyAwayThat = [];
@@ -1932,13 +1932,13 @@ define(function(require, exports, module) {
 					}
 
 					if(data.fast == 1 && p.pathFolder != 'L_SIX'){
-						$("#result_" + nowIndex).html(d.tipinfo);
+						$("#result_" + nowIndex).html(d.Tipinfo);
 					}else{
 						data.currentodds = d.data.oddschange.newodds;
 						// console.log(d.data.oddschange.newodds, data, d);
 						$("#amount_" + data.oddsid).myLayer({
 							title: '提示信息',
-							content: d.tipinfo,
+							content: d.Tipinfo,
 							isMiddle: true,
 							okText: '確定',
 							okCallBack: function (obj) {
@@ -2202,7 +2202,7 @@ define(function(require, exports, module) {
 						$("#odds_" + number).siblings('.addSubLoading').remove();
 					}
 					tips.msgTips({
-						msg: d.tipinfo,
+						msg: d.Tipinfo,
 						type : "error"
 					});
 				},

@@ -41,3 +41,5 @@ E:\WORK\MyBatisSample\Web\bin\System.Buffers.xml
 E:\WORK\MyBatisSample\Web\bin\System.Memory.xml
 E:\WORK\MyBatisSample\Web\bin\System.Numerics.Vectors.xml
 E:\WORK\MyBatisSample\Web\bin\System.Runtime.CompilerServices.Unsafe.xml
+E:\WORK\MyBatisSample\Web\bin\Newtonsoft.Json.dll
+E:\WORK\MyBatisSample\Web\bin\Newtonsoft.Json.xml

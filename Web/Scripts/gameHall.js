@@ -185,7 +185,7 @@ define(function(require, exports, module) {
 					// that.requsetErrorHandlers(d);
 				},
 				successCallBack: function (d) {
-					if(d.success == '200'){
+					if(d.Success == '200'){
 						var arr = d.data.isopendata[that.attr('data-id')].split(',');
 						// if( arr[0] == '0'){
 						// 	console.log(that.attr('data-id'),'系统返回', arr[1], arr[2])

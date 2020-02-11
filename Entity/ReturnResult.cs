@@ -25,30 +25,30 @@ namespace LotterySystem.Model
         }
         
         
-        public string get_data() {
-            return tipinfo;
+        public Dictionary<string, object> get_data() {
+            return data;
         }
 
         public void set_data(Dictionary<string, object> data) {
             this.data = data;
         }
 
-//        public int Success
-//        {
-//            get => success;
-//            set => success = value;
-//        }
-//
-//        public string Tipinfo
-//        {
-//            get => tipinfo;
-//            set => tipinfo = value;
-//        }
-//
-//        public Dictionary<string, object> Data
-//        {
-//            get => data;
-//            set => data = value;
-//        }
+        public int Success
+        {
+            get => success;
+            set => success = value;
+        }
+
+        public string Tipinfo
+        {
+            get => tipinfo;
+            set => tipinfo = value;
+        }
+
+        public Dictionary<string, object> Data
+        {
+            get => data;
+            set => data = value;
+        }
     }
 }

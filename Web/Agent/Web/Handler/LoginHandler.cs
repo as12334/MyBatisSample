@@ -67,7 +67,7 @@ namespace Agent.Web.Handler
             }
             else
             {
-                DateTime time = new DateTime();
+                DateTime? time = DateTime.Now;
                 string retry_times;
                 string str10;
                 string str11;
@@ -82,31 +82,31 @@ namespace Agent.Web.Handler
                 }
                 if (context.Session["lottery_session_img_code_display"] == null)
                 {
+                    
                     if (CallBLL.CzUserPswErrLogService.IsExistUser(loginName))
                     {
-//                        TODO 登录超时
-//                        if (PageBase.IsErrTimesAbove(ref time, str5))
-//                        {
-//                            if (!PageBase.IsErrTimeout(time))
-//                            {
-//                                context.Session["lottery_session_img_code"] = null;
-//                                result.set_success(400);
-//                                result.set_tipinfo("");
-//                                dictionary.Add("is_display_code", "1");
-//                                result.set_data(dictionary);
-//                                strResult = JsonHandle.ObjectToJson(result);
-//                                context.Session["lottery_session_img_code_display"] = 1;
-//                                return;
-//                            }
-//                            CallBLL.cz_user_psw_err_log_bll.ZeroErrTimes(str5);
-//                            context.Session["lottery_session_img_code"] = null;
-//                            context.Session["lottery_session_img_code_display"] = 0;
-//                        }
-//                        else
-//                        {
-//                            context.Session["lottery_session_img_code"] = null;
-//                            context.Session["lottery_session_img_code_display"] = 0;
-//                        }
+                        if (PageBase.IsErrTimesAbove(ref time, loginName))
+                        {
+                            if (!PageBase.IsErrTimeout(time))
+                            {
+                                context.Session["lottery_session_img_code"] = null;
+                                result.set_success(400);
+                                result.set_tipinfo("");
+                                dictionary.Add("is_display_code", "1");
+                                result.set_data(dictionary);
+                                strResult = JsonHandle.ObjectToJson(result);
+                                context.Session["lottery_session_img_code_display"] = 1;
+                                return;
+                            }
+                            CallBLL.CzUserPswErrLogService.ZeroErrTimes(loginName);
+                            context.Session["lottery_session_img_code"] = null;
+                            context.Session["lottery_session_img_code_display"] = 0;
+                        }
+                        else
+                        {
+                            context.Session["lottery_session_img_code"] = null;
+                            context.Session["lottery_session_img_code_display"] = 0;
+                        }
                     }
                     else
                     {
@@ -179,8 +179,8 @@ namespace Agent.Web.Handler
                         if (_child.get_u_psw() != str11)
                         {
                             context.Session["lottery_session_img_code"] = null;
-                            PageBase.inc_retry_times_children(loginName);
-                            PageBase.login_error_ip();
+//                            PageBase.inc_retry_times_children(loginName);
+//                            PageBase.login_error_ip();
                             result.set_success(400);
                             result.set_tipinfo(PageBase.GetMessageByCache("u100003", "MessageHint"));
                             strResult = JsonHandle.ObjectToJson(result);
@@ -266,8 +266,8 @@ namespace Agent.Web.Handler
                     if (_users.get_u_psw() != str11)
                     {
                         context.Session["lottery_session_img_code"] = null;
-                        PageBase.inc_retry_times(loginName);
-                        PageBase.login_error_ip();
+//                        PageBase.inc_retry_times(loginName);
+//                        PageBase.login_error_ip();
                         result.set_success(400);
                         result.set_tipinfo(PageBase.GetMessageByCache("u100003", "MessageHint"));
                         strResult = JsonHandle.ObjectToJson(result);
@@ -281,8 +281,8 @@ namespace Agent.Web.Handler
                             {
                                 CallBLL.CzUserPswErrLogService.AddUser(loginName);
                             }
-                            if (PageBase.IsErrTimesAbove(ref time, loginName))
-                            {
+//                            if (PageBase.IsErrTimesAbove(ref time, loginName))·
+//                            {
                                 context.Session["lottery_session_img_code"] = null;
                                 result.set_success(400);
                                 result.set_tipinfo(PageBase.GetMessageByCache("u100003", "MessageHint"));
@@ -290,7 +290,7 @@ namespace Agent.Web.Handler
                                 result.set_data(dictionary);
                                 strResult = JsonHandle.ObjectToJson(result);
                                 context.Session["lottery_session_img_code_display"] = 1;
-                            }
+//                            }
                         }
                         return;
                     }

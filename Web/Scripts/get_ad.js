@@ -7,5 +7,5 @@
         }
         ,"tipsList":[],"type":"get_ad"
     }
-    ,"success":"200","tipinfo":""
+    ,"success":"200","Tipinfo":""
 }

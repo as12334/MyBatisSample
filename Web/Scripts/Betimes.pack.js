@@ -172,26 +172,26 @@ define('getBaseDataAjax',['jquery','tips'],function(require, exports, module) {
 						// (增)100:踢人,冻结,停用
 						// (增)150:同一个用户不同时登录,需要跳转到指定页面
 
-						if (data.success == 200) {
+						if (data.Success == 200) {
 							that.successCallBack( data );
-						}else if(data.success == 100){ // 踢人,冻结,停用
+						}else if(data.Success == 100){ // 踢人,冻结,停用
 							top.location.href = "/";
-						}else if(data.success == 150){ // 同一个用户不能同时登录,跳转到指定页面
+						}else if(data.Success == 150){ // 同一个用户不能同时登录,跳转到指定页面
 							top.location.href = data.data.turl.url;
-						}else if(data.success == 300){ //300 未登錄
+						}else if(data.Success == 300){ //300 未登錄
 							top.location.href = "/";
-						}else if(data.success == 400){ //400 其他错误单独处理
+						}else if(data.Success == 400){ //400 其他错误单独处理
 							that.otherErrorCallBack( data );
-						}else if(data.success == 500){ //500 错误信息显示当前窗口
+						}else if(data.Success == 500){ //500 错误信息显示当前窗口
 							tip = tips.msgTips({
-								msg: data.tipinfo,
+								msg: data.Tipinfo,
 								type : "error"
 							});
-						}else if(data.success == 600){ //600 赔率变动
+						}else if(data.Success == 600){ //600 赔率变动
 							that.oddsErrorCallBack( data );
 						}else{
 							tip = tips.msgTips({
-								msg: data.tipinfo,
+								msg: data.Tipinfo,
 								type : "error"
 							});
 						}
@@ -3281,11 +3281,11 @@ define('Betimes',['jquery','plus','myLayer','tips','array','getBaseDataAjax','so
 					}
 
 					if(data.fast == 1 && p.pathFolder != 'L_SIX'){
-						$("#result_" + nowIndex).html('<div class="red">'+ d.tipinfo +'</div>');
+						$("#result_" + nowIndex).html('<div class="red">'+ d.Tipinfo +'</div>');
 					}else{
 						$.myLayer.close(true, window.top.myLayerIndex);
 						tips.msgTips({
-							msg: d.tipinfo,
+							msg: d.Tipinfo,
 							type : "error"
 						});
 						_this.flyAwayThat = [];
@@ -3304,13 +3304,13 @@ define('Betimes',['jquery','plus','myLayer','tips','array','getBaseDataAjax','so
 					}
 
 					if(data.fast == 1 && p.pathFolder != 'L_SIX'){
-						$("#result_" + nowIndex).html(d.tipinfo);
+						$("#result_" + nowIndex).html(d.Tipinfo);
 					}else{
 						data.currentodds = d.data.oddschange.newodds;
 						// console.log(d.data.oddschange.newodds, data, d);
 						$("#amount_" + data.oddsid).myLayer({
 							title: '提示信息',
-							content: d.tipinfo,
+							content: d.Tipinfo,
 							isMiddle: true,
 							okText: '確定',
 							okCallBack: function (obj) {
@@ -3574,7 +3574,7 @@ define('Betimes',['jquery','plus','myLayer','tips','array','getBaseDataAjax','so
 						$("#odds_" + number).siblings('.addSubLoading').remove();
 					}
 					tips.msgTips({
-						msg: d.tipinfo,
+						msg: d.Tipinfo,
 						type : "error"
 					});
 				},

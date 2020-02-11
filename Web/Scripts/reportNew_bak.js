@@ -144,7 +144,7 @@
             async: false,
             data: { lid: v },
             success: function (d) {
-                if (d.success == 200) {
+                if (d.Success == 200) {
                     if (d.data.hasOwnProperty('playoption')) {
                         var list = d.data.playoption.split('|');
                         var listLen = list.length;

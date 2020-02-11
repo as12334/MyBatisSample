@@ -43,7 +43,7 @@ namespace Data.Implements
             cz_user_psw_err_log czUserPswErrLog = new cz_user_psw_err_log();
             czUserPswErrLog.set_u_name(loginName);
             czUserPswErrLog.set_err_times(1);
-            czUserPswErrLog.set_update_date(new DateTime());
+            czUserPswErrLog.set_update_date(DateTime.Now);
             Insert(czUserPswErrLog);
         }
     }

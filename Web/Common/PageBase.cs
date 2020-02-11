@@ -16,7 +16,14 @@ namespace LotterySystem.Common
 
         public static string GetMessageByCache(string code,string type)
         {
-            return "";
+            Dictionary<string, string> message = new Dictionary<string, string>();
+            message.Add("u100001","验证码错误!");
+            message.Add("u100002","用户名错误!");
+            message.Add("u100003","密码错误!");
+            message.Add("u100004","帐号被冻结!");
+            message.Add("u100005","帐号被停用!");
+            message.Add("u100006","您的上级帐号已经被冻结,请与管理员联系！");
+            return message[code];
         }
 
         public static bool IsLockedTimeout(string loginName, string type)
@@ -52,17 +59,22 @@ namespace LotterySystem.Common
 
         public static void login_error_ip()
         {
-            throw new System.NotImplementedException();
+//            throw LSRequest.GetIP();
         }
 
-        public static bool IsErrTimesAbove(ref DateTime time, string str5)
+        public static bool IsErrTimesAbove(ref DateTime? time, string str5)
         {
-            throw new NotImplementedException();
+            cz_user_psw_err_logService service = new cz_user_psw_err_logService();
+            IList<cz_user_psw_err_log>  users = service.GetListByWhere(String.Format(" u_name = '{0}'", str5));
+            time = users[0].get_update_date();
+            return true;
+
         }
 
-        public static bool IsErrTimeout(DateTime time)
+        public static bool IsErrTimeout(DateTime? time)
         {
-            throw new NotImplementedException();
+            //验证码有效时间
+            return time > DateTime.Now.AddHours(-1);
         }
 
 //        ?????
