@@ -8,5 +8,7 @@ namespace Data.Interface
     public interface Icz_users_childService : IBaseService<cz_users_child>
     {
         cz_users_child AgentLogin(string toLower);
+        int UpUserPwd(string toString, string psw, string ramSalt);
+        int UpdateUserPwdStutas(string status);
     }
 }

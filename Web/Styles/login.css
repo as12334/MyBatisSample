@@ -1,0 +1,33 @@
+body { background:url(../images/loginBg.jpg) no-repeat #1d94d5 top center;font-family:"Microsoft YaHei";padding:0; margin:0;}
+a {blr:expression(this.onFocus=this.blur()); border:none;}
+a:focus{ outline:0; }
+input:focus{ outline:0; }
+button:focus{ outline:0; }
+.clear{ clear:both;}
+.Loginlogo{ width:340px; height:135px;margin:7% auto 20px auto; text-align:center;background:url(../Images/loginLogo.png) no-repeat top center;}
+.box {
+	width:auto; padding:20px 0;
+	border:1px solid transparent;
+	background:rgba(255,255,255,.15);
+	_background:0;
+	_border:0;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#66000000', EndColorStr='#66000000')\9
+}
+:root .box {
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00000000', EndColorStr='#00000000')\9
+}
+.box .textBox{ width:320px;margin:0 auto;background:url(../Images/loginIcon.png) 20px 0 no-repeat;}
+ul{ width:270px;padding-left:50px; padding:0; margin:0; float:left; display:inline; list-style:none;}
+li{  width:270px;padding-left:50px; height:40px; border:1px solid #a4c8e9; float:left; margin:0 0 10px 0;position: relative;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;
+	background:rgba(255,255,255,.1);
+	_background:0;
+	_border:0;
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#66000000', EndColorStr='#66000000')\9
+}
+:root li {
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00000000', EndColorStr='#00000000')\9
+}
+.loginText{ width:245px; height:22px; background:none;line-height:22px; float:left; margin-top:8px; border:none 0; font-size:14px; color:#fff;font-family:"Microsoft YaHei";}
+.loginBtn{ background:#ffff00; height:40px; line-height:34px; width:320px; float:left; text-align:center; color:#746000; margin-top:10px; font-size:20px; border:none 0; cursor:pointer;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;font-family:"Microsoft YaHei";-webkit-box-shadow:0px 1px 1px #22a2d4;-moz-box-shadow: 0px 1px 1px #22a2d4;box-shadow: 0px 1px 1px #22a2d4;}
+.loginBtn:hover{ background:#ffe400;}
+.copyright{ width:360px;color:#c3dff4; font-size:12px; text-align:center;margin:10px auto 0 auto;font-family:"Microsoft YaHei";}

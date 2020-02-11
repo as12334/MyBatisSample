@@ -1,4 +1,6 @@
-﻿namespace Agent.Web.LoginUserControl.Login9
+﻿using System.Web;
+
+namespace Agent.Web.LoginUserControl.Login9
 {
     using System;
     using System.Web.UI;

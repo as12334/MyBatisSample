@@ -10,5 +10,7 @@ namespace Data.Interface
         IList<cz_users> upperUsers(string getParentUName);
         cz_users AgentLogin(string toLower);
         cz_users GetZJInfo();
+        int UpUserPwd(string toString, string str8, string ramSalt);
+        int UpdateUserPwdStutas(string toString);
     }
 }

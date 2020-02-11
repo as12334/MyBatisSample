@@ -83,6 +83,8 @@
                 <e p="LoginControl.cs" t="Include" />
               </e>
             </e>
+            <e p="Quit.cs" t="Include" />
+            <e p="ResetPasswd.cs" t="Include" />
             <e p="WebBase" t="Include">
               <e p="CallBLL.cs" t="Include" />
               <e p="MemberPageBase.cs" t="Include" />
@@ -122,6 +124,7 @@
             <e p="RedisKeys.cs" t="Include" />
             <e p="RedisManager.cs" t="Include" />
           </e>
+          <e p="Regexlib.cs" t="Include" />
           <e p="SQL" t="Include" />
           <e p="Utils.cs" t="Include" />
         </e>
@@ -157,11 +160,66 @@
         <e p="DataBase.config" t="Include" />
         <e p="Default.aspx" t="Include" />
         <e p="Default.aspx.cs" t="Include" />
-        <e p="Default.aspx.designer.cs" t="Include" />
         <e p="Global.asax" t="Include" />
         <e p="Handler" t="Include">
           <e p="LoginHandler.ashx" t="Include" />
           <e p="ValidateImgHandler.ashx" t="Include" />
+        </e>
+        <e p="images" t="Include">
+          <e p="Add.gif" t="Include" />
+          <e p="ClewSound.mp3" t="Include" />
+          <e p="ClewSound.ogg" t="Include" />
+          <e p="ClewSound.swf" t="Include" />
+          <e p="down.png" t="Include" />
+          <e p="folder.gif" t="Include" />
+          <e p="GGicon.gif" t="Include" />
+          <e p="icon.gif" t="Include" />
+          <e p="icon4-0.gif" t="Include" />
+          <e p="icon4.gif" t="Include" />
+          <e p="img1_0.gif" t="Include" />
+          <e p="img1_1.gif" t="Include" />
+          <e p="img_0.gif" t="Include" />
+          <e p="img_1.gif" t="Include" />
+          <e p="index.html" t="Include" />
+          <e p="loader.gif" t="Include" />
+          <e p="loaderf.gif" t="Include" />
+          <e p="loading27.gif" t="Include" />
+          <e p="loginBg.jpg" t="Include" />
+          <e p="loginIcon.png" t="Include" />
+          <e p="loginLogo.png" t="Include" />
+          <e p="logo.png" t="Include" />
+          <e p="lottery_state_0.gif" t="Include" />
+          <e p="lottery_state_1.gif" t="Include" />
+          <e p="lottery_state_2.gif" t="Include" />
+          <e p="menu_a_bg.gif" t="Include" />
+          <e p="micon.png" t="Include" />
+          <e p="Minus.gif" t="Include" />
+          <e p="right.png" t="Include" />
+          <e p="sound_jp.mp3" t="Include" />
+          <e p="sound_jp.ogg" t="Include" />
+          <e p="sound_jp.swf" t="Include" />
+          <e p="sound_kj - 副本.mp3" t="Include" />
+          <e p="sound_kj - 副本.ogg" t="Include" />
+          <e p="sound_kj - 副本.swf" t="Include" />
+          <e p="sound_kj.mp3" t="Include" />
+          <e p="sound_kj.ogg" t="Include" />
+          <e p="sound_kj.swf" t="Include" />
+          <e p="sound_pl.mp3" t="Include" />
+          <e p="sound_pl.ogg" t="Include" />
+          <e p="sound_pl.swf" t="Include" />
+          <e p="styleLoading.gif" t="Include" />
+          <e p="sysname.png" t="Include" />
+          <e p="tip.png" t="Include" />
+          <e p="tipsRight.gif" t="Include" />
+          <e p="tipsWrong.gif" t="Include" />
+          <e p="up.png" t="Include" />
+          <e p="USER_0.gif" t="Include" />
+          <e p="USER_1.gif" t="Include" />
+          <e p="v.gif" t="Include" />
+          <e p="wrong.png" t="Include" />
+          <e p="xTipsLeft.gif" t="Include" />
+          <e p="xTipsRight.gif" t="Include" />
+          <e p="zi.png" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
@@ -170,6 +228,10 @@
         </e>
         <e p="provider.xsd" t="Include" />
         <e p="Providers.config" t="Include" />
+        <e p="Quit.aspx" t="Include" />
+        <e p="Quit.aspx.cs" t="Include" />
+        <e p="ResetPasswd.aspx" t="Include" />
+        <e p="ResetPasswd.aspx.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="activeX_Embed.js" t="Include" />
           <e p="addUser.js" t="Include" />
@@ -243,6 +305,80 @@
         <e p="SqlMapConfig.xsd" t="Include" />
         <e p="SqlScript" t="Include">
           <e p="create_table_sequence.sql" t="Include" />
+        </e>
+        <e p="Styles" t="Include">
+          <e p="BallCss" t="Include">
+            <e p="ball_all.css" t="Include" />
+            <e p="images" t="Include">
+              <e p="4_1.gif" t="Include" />
+              <e p="4_2.gif" t="Include" />
+              <e p="4_3.gif" t="Include" />
+              <e p="4_4.gif" t="Include" />
+              <e p="4_5.gif" t="Include" />
+              <e p="4_6.gif" t="Include" />
+              <e p="ball_0.gif" t="Include" />
+              <e p="ball_1.gif" t="Include" />
+              <e p="ball_10.gif" t="Include" />
+              <e p="ball_100.gif" t="Include" />
+              <e p="ball_11.gif" t="Include" />
+              <e p="ball_12.gif" t="Include" />
+              <e p="ball_13.gif" t="Include" />
+              <e p="ball_14.gif" t="Include" />
+              <e p="ball_16.gif" t="Include" />
+              <e p="ball_17.gif" t="Include" />
+              <e p="ball_18.gif" t="Include" />
+              <e p="ball_19.gif" t="Include" />
+              <e p="ball_2.gif" t="Include" />
+              <e p="ball_20.gif" t="Include" />
+              <e p="ball_21.gif" t="Include" />
+              <e p="ball_22.gif" t="Include" />
+              <e p="ball_3.gif" t="Include" />
+              <e p="ball_4.gif" t="Include" />
+              <e p="ball_5.gif" t="Include" />
+              <e p="ball_6.gif" t="Include" />
+              <e p="ball_7.gif" t="Include" />
+              <e p="ball_8.gif" t="Include" />
+              <e p="ball_9.gif" t="Include" />
+            </e>
+          </e>
+          <e p="global.css" t="Include" />
+          <e p="Green" t="Include">
+            <e p="images" t="Include">
+              <e p="arr_d.gif" t="Include" />
+              <e p="arr_u.gif" t="Include" />
+              <e p="b_bg.gif" t="Include" />
+              <e p="flyAway-bg.png" t="Include" />
+              <e p="GO.jpg" t="Include" />
+              <e p="inputBg.png" t="Include" />
+              <e p="inputBgHover.png" t="Include" />
+              <e p="l_bg.gif" t="Include" />
+              <e p="l_d.gif" t="Include" />
+              <e p="l_u.gif" t="Include" />
+              <e p="l_u1.gif" t="Include" />
+              <e p="lbBg.png" t="Include" />
+              <e p="mclose.png" t="Include" />
+              <e p="myLayerBottom.gif" t="Include" />
+              <e p="myLayerClose.gif" t="Include" />
+              <e p="myLayerOn.gif" t="Include" />
+              <e p="oddsTrim-bg.png" t="Include" />
+              <e p="r_bg.gif" t="Include" />
+              <e p="r_d.gif" t="Include" />
+              <e p="r_u.gif" t="Include" />
+              <e p="r_u1.gif" t="Include" />
+              <e p="readonly.png" t="Include" />
+              <e p="skinBg.png" t="Include" />
+              <e p="t_bg.gif" t="Include" />
+              <e p="t_bg1.gif" t="Include" />
+              <e p="title_icon.gif" t="Include" />
+              <e p="topBg.gif" t="Include" />
+              <e p="tranan.png" t="Include" />
+            </e>
+            <e p="skin.css" t="Include" />
+          </e>
+          <e p="login.css" t="Include" />
+          <e p="Site.css" t="Include" />
+          <e p="ui-dialog.css" t="Include" />
+          <e p="video-js-cdn.min.css" t="Include" />
         </e>
         <e p="Web.config" t="Include" />
         <e p="Web.csproj" t="IncludeRecursive" />

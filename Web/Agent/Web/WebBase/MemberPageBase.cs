@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text;
 using System.Web;
 using Entity;
 using LotterySystem.Common;
@@ -675,7 +676,58 @@ namespace Agent.Web.WebBase
                 CacheHelper.SetCache("cachecurrentlid", 0x16.ToString());
             }
         }
+        public string GetAlert(string message)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("<script>");
+            builder.AppendFormat(" alert('{0}');", message);
+            builder.Append("</script>");
+            return builder.ToString();
+        }
 
+        public string GetAlert(string message, string okStr, string closeStr, string openStr)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("<script>");
+            builder.Append("seajs.use('alert',function(myAlert){");
+            builder.Append("myAlert({");
+            builder.AppendFormat("content: '{0}',", message);
+            builder.Append("okCallBack: function () { " + okStr + "},");
+            builder.Append("closeCallBack:function () { " + closeStr + "},");
+            builder.Append("openCallBack: function () { " + openStr + "}");
+            builder.Append("})");
+            builder.Append("});");
+            builder.Append("</script>");
+            return builder.ToString();
+        }
 
+        protected String get_GetPasswordLU()
+        {
+            //todo 是否开启高级密码
+            return "";
+        }
+
+        protected void log_user_reset_password(string toString, string p1, string empty, object p3)
+        {
+            //todo 修改密码日志
+            
+        }
+
+        public string LocationHref(string url)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("<script>");
+            builder.AppendFormat(" location.href='{0}' ", url);
+            builder.Append("</script>");
+            return builder.ToString();
+        }
+
+       public static void update_online_user(string u_name)
+       {
+           string str = string.Format("update  cz_stat_online set  last_time=last_time-0.1 where u_name=@u_name ", new object[0]);
+           SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@u_name", SqlDbType.NVarChar) };
+           parameterArray[0].Value = u_name;
+           CallBLL.CzStatOnlineService.executte_sql(str, parameterArray);
+       }
     }
 }

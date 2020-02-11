@@ -31,5 +31,18 @@ namespace Data.Implements
 
             return null;
         }
+
+        public int UpUserPwd(string name, string psw, string ramSalt)
+        {
+            string sql = string.Format("u_psw = '{0}',salt = '{1}'", psw,ramSalt);
+            int updateFields = UpdateFields(sql,string.Format("u_name = '{0}'",name));
+            return updateFields;
+        }
+
+        public int UpdateUserPwdStutas(string name)
+        {
+            int updateFields = UpdateFields("status = 0",string.Format("u_name = '{0}'",name));
+            return updateFields;
+        }
     }
 }

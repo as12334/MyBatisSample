@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
 using BuilderDALSQL;
 using Data.Implements;
 using Data.Interface;
@@ -7,7 +9,7 @@ using Entity;
 
 namespace LotterySystem.Common
 {
-    public class PageBase
+    public class PageBase : Page
     {
         public static  bool is_ip_locked()
         {

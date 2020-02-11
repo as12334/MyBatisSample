@@ -129,7 +129,63 @@
     <Content Include="Global.asax" />
     <Content Include="Handler\LoginHandler.ashx" />
     <Content Include="Handler\ValidateImgHandler.ashx" />
+    <Content Include="images\Add.gif" />
+    <Content Include="images\ClewSound.mp3" />
+    <Content Include="images\ClewSound.ogg" />
+    <Content Include="images\ClewSound.swf" />
+    <Content Include="images\down.png" />
+    <Content Include="images\folder.gif" />
+    <Content Include="images\GGicon.gif" />
+    <Content Include="images\icon.gif" />
+    <Content Include="images\icon4-0.gif" />
+    <Content Include="images\icon4.gif" />
+    <Content Include="images\img1_0.gif" />
+    <Content Include="images\img1_1.gif" />
+    <Content Include="images\img_0.gif" />
+    <Content Include="images\img_1.gif" />
+    <Content Include="images\index.html" />
+    <Content Include="images\loader.gif" />
+    <Content Include="images\loaderf.gif" />
+    <Content Include="images\loading27.gif" />
+    <Content Include="images\loginBg.jpg" />
+    <Content Include="images\loginIcon.png" />
+    <Content Include="images\loginLogo.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\lottery_state_0.gif" />
+    <Content Include="images\lottery_state_1.gif" />
+    <Content Include="images\lottery_state_2.gif" />
+    <Content Include="images\menu_a_bg.gif" />
+    <Content Include="images\micon.png" />
+    <Content Include="images\Minus.gif" />
+    <Content Include="images\right.png" />
+    <Content Include="images\sound_jp.mp3" />
+    <Content Include="images\sound_jp.ogg" />
+    <Content Include="images\sound_jp.swf" />
+    <Content Include="images\sound_kj - 副本.mp3" />
+    <Content Include="images\sound_kj - 副本.ogg" />
+    <Content Include="images\sound_kj - 副本.swf" />
+    <Content Include="images\sound_kj.mp3" />
+    <Content Include="images\sound_kj.ogg" />
+    <Content Include="images\sound_kj.swf" />
+    <Content Include="images\sound_pl.mp3" />
+    <Content Include="images\sound_pl.ogg" />
+    <Content Include="images\sound_pl.swf" />
+    <Content Include="images\styleLoading.gif" />
+    <Content Include="images\sysname.png" />
+    <Content Include="images\tip.png" />
+    <Content Include="images\tipsRight.gif" />
+    <Content Include="images\tipsWrong.gif" />
+    <Content Include="images\up.png" />
+    <Content Include="images\USER_0.gif" />
+    <Content Include="images\USER_1.gif" />
+    <Content Include="images\v.gif" />
+    <Content Include="images\wrong.png" />
+    <Content Include="images\xTipsLeft.gif" />
+    <Content Include="images\xTipsRight.gif" />
+    <Content Include="images\zi.png" />
     <Content Include="provider.xsd" />
+    <Content Include="Quit.aspx" />
+    <Content Include="ResetPasswd.aspx" />
     <Content Include="Scripts\activeX_Embed.js" />
     <Content Include="Scripts\addUser.js" />
     <Content Include="Scripts\alert.js" />
@@ -199,6 +255,70 @@
     <Content Include="SqlMap.xsd" />
     <Content Include="SqlMapConfig.xsd" />
     <Content Include="SqlScript\create_table_sequence.sql" />
+    <Content Include="Styles\BallCss\ball_all.css" />
+    <Content Include="Styles\BallCss\images\4_1.gif" />
+    <Content Include="Styles\BallCss\images\4_2.gif" />
+    <Content Include="Styles\BallCss\images\4_3.gif" />
+    <Content Include="Styles\BallCss\images\4_4.gif" />
+    <Content Include="Styles\BallCss\images\4_5.gif" />
+    <Content Include="Styles\BallCss\images\4_6.gif" />
+    <Content Include="Styles\BallCss\images\ball_0.gif" />
+    <Content Include="Styles\BallCss\images\ball_1.gif" />
+    <Content Include="Styles\BallCss\images\ball_10.gif" />
+    <Content Include="Styles\BallCss\images\ball_100.gif" />
+    <Content Include="Styles\BallCss\images\ball_11.gif" />
+    <Content Include="Styles\BallCss\images\ball_12.gif" />
+    <Content Include="Styles\BallCss\images\ball_13.gif" />
+    <Content Include="Styles\BallCss\images\ball_14.gif" />
+    <Content Include="Styles\BallCss\images\ball_16.gif" />
+    <Content Include="Styles\BallCss\images\ball_17.gif" />
+    <Content Include="Styles\BallCss\images\ball_18.gif" />
+    <Content Include="Styles\BallCss\images\ball_19.gif" />
+    <Content Include="Styles\BallCss\images\ball_2.gif" />
+    <Content Include="Styles\BallCss\images\ball_20.gif" />
+    <Content Include="Styles\BallCss\images\ball_21.gif" />
+    <Content Include="Styles\BallCss\images\ball_22.gif" />
+    <Content Include="Styles\BallCss\images\ball_3.gif" />
+    <Content Include="Styles\BallCss\images\ball_4.gif" />
+    <Content Include="Styles\BallCss\images\ball_5.gif" />
+    <Content Include="Styles\BallCss\images\ball_6.gif" />
+    <Content Include="Styles\BallCss\images\ball_7.gif" />
+    <Content Include="Styles\BallCss\images\ball_8.gif" />
+    <Content Include="Styles\BallCss\images\ball_9.gif" />
+    <Content Include="Styles\global.css" />
+    <Content Include="Styles\Green\images\arr_d.gif" />
+    <Content Include="Styles\Green\images\arr_u.gif" />
+    <Content Include="Styles\Green\images\b_bg.gif" />
+    <Content Include="Styles\Green\images\flyAway-bg.png" />
+    <Content Include="Styles\Green\images\GO.jpg" />
+    <Content Include="Styles\Green\images\inputBg.png" />
+    <Content Include="Styles\Green\images\inputBgHover.png" />
+    <Content Include="Styles\Green\images\lbBg.png" />
+    <Content Include="Styles\Green\images\l_bg.gif" />
+    <Content Include="Styles\Green\images\l_d.gif" />
+    <Content Include="Styles\Green\images\l_u.gif" />
+    <Content Include="Styles\Green\images\l_u1.gif" />
+    <Content Include="Styles\Green\images\mclose.png" />
+    <Content Include="Styles\Green\images\myLayerBottom.gif" />
+    <Content Include="Styles\Green\images\myLayerClose.gif" />
+    <Content Include="Styles\Green\images\myLayerOn.gif" />
+    <Content Include="Styles\Green\images\oddsTrim-bg.png" />
+    <Content Include="Styles\Green\images\readonly.png" />
+    <Content Include="Styles\Green\images\r_bg.gif" />
+    <Content Include="Styles\Green\images\r_d.gif" />
+    <Content Include="Styles\Green\images\r_u.gif" />
+    <Content Include="Styles\Green\images\r_u1.gif" />
+    <Content Include="Styles\Green\images\skinBg.png" />
+    <Content Include="Styles\Green\images\title_icon.gif" />
+    <Content Include="Styles\Green\images\topBg.gif" />
+    <Content Include="Styles\Green\images\tranan.png" />
+    <Content Include="Styles\Green\images\t_bg.gif" />
+    <Content Include="Styles\Green\images\t_bg1.gif" />
+    <Content Include="Styles\Green\skin.css" />
+    <Content Include="Styles\login.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Styles\ui-dialog.css" />
+    <Content Include="Styles\video-js-cdn.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,6 +339,8 @@
     <Compile Include="Agent\Web\LoginUserControl\Login7\LoginControl.cs" />
     <Compile Include="Agent\Web\LoginUserControl\Login8\LoginControl.cs" />
     <Compile Include="Agent\Web\LoginUserControl\Login9\LoginControl.cs" />
+    <Compile Include="Agent\Web\Quit.cs" />
+    <Compile Include="Agent\Web\ResetPasswd.cs" />
     <Compile Include="Agent\Web\WebBase\CallBLL.cs" />
     <Compile Include="Agent\Web\WebBase\MemberPageBase.cs" />
     <Compile Include="BLL\cz_admin_sysconfigBLL.cs" />
@@ -244,6 +366,7 @@
     <Compile Include="Common\Redis\RedisExpires.cs" />
     <Compile Include="Common\Redis\RedisKeys.cs" />
     <Compile Include="Common\Redis\RedisManager.cs" />
+    <Compile Include="Common\Regexlib.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Data.Implements\cz_admin_sysconfigService.cs" />
     <Compile Include="Data.Implements\cz_login_logService.cs" />
@@ -259,6 +382,14 @@
     <Compile Include="Data.Interface\Icz_stat_top_onlineService.cs" />
     <Compile Include="Data.Interface\Icz_users_childService.cs" />
     <Compile Include="Data.Interface\Icz_user_psw_err_logService.cs" />
+    <Compile Include="Quit.aspx.cs">
+      <DependentUpon>Quit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPasswd.aspx.cs">
+      <DependentUpon>ResetPasswd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="WebGame\Global.asax.cs" />
     <EmbeddedResource Include="SqlMap.xsd">
       <SubType>
@@ -282,9 +413,6 @@
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
