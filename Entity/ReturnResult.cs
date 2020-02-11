@@ -5,7 +5,7 @@ namespace LotterySystem.Model
     public class ReturnResult
     {
         private int success;
-        private string tipinfo;
+        private string tipinfo = "";
         private Dictionary<string, object> data;
         
         public int get_success() {

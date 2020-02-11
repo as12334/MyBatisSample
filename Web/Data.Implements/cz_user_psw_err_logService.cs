@@ -29,13 +29,12 @@ namespace Data.Implements
 
         public void ZeroErrTimes(string loginName)
         {
-            var sql = String.Format("update cz_user_psw_err_log set err_times = 0 where u_name = '{0}'",loginName);
-            DbHelperSQL.executte_sql(sql);
+            UpdateFields(string.Format("err_times = 0,update_date = '{0}'",DateTime.Now), String.Format("u_name = '{0}'",loginName));
         }
 
         public void UpdateErrTimes(string loginName)
         {
-            UpdateFields("err_times = err_times + 1", String.Format("u_name = '{0}'",loginName));
+            UpdateFields(string.Format("err_times = err_times + 1,update_date = '{0}'",DateTime.Now), String.Format("u_name = '{0}'",loginName));
         }
 
         public void AddUser(string loginName)

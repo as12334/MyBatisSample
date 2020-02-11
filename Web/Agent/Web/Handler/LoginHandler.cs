@@ -87,8 +87,8 @@ namespace Agent.Web.Handler
                     {
                         if (PageBase.IsErrTimesAbove(ref time, loginName))
                         {
-                            if (!PageBase.IsErrTimeout(time))
-                            {
+//                            if (!PageBase.IsErrTimeout(time))
+//                            {
                                 context.Session["lottery_session_img_code"] = null;
                                 result.set_success(400);
                                 result.set_tipinfo("");
@@ -97,10 +97,10 @@ namespace Agent.Web.Handler
                                 strResult = JsonHandle.ObjectToJson(result);
                                 context.Session["lottery_session_img_code_display"] = 1;
                                 return;
-                            }
-                            CallBLL.CzUserPswErrLogService.ZeroErrTimes(loginName);
-                            context.Session["lottery_session_img_code"] = null;
-                            context.Session["lottery_session_img_code_display"] = 0;
+//                            }
+//                            CallBLL.CzUserPswErrLogService.ZeroErrTimes(loginName);
+//                            context.Session["lottery_session_img_code"] = null;
+//                            context.Session["lottery_session_img_code_display"] = 0;
                         }
                         else
                         {

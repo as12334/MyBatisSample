@@ -67,9 +67,13 @@ namespace LotterySystem.Common
         public static bool IsErrTimesAbove(ref DateTime? time, string str5)
         {
             cz_user_psw_err_logService service = new cz_user_psw_err_logService();
-            IList<cz_user_psw_err_log>  users = service.GetListByWhere(String.Format(" u_name = '{0}'", str5));
-            time = users[0].get_update_date();
-            return true;
+            IList<cz_user_psw_err_log>  users = service.GetListByWhere(String.Format(" u_name = '{0}' and err_times > 0", str5));
+            if (users.Count > 0)
+            {
+                time = users[0].get_update_date();
+                return true;
+            }
+            return false;
 
         }
 
