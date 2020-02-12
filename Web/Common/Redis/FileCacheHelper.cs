@@ -44,5 +44,20 @@ namespace LotterySystem.Common.Redis
         {
             throw new System.NotImplementedException();
         }
+
+        public static string get_AjaxErrorLogSwitch()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public static string get_IsViewNewReportMenu()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public static string get_ManageZJProfit()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

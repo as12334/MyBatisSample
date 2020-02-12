@@ -183,6 +183,7 @@
     <Content Include="images\xTipsLeft.gif" />
     <Content Include="images\xTipsRight.gif" />
     <Content Include="images\zi.png" />
+    <Content Include="index.aspx" />
     <Content Include="provider.xsd" />
     <Content Include="Quit.aspx" />
     <Content Include="ResetPasswd.aspx" />
@@ -330,6 +331,7 @@
   <ItemGroup>
     <Compile Include="Agent\Web\Handler\LoginHandler.cs" />
     <Compile Include="Agent\Web\Handler\ValidateImgHandler.cs" />
+    <Compile Include="Agent\Web\Index.cs" />
     <Compile Include="Agent\Web\LoginUserControl\Login1\LoginControl.cs" />
     <Compile Include="Agent\Web\LoginUserControl\Login2\LoginControl.cs" />
     <Compile Include="Agent\Web\LoginUserControl\Login3\LoginControl.cs" />
@@ -368,20 +370,30 @@
     <Compile Include="Common\Redis\RedisManager.cs" />
     <Compile Include="Common\Regexlib.cs" />
     <Compile Include="Common\Utils.cs" />
+    <Compile Include="Data.Implements\cz_admin_subsystemService.cs" />
     <Compile Include="Data.Implements\cz_admin_sysconfigService.cs" />
     <Compile Include="Data.Implements\cz_login_logService.cs" />
     <Compile Include="Data.Implements\cz_rate_kcService.cs" />
+    <Compile Include="Data.Implements\cz_saleset_sixService.cs" />
     <Compile Include="Data.Implements\cz_stat_onlineService.cs" />
     <Compile Include="Data.Implements\cz_stat_top_onlineService.cs" />
     <Compile Include="Data.Implements\cz_users_childService.cs" />
     <Compile Include="Data.Implements\cz_user_psw_err_logService.cs" />
+    <Compile Include="Data.Implements\zk_subsysService.cs" />
+    <Compile Include="Data.Interface\Icz_admin_subsystemService.cs" />
     <Compile Include="Data.Interface\Icz_admin_sysconfigService.cs" />
     <Compile Include="Data.Interface\Icz_login_logService.cs" />
     <Compile Include="Data.Interface\Icz_rate_kcService.cs" />
+    <Compile Include="Data.Interface\Icz_saleset_sixService.cs" />
     <Compile Include="Data.Interface\Icz_stat_onlineService.cs" />
     <Compile Include="Data.Interface\Icz_stat_top_onlineService.cs" />
     <Compile Include="Data.Interface\Icz_users_childService.cs" />
     <Compile Include="Data.Interface\Icz_user_psw_err_logService.cs" />
+    <Compile Include="Data.Interface\Izk_subsysService.cs" />
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Quit.aspx.cs">
       <DependentUpon>Quit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

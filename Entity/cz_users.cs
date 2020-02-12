@@ -9,7 +9,7 @@
  *				zhenglb@mesnac.com
  *				http://www.mesnac.com
  *      Finish DateTime:
- *				2020年02月06日
+ *				2020年02月12日
  *      History:
  ***********************************************************************************/
 using System;
@@ -54,7 +54,7 @@ namespace Entity
         private double? kc_usable_credit;
         private string kc_kind;
         private int? kc_allow_sale;
-        private int? negative_sale;
+        private string negative_sale;
         private int? kc_allow_maxrate;
         private int? kc_low_maxrate;
         private int? kc_rate_owner;
@@ -521,17 +521,17 @@ namespace Entity
         }
 
 
-        public int? NegativeSale
+        public string NegativeSale
         {
            get => negative_sale;
            set => negative_sale = value;
         }
 
-        public void set_negative_sale (int? negative_sale)
+        public void set_negative_sale (string negative_sale)
         {
             this.negative_sale = negative_sale;
         }
-        public int? get_negative_sale()
+        public string get_negative_sale()
         {
            return  this.negative_sale;
         }

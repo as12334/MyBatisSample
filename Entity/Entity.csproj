@@ -40,9 +40,11 @@
     <ItemGroup>
         <Compile Include="agent_userinfo_session.cs" />
         <Compile Include="CommandText.cs" />
+        <Compile Include="cz_admin_subsystem.cs" />
         <Compile Include="cz_admin_sysconfig.cs" />
         <Compile Include="cz_login_log.cs" />
         <Compile Include="cz_rate_kc.cs" />
+        <Compile Include="cz_saleset_six.cs" />
         <Compile Include="cz_stat_online.cs" />
         <Compile Include="cz_stat_top_online.cs" />
         <Compile Include="cz_users.cs" />
@@ -52,6 +54,7 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RedisConnectSplit.cs" />
         <Compile Include="ReturnResult.cs" />
+        <Compile Include="zk_subsys.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

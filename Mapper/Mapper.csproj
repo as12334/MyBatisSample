@@ -50,8 +50,15 @@
           <EmbeddedResource Include="Mapper\BasicMapper\cz_users_child.xml" />
           <EmbeddedResource Include="Mapper\BasicMapper\cz_user_psw_err_log.xml" />
           <EmbeddedResource Include="Mapper\BasicMapper\cz_admin_sysconfig.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_stat_online.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_stat_top_online.xml" />
+            <EmbeddedResource Include="Mapper\BasicMapper\cz_stat_online.xml" />
+            <EmbeddedResource Include="Mapper\BasicMapper\cz_stat_top_online.xml" />
+            <EmbeddedResource Include="Mapper\BasicMapper\cz_admin_subsystem.xml" />
+            <EmbeddedResource Include="Mapper\BasicMapper\zk_subsys.xml" />
+        <EmbeddedResource Include="Mapper\BasicMapper\cz_saleset_six.xml" />
+
+
+    </ItemGroup>
+    <ItemGroup>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

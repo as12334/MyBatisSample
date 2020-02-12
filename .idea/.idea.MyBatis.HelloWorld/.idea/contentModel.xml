@@ -8,9 +8,11 @@
         <e p="agent_userinfo_session.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="CommandText.cs" t="Include" />
+        <e p="cz_admin_subsystem.cs" t="Include" />
         <e p="cz_admin_sysconfig.cs" t="Include" />
         <e p="cz_login_log.cs" t="Include" />
         <e p="cz_rate_kc.cs" t="Include" />
+        <e p="cz_saleset_six.cs" t="Include" />
         <e p="cz_stat_online.cs" t="Include" />
         <e p="cz_stat_top_online.cs" t="Include" />
         <e p="cz_user_psw_err_log.cs" t="Include" />
@@ -24,19 +26,23 @@
         </e>
         <e p="RedisConnectSplit.cs" t="Include" />
         <e p="ReturnResult.cs" t="Include" />
+        <e p="zk_subsys.cs" t="Include" />
       </e>
       <e p="Mapper" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Mapper" t="Include">
           <e p="BasicMapper" t="Include">
+            <e p="cz_admin_subsystem.xml" t="Include" />
             <e p="cz_admin_sysconfig.xml" t="Include" />
             <e p="cz_login_log.xml" t="Include" />
             <e p="cz_rate_kc.xml" t="Include" />
+            <e p="cz_saleset_six.xml" t="Include" />
             <e p="cz_stat_online.xml" t="Include" />
             <e p="cz_stat_top_online.xml" t="Include" />
             <e p="cz_user_psw_err_log.xml" t="Include" />
             <e p="cz_users.xml" t="Include" />
             <e p="cz_users_child.xml" t="Include" />
+            <e p="zk_subsys.xml" t="Include" />
           </e>
         </e>
         <e p="Mapper.csproj" t="IncludeRecursive" />
@@ -54,6 +60,7 @@
               <e p="LoginHandler.cs" t="Include" />
               <e p="ValidateImgHandler.cs" t="Include" />
             </e>
+            <e p="Index.cs" t="Include" />
             <e p="LoginUserControl" t="Include">
               <e p="Login1" t="Include">
                 <e p="LoginControl.cs" t="Include" />
@@ -138,24 +145,30 @@
           <e p="PageResult.cs" t="Include" />
         </e>
         <e p="Data.Implements" t="Include">
+          <e p="cz_admin_subsystemService.cs" t="Include" />
           <e p="cz_admin_sysconfigService.cs" t="Include" />
           <e p="cz_login_logService.cs" t="Include" />
           <e p="cz_rate_kcService.cs" t="Include" />
+          <e p="cz_saleset_sixService.cs" t="Include" />
           <e p="cz_stat_onlineService.cs" t="Include" />
           <e p="cz_stat_top_onlineService.cs" t="Include" />
           <e p="cz_user_psw_err_logService.cs" t="Include" />
           <e p="cz_users_childService.cs" t="Include" />
           <e p="cz_usersService.cs" t="Include" />
+          <e p="zk_subsysService.cs" t="Include" />
         </e>
         <e p="Data.Interface" t="Include">
+          <e p="Icz_admin_subsystemService.cs" t="Include" />
           <e p="Icz_admin_sysconfigService.cs" t="Include" />
           <e p="Icz_login_logService.cs" t="Include" />
           <e p="Icz_rate_kcService.cs" t="Include" />
+          <e p="Icz_saleset_sixService.cs" t="Include" />
           <e p="Icz_stat_onlineService.cs" t="Include" />
           <e p="Icz_stat_top_onlineService.cs" t="Include" />
           <e p="Icz_user_psw_err_logService.cs" t="Include" />
           <e p="Icz_users_childService.cs" t="Include" />
           <e p="Icz_usersService.cs" t="Include" />
+          <e p="Izk_subsysService.cs" t="Include" />
         </e>
         <e p="DataBase.config" t="Include" />
         <e p="Default.aspx" t="Include" />
@@ -221,6 +234,8 @@
           <e p="xTipsRight.gif" t="Include" />
           <e p="zi.png" t="Include" />
         </e>
+        <e p="index.aspx" t="Include" />
+        <e p="index.aspx.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Properties" t="Include">

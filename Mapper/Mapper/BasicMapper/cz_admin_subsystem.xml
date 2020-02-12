@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_admin_subsystem"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_admin_subsystem" type="Entity.cz_admin_subsystem, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_admin_subsystem">
+            <result property="sys_id" column="sys_id"/>
+            <result property="conn" column="conn"/>
+            <result property="flag" column="flag"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="sys_id" column="sys_id"/>
+            <result property="conn" column="conn"/>
+            <result property="flag" column="flag"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_admin_subsystem.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_admin_subsystem.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_admin_subsystem.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_admin_subsystem.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+        </select>
+        <select id="cz_admin_subsystem.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_admin_subsystem]
+        </select>
+        <select id="cz_admin_subsystem.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_admin_subsystem] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_admin_subsystem.GetById" parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem] WHERE ()
+        </select>
+
+        <select id="cz_admin_subsystem.GetListByWhere"  parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="conn" prepend="AND">
+                    [conn] = #conn#
+                </isNotNull>
+                <isNotNull property="flag" prepend="AND">
+                    [flag] = #flag#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <select id="cz_admin_subsystem.GetListByWhereStr"  parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_admin_subsystem.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="conn" prepend="AND">
+                    [conn] = #conn#
+                </isNotNull>
+                <isNotNull property="flag" prepend="AND">
+                    [flag] = #flag#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_admin_subsystem.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_admin_subsystem.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="conn" prepend="AND">
+                    [conn] = #conn#
+                </isNotNull>
+                <isNotNull property="flag" prepend="AND">
+                    [flag] = #flag#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <select id="cz_admin_subsystem.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_admin_subsystem.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_admin_subsystem]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="conn" prepend="AND">
+                    [conn] = #conn#
+                </isNotNull>
+                <isNotNull property="flag" prepend="AND">
+                    [flag] = #flag#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <select id="cz_admin_subsystem.GetAllListOrder" parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_admin_subsystem.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            <isPropertyAvailable property="Top" prepend="">
+                Top (#Top#)
+            </isPropertyAvailable>
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="conn" prepend="AND">
+                    [conn] = #conn#
+                </isNotNull>
+                <isNotNull property="flag" prepend="AND">
+                    [flag] = #flag#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_admin_subsystem.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_admin_subsystem">
+            SELECT
+            <isPropertyAvailable property="Top" prepend="">
+                Top (#Top#)
+            </isPropertyAvailable>
+            [sys_id],[conn],[flag]
+            FROM [dbo].[cz_admin_subsystem]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_admin_subsystem.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_admin_subsystem]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="conn" prepend="AND">
+                    [conn] = #conn#
+                </isNotNull>
+                <isNotNull property="flag" prepend="AND">
+                    [flag] = #flag#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+        <insert id="cz_admin_subsystem.Insert" parameterClass="cz_admin_subsystem" resultClass="Int32">
+            INSERT INTO [dbo].[cz_admin_subsystem] (
+            [sys_id],[conn],[flag]
+            ) VALUES (
+            #sys_id#,#conn#,#flag#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_admin_subsystem.Update" parameterClass="cz_admin_subsystem">
+            UPDATE [dbo].[cz_admin_subsystem] SET
+            [sys_id] = #sys_id#,[conn] = #conn#,[flag] = #flag#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+        <update id="cz_admin_subsystem.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_admin_subsystem] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_admin_subsystem.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_admin_subsystem]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_admin_subsystem.DeleteByEntity" parameterClass="cz_admin_subsystem">
+            DELETE FROM [dbo].[cz_admin_subsystem]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_admin_subsystem.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_admin_subsystem]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_admin_subsystem.ClearData">
+            truncate table [cz_admin_subsystem]
+        </statement>
+    </statements>
+</sqlMap>

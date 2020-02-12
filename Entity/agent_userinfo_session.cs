@@ -42,7 +42,7 @@ namespace LotterySystem.Model
 		private int? kc_isauto_back;
 		private int? six_isauto_back;
 		private int? retry_times;
-		private int? negative_sale;
+		private string negative_sale;
 		
 		
 		
@@ -82,11 +82,11 @@ namespace LotterySystem.Model
 		{
 			return u_psw;
 		}
-		public int? get_negative_sale() {
+		public string get_negative_sale() {
 			return negative_sale;
 		}
 
-		public void set_negative_sale(int? negative_sale) {
+		public void set_negative_sale(string negative_sale) {
 			this.negative_sale = negative_sale;
 		}
 		public void set_u_psw(string u_psw)

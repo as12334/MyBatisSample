@@ -10,5 +10,6 @@ namespace Data.Interface
         cz_users_child AgentLogin(string toLower);
         int UpUserPwd(string toString, string psw, string ramSalt);
         int UpdateUserPwdStutas(string status);
+        string GetPermissionsName(string toString);
     }
 }

@@ -130,6 +130,11 @@ namespace LotterySystem.Common
         {
             throw new NotImplementedException();
         }
+        
+        protected static bool IsNeedPopBrower()
+        {
+            throw new NotImplementedException();
+        }
 
         protected bool IsUserOut(string toString)
         {
@@ -137,6 +142,17 @@ namespace LotterySystem.Common
         }
 
         protected static object GetPublicForderPath(object getLotteryCachesFileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected static string get_GetLottorySystemName()
+        {
+            //测试系统
+            return "测试系统";
+        }
+
+        protected static void SetBrowerFlag(string browserCode)
         {
             throw new NotImplementedException();
         }

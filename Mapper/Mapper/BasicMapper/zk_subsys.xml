@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="zk_subsys"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="zk_subsys" type="Entity.zk_subsys, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="zk_subsys">
+            <result property="sys_id" column="sys_id"/>
+            <result property="sync" column="sync"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="sys_id" column="sys_id"/>
+            <result property="sync" column="sync"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="zk_subsys.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="zk_subsys.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="zk_subsys.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="zk_subsys.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+        </select>
+        <select id="zk_subsys.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[zk_subsys]
+        </select>
+		<select id="zk_subsys.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[zk_subsys] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="zk_subsys.GetById" parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys] WHERE ()
+        </select>
+
+        <select id="zk_subsys.GetListByWhere"  parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="sync" prepend="AND">
+                    [sync] = #sync#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="zk_subsys.GetListByWhereStr"  parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="zk_subsys.GetListByWhereAndOrder"  parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="sync" prepend="AND">
+                    [sync] = #sync#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="zk_subsys.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="zk_subsys.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="sync" prepend="AND">
+                    [sync] = #sync#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="zk_subsys.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="zk_subsys.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[zk_subsys]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="sync" prepend="AND">
+                    [sync] = #sync#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="zk_subsys.GetAllListOrder" parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            [sys_id],[sync] 
+            FROM [dbo].[zk_subsys]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="zk_subsys.GetTopNListWhereOrder" parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [sys_id],[sync]
+            FROM [dbo].[zk_subsys]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="sync" prepend="AND">
+                    [sync] = #sync#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="zk_subsys.GetTopNListWhereOrderStr" parameterClass="map" resultClass="zk_subsys">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [sys_id],[sync]
+            FROM [dbo].[zk_subsys]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="zk_subsys.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[zk_subsys]
+            <dynamic prepend="WHERE">
+                <isNotNull property="sys_id" prepend="AND">
+                    [sys_id] = #sys_id#
+                </isNotNull>
+                <isNotNull property="sync" prepend="AND">
+                    [sync] = #sync#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="zk_subsys.Insert" parameterClass="zk_subsys" resultClass="Int32">
+            INSERT INTO [dbo].[zk_subsys] (
+            [sys_id],[sync]
+            ) VALUES (
+            #sys_id#,#sync#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="zk_subsys.Update" parameterClass="zk_subsys">
+            UPDATE [dbo].[zk_subsys] SET
+            [sys_id] = #sys_id#,[sync] = #sync#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="zk_subsys.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[zk_subsys] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="zk_subsys.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[zk_subsys]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="zk_subsys.DeleteByEntity" parameterClass="zk_subsys">
+            DELETE FROM [dbo].[zk_subsys]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="zk_subsys.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[zk_subsys]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="zk_subsys.ClearData">
+            truncate table [zk_subsys]
+        </statement>
+    </statements>
+</sqlMap>

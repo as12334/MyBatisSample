@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using System.Web;
+using BuilderDALSQL;
 using Entity;
 using LotterySystem.Common;
 using LotterySystem.Common.Redis;
@@ -684,7 +685,829 @@ namespace Agent.Web.WebBase
             builder.Append("</script>");
             return builder.ToString();
         }
+        protected string GetNav()
+        {
+            string str = HttpContext.Current.Session["user_name"].ToString();
+            agent_userinfo_session uModel = HttpContext.Current.Session[str + "lottery_session_user_info"] as agent_userinfo_session;
+            StringBuilder builder = new StringBuilder();
+            builder.Append("            {");
+            if (HttpContext.Current.Session["user_state"].ToString().Equals("0"))
+            {
+                if (HttpContext.Current.Session["child_user_name"] != null)
+                {
+                    if (HttpContext.Current.Session["user_type"].ToString().Equals("zj"))
+                    {
+                        if (CallBLL.CzUsersChildService.GetPermissionsName(HttpContext.Current.Session["child_user_name"].ToString()).IndexOf("po_1_1") > -1)
+                        {
+                            builder.Append("    \"即?注?\": {");
+                            builder.Append(this.GetHtml_JSZD(uModel));
+                            builder.Append("    },");
+                        }
+                    }
+                    else if (CallBLL.CzUsersChildService.GetPermissionsName(HttpContext.Current.Session["child_user_name"].ToString()).IndexOf("po_5_1") > -1)
+                    {
+                        builder.Append("    \"即?注?\": {");
+                        builder.Append(this.GetHtml_JSZD(uModel));
+                        builder.Append("    },");
+                    }
+                }
+                else
+                {
+                    builder.Append("    \"即?注?\": {");
+                    builder.Append(this.GetHtml_JSZD(uModel));
+                    builder.Append("    },");
+                }
+            }
+            if (HttpContext.Current.Session["user_state"].ToString().Equals("0"))
+            {
+                if (HttpContext.Current.Session["child_user_name"] != null)
+                {
+                    if (HttpContext.Current.Session["user_type"].ToString().Equals("zj"))
+                    {
+                        if (CallBLL.CzUsersChildService.GetPermissionsName(HttpContext.Current.Session["child_user_name"].ToString()).IndexOf("po_2_1") > -1)
+                        {
+                            builder.Append("    \"用?管理\": {");
+                            builder.Append(this.GetHtml_YHGL(uModel));
+                            builder.Append("    },");
+                        }
+                    }
+                    else if (CallBLL.CzUsersChildService.GetPermissionsName(HttpContext.Current.Session["child_user_name"].ToString()).IndexOf("po_6_1") > -1)
+                    {
+                        builder.Append("    \"用?管理\": {");
+                        builder.Append(this.GetHtml_YHGL(uModel));
+                        builder.Append("    },");
+                    }
+                }
+                else
+                {
+                    builder.Append("    \"用?管理\": {");
+                    builder.Append(this.GetHtml_YHGL(uModel));
+                    builder.Append("    },");
+                }
+            }
+            if (HttpContext.Current.Session["user_type"].ToString().Equals("zj"))
+            {
+                builder.Append("    \"内部管理\": {");
+                builder.Append(this.GetHtml_NBGL(uModel));
+                builder.Append("    },");
+            }
+            builder.Append("    \"?人管理\": {");
+            builder.Append(this.GetHtml_GRGL(uModel));
+            builder.Append("    },");
+            builder.Append("    \"?表查?\": {");
+            builder.Append(this.GetHtml_BBCX(uModel));
+            builder.Append("    },");
+            builder.Append("    \"?史??\": {");
+            builder.Append("        \"ut\": [");
+            builder.Append("            \"?史??|/LotteryPeriod/HistoryLottery.aspx\"");
+            builder.Append("        ]");
+            builder.Append("    },");
+            builder.Append("    \"站内消息\": {");
+            builder.Append("        \"ut\": [");
+            builder.Append("            \"站内消息|/NewsManage/NewsList.aspx\"");
+            builder.Append("        ]");
+            builder.Append("    },");
+            builder.Append("    \"安全退出\": {");
+            builder.Append("        \"ut\": [");
+            builder.Append("            \"Quit.aspx\"");
+            builder.Append("        ]");
+            builder.Append("    }");
+            builder.Append("}");
+            return builder.ToString();
+        }
+        private string GetHtml_BBCX(agent_userinfo_session uModel)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("        \"ut\": [");
+            if (FileCacheHelper.get_IsViewNewReportMenu().Equals("1"))
+            {
+                builder.Append("            \"(新)?表查?|ReportSearch/ReportNew.aspx\",");
+            }
+            builder.Append("            \"?表查?|ReportSearch/Report.aspx\"");
+            builder.Append("        ]");
+            return builder.ToString();
+        }
 
+        private string GetHtml_GRGL(agent_userinfo_session uModel)
+        {
+            StringBuilder builder = new StringBuilder();
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.Append("        \"ut\": [");
+                builder.Append("            \"登?日?|ViewLog/LoginLog.aspx\",");
+                builder.Append("            \"?更密?|EditPwd.aspx|0\"");
+                builder.Append("        ]");
+            }
+            else
+            {
+                builder.Append("        \"ut\": [");
+                builder.Append("            \"信用?料|CreditInfo.aspx\",");
+                if (uModel.get_users_child_session() == null)
+                {
+                    builder.Append("            \"登?日?|ViewLog/LoginLog.aspx\",");
+                }
+                else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_6_1") > -1)
+                {
+                    builder.Append("            \"登?日?|ViewLog/LoginLog.aspx\",");
+                }
+                if (uModel.get_u_type().Equals("fgs"))
+                {
+                    if ((uModel.get_users_child_session() == null) && (uModel.get_six_op_odds().Equals(1) || uModel.get_kc_op_odds().Equals(1)))
+                    {
+                        builder.Append("            \"操?日?|ViewLog/ViewFgsOptOddsLog.aspx\",");
+                    }
+                    else if (((uModel.get_users_child_session() != null) && (uModel.get_six_op_odds().Equals(1) || uModel.get_kc_op_odds().Equals(1))) && (uModel.get_users_child_session().get_permissions_name().IndexOf("po_5_3") > -1))
+                    {
+                        builder.Append("            \"操?日?|ViewLog/ViewFgsOptOddsLog.aspx\",");
+                    }
+                }
+                builder.Append("            \"?更密?|EditPwd.aspx|0\",");
+                if (HttpContext.Current.Session["user_state"].ToString().Equals("0"))
+                {
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            \"自????定|/AutoLet/AutoLet_kc.aspx\",");
+                    }
+                    else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_5_2") > -1)
+                    {
+                        builder.Append("            \"自????定|/AutoLet/AutoLet_kc.aspx\",");
+                    }
+                }
+                builder.Append("            \"自????更??|/ViewLog/ViewAutoSaleLog.aspx\"");
+                if ((uModel.get_u_type().Equals("fgs") && (uModel.get_six_op_odds().Equals(1) || uModel.get_kc_op_odds().Equals(1))) && uModel.get_a_state().Equals(0))
+                {
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            ,\"微?列表|/OddsSet/OddsWT.aspx\"");
+                    }
+                    else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_5_3") > -1)
+                    {
+                        builder.Append("            ,\"微?列表|/OddsSet/OddsWT.aspx\"");
+                    }
+                }
+                builder.Append("        ]");
+            }
+            return builder.ToString();
+        }
+        public cz_admin_subsystem IsChildSystem() => 
+            CallBLL.CzAdminSubsystemService.GetModel();
+
+        public bool IsChildSync()
+        {
+            cz_admin_subsystem _subsystem = this.IsChildSystem();
+            if (_subsystem == null)
+            {
+                return false;
+            }
+            if (!_subsystem.get_flag().Equals(1))
+            {
+                return false;
+            }
+//            DbHelperSQL_Ex.connectionString = string.Format(PubConstant.get_ConnectionStringExtend(), _subsystem.get_conn());
+            DataSet set = DbHelperSQL.Query($"select top 1 * from zk_subsys where sys_id='{_subsystem.get_sys_id()}'".ToString(), null);
+            return ((((set != null) && (set.Tables.Count > 0)) && (set.Tables[0].Rows.Count > 0)) && set.Tables[0].Rows[0]["sync"].ToString().Equals("1"));
+        }
+        private string GetHtml_NBGL(agent_userinfo_session uModel)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("        \"ut\": [");
+            if (HttpContext.Current.Session["child_user_name"] == null)
+            {
+                builder.Append("            \"注?搜索|BillSearch.aspx\",");
+            }
+            else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_3_5") > -1)
+            {
+                builder.Append("            \"注?搜索|BillSearch.aspx\",");
+            }
+            int num = 0;
+            if (HttpContext.Current.Session["user_state"].ToString().Equals(num.ToString()))
+            {
+                if (uModel.get_users_child_session() == null)
+                {
+                    if (!this.IsChildSync())
+                    {
+                        builder.Append("            \"彩?配置|LotteryConfig.aspx\",");
+                    }
+                    builder.Append("            \"系?初始?定|/SystemSet/SystemSet_kc.aspx\",");
+                }
+                else
+                {
+                    if ((uModel.get_users_child_session().get_permissions_name().IndexOf("po_2_2") > -1) && !this.IsChildSync())
+                    {
+                        builder.Append("            \"彩?配置|LotteryConfig.aspx\",");
+                    }
+                    if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_3_2") > -1)
+                    {
+                        builder.Append("            \"系?初始?定|/SystemSet/SystemSet_kc.aspx\",");
+                    }
+                }
+                if (FileCacheHelper.get_ManageZJProfit().Equals("1") && ((uModel.get_users_child_session() == null) || uModel.get_users_child_session().get_is_admin().Equals(1)))
+                {
+                    builder.Append("            \"??盈利?置|/ManageZJProfit/Manage_ZJ_Profit.aspx\",");
+                }
+                if (uModel.get_users_child_session() == null)
+                {
+                    builder.Append("            \"交易?定|TradingSet.aspx\",");
+                    builder.Append("            \"?率?定|/OddsSet/OddsSet_kc.aspx\",");
+                }
+                else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_3_3") > -1)
+                {
+                    builder.Append("            \"交易?定|TradingSet.aspx\",");
+                    builder.Append("            \"?率?定|/OddsSet/OddsSet_kc.aspx\",");
+                }
+                if (uModel.get_u_type().Equals("fgs") && (uModel.get_six_op_odds().Equals(1) || uModel.get_six_op_odds().Equals(1)))
+                {
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            \"微?列表|/OddsSet/OddsWT.aspx\",");
+                    }
+                    else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_5_3") > -1)
+                    {
+                        builder.Append("            \"微?列表|/OddsSet/OddsWT.aspx\",");
+                    }
+                }
+                if (uModel.get_users_child_session() == null)
+                {
+                    builder.Append("            \"站?消息管理|/NewsManage/news_list.aspx\",");
+                }
+                else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_3_4") > -1)
+                {
+                    builder.Append("            \"站?消息管理|/NewsManage/news_list.aspx\",");
+                }
+                if (uModel.get_users_child_session() == null)
+                {
+                    builder.Append("            \"?期管理|/LotteryPeriod/AwardPeriod.aspx\",");
+                }
+                else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_3_1") > -1)
+                {
+                    builder.Append("            \"?期管理|/LotteryPeriod/AwardPeriod.aspx\",");
+                }
+                builder.Append("            \"?表?份|/ReportBackupManage/ReportBackup.aspx|1\",");
+                builder.Append("            \"注??份|/BillBackupManage/BillBackup.aspx|1\",");
+            }
+            if (uModel.get_users_child_session() == null)
+            {
+                builder.Append("            \"操?日?|/ViewLog/LogOddsChange.aspx\",");
+            }
+            else if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_3_1") > -1)
+            {
+                builder.Append("            \"操?日?|/ViewLog/LogOddsChange.aspx\",");
+            }
+            builder.Append("            \"系?日?|/ViewLog/LogSystem.aspx\"");
+            builder.Append("        ]");
+            return builder.ToString();
+        }
+
+        private string GetHtml_YHGL(agent_userinfo_session uModel)
+        {
+            StringBuilder builder = new StringBuilder();
+            if (!HttpContext.Current.Session["user_type"].ToString().Equals("zj"))
+            {
+                if (uModel.get_u_type().Equals("fgs"))
+                {
+                    builder.Append("        \"ut\": [");
+                    builder.Append("            \"股东|account/gd_list.aspx\",");
+                    builder.Append("            \"?代理|account/zd_list.aspx\",");
+                    builder.Append("            \"代理|account/dl_list.aspx\",");
+                    builder.Append("            \"??|account/hy_list.aspx\"");
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            ,\"子??|account/child_list.aspx\"");
+                    }
+                    builder.Append("        ]");
+                }
+                else if (uModel.get_u_type().Equals("gd"))
+                {
+                    builder.Append("        \"ut\": [");
+                    builder.Append("            \"?代理|account/zd_list.aspx\",");
+                    builder.Append("            \"代理|account/dl_list.aspx\",");
+                    builder.Append("            \"??|account/hy_list.aspx\"");
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            ,\"子??|account/child_list.aspx\"");
+                    }
+                    builder.Append("        ]");
+                }
+                else if (uModel.get_u_type().Equals("zd"))
+                {
+                    builder.Append("        \"ut\": [");
+                    builder.Append("            \"代理|account/dl_list.aspx\",");
+                    builder.Append("            \"??|account/hy_list.aspx\"");
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            ,\"子??|account/child_list.aspx\"");
+                    }
+                    builder.Append("        ]");
+                }
+                else if (uModel.get_u_type().Equals("dl"))
+                {
+                    builder.Append("        \"ut\": [");
+                    builder.Append("            \"??|account/hy_list.aspx\"");
+                    if (uModel.get_users_child_session() == null)
+                    {
+                        builder.Append("            ,\"子??|account/child_list.aspx\"");
+                    }
+                    builder.Append("        ]");
+                }
+                else
+                {
+                    builder.Append("        \"ut\": [ ]");
+                }
+            }
+            else
+            {
+                builder.Append("        \"ut\": [");
+                builder.Append("            \"分公司|account/fgs_list.aspx\",");
+                builder.Append("            \"股东|account/gd_list.aspx\",");
+                builder.Append("            \"?代理|account/zd_list.aspx\",");
+                builder.Append("            \"代理|account/dl_list.aspx\",");
+                builder.Append("            \"??|account/hy_list.aspx\"");
+                if (uModel.get_users_child_session() == null)
+                {
+                    builder.Append("            ,\"子??|account/child_list.aspx\"");
+                }
+                DataTable table = this.GetLotteryList().DefaultView.ToTable(true, new string[] { "master_id" });
+                string str = "";
+                foreach (DataRow row in table.Rows)
+                {
+                    int num = 1;
+                    if (row["master_id"].ToString().Equals(num.ToString()))
+                    {
+                        str = "            ,\"出???|account/filluser_list.aspx\"";
+                        break;
+                    }
+                }
+                if (uModel.get_users_child_session() != null)
+                {
+                    if (uModel.get_users_child_session().get_permissions_name().IndexOf("po_2_3") > -1)
+                    {
+                        builder.Append(str);
+                    }
+                }
+                else
+                {
+                    builder.Append(str);
+                }
+                builder.Append("        ]");
+            }
+            return builder.ToString();
+        }
+        
+        private string GetHtml_JSZD(agent_userinfo_session uModel)
+        {
+            StringBuilder builder = new StringBuilder();
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_SIX\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_SIX\": [");
+            }
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.Append("            \"特?|Betimes_tmZX2.aspx\",");
+            }
+            else
+            {
+                builder.Append("            \"特?|Betimes_tmZX2.aspx\",");
+            }
+            builder.Append("            \"正?|Betimes_zm.aspx\",");
+            builder.Append("            \"正?特|Betimes_zmt1.aspx\",");
+            builder.Append("            \"??|Betimes_lm.aspx\",");
+            builder.Append("            \"不中|Betimes_bz.aspx\",");
+            builder.Append("            \"正?1-6|Betimes_zm1-6.aspx\",");
+            builder.Append("            \"特?生肖色波|Betimes_tmsxsb.aspx\",");
+            builder.Append("            \"生肖尾?|Betimes_sxws.aspx\",");
+            builder.Append("            \"半波|Betimes_bb.aspx\",");
+            builder.Append("            \"六肖...?|Betimes_lxl.aspx\",");
+            builder.Append("            \"?虎-特??子|Betimes_lhtmtz.aspx\",");
+            builder.Append("            \"七?五行|Betimes_qmwx.aspx\",");
+            builder.Append("            \"??|../L_SIX/Bill.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|NewBet_six.aspx|1\"", 100);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_KL10\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_KL10\": [");
+            }
+            builder.Append("            \"第一球|Betimes_1.aspx\",");
+            builder.Append("            \"第二球|Betimes_2.aspx\",");
+            builder.Append("            \"第三球|Betimes_3.aspx\",");
+            builder.Append("            \"第四球|Betimes_4.aspx\",");
+            builder.Append("            \"第五球|Betimes_5.aspx\",");
+            builder.Append("            \"第六球|Betimes_6.aspx\",");
+            builder.Append("            \"第七球|Betimes_7.aspx\",");
+            builder.Append("            \"第八球|Betimes_8.aspx\",");
+            builder.Append("            \"?和、?虎|Betimes_lh.aspx\",");
+            builder.Append("            \"??|Betimes_lm.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_CQSC\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_CQSC\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 1);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_PK10\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_PK10\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 2);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_XYNC\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_XYNC\": [");
+            }
+            builder.Append("            \"第一球|Betimes_1.aspx\",");
+            builder.Append("            \"第二球|Betimes_2.aspx\",");
+            builder.Append("            \"第三球|Betimes_3.aspx\",");
+            builder.Append("            \"第四球|Betimes_4.aspx\",");
+            builder.Append("            \"第五球|Betimes_5.aspx\",");
+            builder.Append("            \"第六球|Betimes_6.aspx\",");
+            builder.Append("            \"第七球|Betimes_7.aspx\",");
+            builder.Append("            \"第八球|Betimes_8.aspx\",");
+            builder.Append("            \"?和、家禽野?|Betimes_zh.aspx\",");
+            builder.Append("            \"??|Betimes_lm.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 3);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_K3\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_K3\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 4);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_KL8\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_KL8\": [");
+            }
+            builder.Append("            \"?和、比?、五行|Betimes_zh.aspx\",");
+            builder.Append("            \"正?|Betimes_zm.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 5);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_K8SC\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_K8SC\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 6);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_PCDD\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_PCDD\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"特?包三|Betimes_lm.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 7);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_XYFT5\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_XYFT5\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 9);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_PKBJL\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_PKBJL\": [");
+            }
+            builder.Append("            \"???口|Betimes_1.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 8);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_JSCAR\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_JSCAR\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 10);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_SPEED5\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_SPEED5\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 11);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_JSCQSC\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_JSCQSC\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 13);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_JSPK10\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_JSPK10\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 12);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_JSSFC\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_JSSFC\": [");
+            }
+            builder.Append("            \"第一球|Betimes_1.aspx\",");
+            builder.Append("            \"第二球|Betimes_2.aspx\",");
+            builder.Append("            \"第三球|Betimes_3.aspx\",");
+            builder.Append("            \"第四球|Betimes_4.aspx\",");
+            builder.Append("            \"第五球|Betimes_5.aspx\",");
+            builder.Append("            \"第六球|Betimes_6.aspx\",");
+            builder.Append("            \"第七球|Betimes_7.aspx\",");
+            builder.Append("            \"第八球|Betimes_8.aspx\",");
+            builder.Append("            \"?和、?虎|Betimes_lh.aspx\",");
+            builder.Append("            \"??|Betimes_lm.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 14);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_JSFT2\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_JSFT2\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 15);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_CAR168\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_CAR168\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0x10);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_SSC168\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_SSC168\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0x11);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_VRCAR\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_VRCAR\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0x12);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_VRSSC\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_VRSSC\": [");
+            }
+            builder.Append("            \"???口|Betimes_zx.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0x13);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_XYFTOA\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_XYFTOA\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 20);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_XYFTSG\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_XYFTSG\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0x15);
+            }
+            builder.Append("        ]");
+            if (!string.IsNullOrEmpty(builder.ToString()))
+            {
+                builder.Append("        ,\"L_HAPPYCAR\": [");
+            }
+            else
+            {
+                builder.Append("        \"L_HAPPYCAR\": [");
+            }
+            builder.Append("            \"冠、?? ?合|Betimes_1.aspx\",");
+            builder.Append("            \"三、四、伍、六名|Betimes_2.aspx\",");
+            builder.Append("            \"七、八、九、十名|Betimes_3.aspx\",");
+            builder.Append("            \"??|../Bill_kc.aspx|1\",");
+            builder.Append("            \"?份|../BillBackup_kc.aspx|1\"");
+            if (uModel.get_u_type().Equals("zj"))
+            {
+                builder.AppendFormat("            ,\"????|../NewBet_kc.aspx|1\"", 0x16);
+            }
+            builder.Append("        ]");
+            return builder.ToString();
+        }
         public string GetAlert(string message, string okStr, string closeStr, string openStr)
         {
             StringBuilder builder = new StringBuilder();
@@ -728,6 +1551,16 @@ namespace Agent.Web.WebBase
            SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@u_name", SqlDbType.NVarChar) };
            parameterArray[0].Value = u_name;
            CallBLL.CzStatOnlineService.executte_sql(str, parameterArray);
+       }
+
+       protected string get_YearLianArray()
+       {
+           throw new NotImplementedException();
+       }
+
+       protected string GetLotteryMasterID(DataTable lotteryDt)
+       {
+           throw new NotImplementedException();
        }
     }
 }

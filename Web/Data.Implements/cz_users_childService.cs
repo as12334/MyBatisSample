@@ -44,5 +44,10 @@ namespace Data.Implements
             int updateFields = UpdateFields("status = 0",string.Format("u_name = '{0}'",name));
             return updateFields;
         }
+
+        public string GetPermissionsName(string toString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,5 +14,10 @@ namespace BuilderDALSQL
 				return dataSourceConnectionString;
 			}
 		}
+
+		public static string get_ConnectionStringExtend()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
