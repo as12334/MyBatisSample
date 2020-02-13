@@ -47,7 +47,8 @@ namespace LotterySystem.Common.Redis
 
         public static string get_AjaxErrorLogSwitch()
         {
-            throw new System.NotImplementedException();
+            //todo
+            return "";
         }
 
         public static string get_IsViewNewReportMenu()

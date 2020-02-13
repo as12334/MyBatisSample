@@ -133,7 +133,8 @@ namespace LotterySystem.Common
         
         protected static bool IsNeedPopBrower()
         {
-            throw new NotImplementedException();
+            //todo
+            return false;
         }
 
         protected bool IsUserOut(string toString)
