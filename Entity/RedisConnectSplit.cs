@@ -4,22 +4,22 @@ namespace LotterySystem.Model
     {
         public static string get_RedisIP()
         {
-            throw new System.NotImplementedException();
+            return "192.168.0.88";
         }
 
         public static int get_RedisPort()
         {
-            throw new System.NotImplementedException();
+            return 6379;
         }
 
         public static string get_RedisPassword()
         {
-            throw new System.NotImplementedException();
+            return "";
         }
 
         public static string get_RedisConnectTimeout()
         {
-            throw new System.NotImplementedException();
+            return "1800";
         }
     }
 }

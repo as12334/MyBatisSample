@@ -37,12 +37,13 @@ namespace LotterySystem.Common.Redis
 
         public static long get_GetRedisDBIndex()
         {
-            throw new System.NotImplementedException();
+            return 0;
         }
 
         public static object get_LotteryCachesFileName()
         {
-            throw new System.NotImplementedException();
+            //todo
+            return "";
         }
 
         public static string get_AjaxErrorLogSwitch()
@@ -53,12 +54,17 @@ namespace LotterySystem.Common.Redis
 
         public static string get_IsViewNewReportMenu()
         {
-            throw new System.NotImplementedException();
+            //todo
+            return "1";
         }
 
         public static string get_ManageZJProfit()
         {
-            throw new System.NotImplementedException();
+            //todo 未完善
+            return "1";
         }
+        
+        
+        
     }
 }

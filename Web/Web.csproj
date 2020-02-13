@@ -347,7 +347,6 @@
     <Compile Include="Agent\Web\WebBase\MemberPageBase.cs" />
     <Compile Include="BLL\cz_admin_sysconfigBLL.cs" />
     <Compile Include="BLL\cz_credit_flowBLL.cs" />
-    <Compile Include="BLL\cz_lotteryBLL.cs" />
     <Compile Include="BLL\cz_phase_kl10BLL.cs" />
     <Compile Include="BLL\cz_stat_onlineBLL.cs" />
     <Compile Include="Business\BaseManager.cs" />
@@ -360,6 +359,7 @@
     <Compile Include="Common\JsonHelper.cs" />
     <Compile Include="Common\LSRequest.cs" />
     <Compile Include="Common\PageBase.cs" />
+    <Compile Include="Common\Redis\CacheBase.cs" />
     <Compile Include="Common\Redis\CacheHelper.cs" />
     <Compile Include="Common\Redis\FileCacheHelper.cs" />
     <Compile Include="Common\Redis\PageBase_Redis.cs" />
@@ -373,12 +373,14 @@
     <Compile Include="Data.Implements\cz_admin_subsystemService.cs" />
     <Compile Include="Data.Implements\cz_admin_sysconfigService.cs" />
     <Compile Include="Data.Implements\cz_login_logService.cs" />
+    <Compile Include="Data.Implements\cz_lotteryService.cs" />
     <Compile Include="Data.Implements\cz_rate_kcService.cs" />
     <Compile Include="Data.Implements\cz_saleset_sixService.cs" />
     <Compile Include="Data.Implements\cz_stat_onlineService.cs" />
     <Compile Include="Data.Implements\cz_stat_top_onlineService.cs" />
     <Compile Include="Data.Implements\cz_users_childService.cs" />
     <Compile Include="Data.Implements\cz_user_psw_err_logService.cs" />
+    <Compile Include="Data.Implements\Icz_lotteryService.cs" />
     <Compile Include="Data.Implements\zk_subsysService.cs" />
     <Compile Include="Data.Interface\Icz_admin_subsystemService.cs" />
     <Compile Include="Data.Interface\Icz_admin_sysconfigService.cs" />

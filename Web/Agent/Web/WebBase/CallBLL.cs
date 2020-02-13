@@ -16,7 +16,7 @@ namespace Agent.Web.WebBase
         public static Icz_rate_kcService CzRateKcService;
         public static Icz_login_logService CzLoginLogService;
         public static cz_phase_kl10BLL cz_phase_kl10_bll;
-        public static cz_lotteryBLL cz_lottery_bll;
+        public static Icz_lotteryService CzLotteryService;
         public static Icz_stat_onlineService CzStatOnlineService;
         public static Icz_stat_top_onlineService CzStatTopOnlineService;
         public static Icz_saleset_sixService CzSalesetSixService;
@@ -70,6 +70,10 @@ namespace Agent.Web.WebBase
             if (CzSalesetSixService == null)
             {
                 CzSalesetSixService = new cz_saleset_sixService();
+            }         
+            if (CzLotteryService == null)
+            {
+                CzLotteryService = new cz_lotteryService();
             }
             
         }

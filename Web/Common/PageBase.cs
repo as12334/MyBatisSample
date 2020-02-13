@@ -134,7 +134,7 @@ namespace LotterySystem.Common
         protected static bool IsNeedPopBrower()
         {
             //todo
-            return false;
+            return true;
         }
 
         protected bool IsUserOut(string toString)
@@ -144,7 +144,8 @@ namespace LotterySystem.Common
 
         protected static object GetPublicForderPath(object getLotteryCachesFileName)
         {
-            throw new NotImplementedException();
+            //todo
+            return null;
         }
 
         protected static string get_GetLottorySystemName()
@@ -155,7 +156,7 @@ namespace LotterySystem.Common
 
         protected static void SetBrowerFlag(string browserCode)
         {
-            throw new NotImplementedException();
+            //todo
         }
     }
 }

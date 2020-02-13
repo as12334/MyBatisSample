@@ -338,7 +338,7 @@ namespace Agent.Web.WebBase
             {
                 return (CacheHelper.GetCache("cz_lottery_FileCacheKey") as DataTable);
             }
-            DataTable table = CallBLL.cz_lottery_bll.GetList().Tables[0];
+            DataTable table = CallBLL.CzLotteryService.GetList().Tables[0];
             CacheHelper.SetCache("cz_lottery_FileCacheKey", table);
             CacheHelper.SetPublicFileCache("cz_lottery_FileCacheKey", table, PageBase.GetPublicForderPath(FileCacheHelper.get_LotteryCachesFileName()));
             return table;
@@ -349,7 +349,7 @@ namespace Agent.Web.WebBase
             DataTable cache = CacheHelper.GetCache("cz_lottery_FileCacheKey") as DataTable;
             if (cache == null)
             {
-                cache = CallBLL.cz_lottery_bll.GetList().Tables[0];
+                cache = CallBLL.CzLotteryService.GetList().Tables[0];
                 CacheHelper.SetCache("cz_lottery_FileCacheKey", cache);
                 CacheHelper.SetPublicFileCache("cz_lottery_FileCacheKey", cache, PageBase.GetPublicForderPath(FileCacheHelper.get_LotteryCachesFileName()));
             }
@@ -1555,7 +1555,8 @@ namespace Agent.Web.WebBase
 
        protected string get_YearLianArray()
        {
-           throw new NotImplementedException();
+           //ÉúÐ¤Êý×é
+           return "";
        }
 
        protected string GetLotteryMasterID(DataTable lotteryDt)

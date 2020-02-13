@@ -19,7 +19,8 @@ namespace Data.Implements
 
         public DataTable GetSaleSetUser()
         {
-            throw new NotImplementedException();
+            //todo
+            return null;
         }
     }
 }

@@ -43,6 +43,7 @@
         <Compile Include="cz_admin_subsystem.cs" />
         <Compile Include="cz_admin_sysconfig.cs" />
         <Compile Include="cz_login_log.cs" />
+        <Compile Include="cz_lottery.cs" />
         <Compile Include="cz_rate_kc.cs" />
         <Compile Include="cz_saleset_six.cs" />
         <Compile Include="cz_stat_online.cs" />

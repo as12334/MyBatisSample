@@ -18,7 +18,14 @@ namespace Data.Implements
 
         public cz_admin_subsystem GetModel()
         {
-            throw new NotImplementedException();
+            //todo
+            IList<cz_admin_subsystem> czAdminSubsystems = GetAllList();
+            if (czAdminSubsystems.Count > 0)
+            {
+                return czAdminSubsystems[0];
+            }
+
+            return null;
         }
     }
 }

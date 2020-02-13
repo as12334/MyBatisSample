@@ -31,7 +31,8 @@ namespace Agent.Web
         {
             this.ajaxErrorLogSwitch = FileCacheHelper.get_AjaxErrorLogSwitch();
             string str = ConfigurationManager.AppSettings["CloseIndexRefresh"];
-            if ((str != "true") && PageBase.IsNeedPopBrower())
+//            if ((str != "true") && PageBase.IsNeedPopBrower())
+             if(this.Session["user_name"] == null)
             {
                 this.Session.Abandon();
                 base.Response.Write("<script>top.location.href='/'</script>");
@@ -80,7 +81,7 @@ namespace Agent.Web
             {
                 this.url = "";
             }
-            this.masterids = base.GetLotteryMasterID(this.lotteryDT);
+//            this.masterids = base.GetLotteryMasterID(this.lotteryDT);
             if (str != "true")
             {
                 this.browserCode = Utils.Number(4);

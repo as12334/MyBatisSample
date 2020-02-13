@@ -11,6 +11,7 @@
         <e p="cz_admin_subsystem.cs" t="Include" />
         <e p="cz_admin_sysconfig.cs" t="Include" />
         <e p="cz_login_log.cs" t="Include" />
+        <e p="cz_lottery.cs" t="Include" />
         <e p="cz_rate_kc.cs" t="Include" />
         <e p="cz_saleset_six.cs" t="Include" />
         <e p="cz_stat_online.cs" t="Include" />
@@ -35,6 +36,7 @@
             <e p="cz_admin_subsystem.xml" t="Include" />
             <e p="cz_admin_sysconfig.xml" t="Include" />
             <e p="cz_login_log.xml" t="Include" />
+            <e p="cz_lottery.xml" t="Include" />
             <e p="cz_rate_kc.xml" t="Include" />
             <e p="cz_saleset_six.xml" t="Include" />
             <e p="cz_stat_online.xml" t="Include" />
@@ -102,7 +104,6 @@
         <e p="BLL" t="Include">
           <e p="cz_admin_sysconfigBLL.cs" t="Include" />
           <e p="cz_credit_flowBLL.cs" t="Include" />
-          <e p="cz_lotteryBLL.cs" t="Include" />
           <e p="cz_phase_kl10BLL.cs" t="Include" />
           <e p="cz_stat_onlineBLL.cs" t="Include" />
         </e>
@@ -122,6 +123,7 @@
           <e p="LSRequest.cs" t="Include" />
           <e p="PageBase.cs" t="Include" />
           <e p="Redis" t="Include">
+            <e p="CacheBase.cs" t="Include" />
             <e p="CacheHelper.cs" t="Include" />
             <e p="FileCacheHelper.cs" t="Include" />
             <e p="PageBase_Redis.cs" t="Include" />
@@ -148,6 +150,7 @@
           <e p="cz_admin_subsystemService.cs" t="Include" />
           <e p="cz_admin_sysconfigService.cs" t="Include" />
           <e p="cz_login_logService.cs" t="Include" />
+          <e p="cz_lotteryService.cs" t="Include" />
           <e p="cz_rate_kcService.cs" t="Include" />
           <e p="cz_saleset_sixService.cs" t="Include" />
           <e p="cz_stat_onlineService.cs" t="Include" />
@@ -155,6 +158,7 @@
           <e p="cz_user_psw_err_logService.cs" t="Include" />
           <e p="cz_users_childService.cs" t="Include" />
           <e p="cz_usersService.cs" t="Include" />
+          <e p="Icz_lotteryService.cs" t="Include" />
           <e p="zk_subsysService.cs" t="Include" />
         </e>
         <e p="Data.Interface" t="Include">
