@@ -26,5 +26,10 @@ namespace LotterySystem.Common
             }
             return result;
         }
+
+        public static object DateTimeToStamp(DateTime now)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

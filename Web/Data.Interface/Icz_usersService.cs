@@ -12,5 +12,6 @@ namespace Data.Interface
         cz_users GetZJInfo();
         int UpUserPwd(string toString, string str8, string ramSalt);
         int UpdateUserPwdStutas(string toString);
+        cz_users GetUserInfoByUName(string str);
     }
 }

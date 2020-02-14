@@ -59,7 +59,9 @@
         <e p="Agent" t="Include">
           <e p="Web" t="Include">
             <e p="Handler" t="Include">
+              <e p="BaseHandler.cs" t="Include" />
               <e p="LoginHandler.cs" t="Include" />
+              <e p="QueryHandler.cs" t="Include" />
               <e p="ValidateImgHandler.cs" t="Include" />
             </e>
             <e p="Index.cs" t="Include" />
@@ -180,6 +182,7 @@
         <e p="Global.asax" t="Include" />
         <e p="Handler" t="Include">
           <e p="LoginHandler.ashx" t="Include" />
+          <e p="QueryHandler.ashx" t="Include" />
           <e p="ValidateImgHandler.ashx" t="Include" />
         </e>
         <e p="images" t="Include">
