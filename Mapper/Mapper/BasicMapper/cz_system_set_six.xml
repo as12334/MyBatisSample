@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_system_set_six"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_system_set_six" type="Entity.cz_system_set_six, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_system_set_six">
+            <result property="single_number_isdown" column="single_number_isdown"/>
+            <result property="is_tmab" column="is_tmab"/>
+            <result property="lottery_type" column="lottery_type"/>
+            <result property="add_time" column="add_time"/>
+            <result property="is_hideuser" column="is_hideuser"/>
+            <result property="max_odds_isopen" column="max_odds_isopen"/>
+            <result property="ev_0" column="ev_0"/>
+            <result property="ev_1" column="ev_1"/>
+            <result property="ev_2" column="ev_2"/>
+            <result property="ev_3" column="ev_3"/>
+            <result property="ev_4" column="ev_4"/>
+            <result property="ev_5" column="ev_5"/>
+            <result property="ev_6" column="ev_6"/>
+            <result property="ev_7" column="ev_7"/>
+            <result property="ev_8" column="ev_8"/>
+            <result property="ev_9" column="ev_9"/>
+            <result property="ev_10" column="ev_10"/>
+            <result property="ev_11" column="ev_11"/>
+            <result property="ev_12" column="ev_12"/>
+            <result property="ev_13" column="ev_13"/>
+            <result property="ev_14" column="ev_14"/>
+            <result property="ev_15" column="ev_15"/>
+            <result property="ev_16" column="ev_16"/>
+            <result property="ev_17" column="ev_17"/>
+            <result property="ev_18" column="ev_18"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="single_number_isdown" column="single_number_isdown"/>
+            <result property="is_tmab" column="is_tmab"/>
+            <result property="lottery_type" column="lottery_type"/>
+            <result property="add_time" column="add_time"/>
+            <result property="is_hideuser" column="is_hideuser"/>
+            <result property="max_odds_isopen" column="max_odds_isopen"/>
+            <result property="ev_0" column="ev_0"/>
+            <result property="ev_1" column="ev_1"/>
+            <result property="ev_2" column="ev_2"/>
+            <result property="ev_3" column="ev_3"/>
+            <result property="ev_4" column="ev_4"/>
+            <result property="ev_5" column="ev_5"/>
+            <result property="ev_6" column="ev_6"/>
+            <result property="ev_7" column="ev_7"/>
+            <result property="ev_8" column="ev_8"/>
+            <result property="ev_9" column="ev_9"/>
+            <result property="ev_10" column="ev_10"/>
+            <result property="ev_11" column="ev_11"/>
+            <result property="ev_12" column="ev_12"/>
+            <result property="ev_13" column="ev_13"/>
+            <result property="ev_14" column="ev_14"/>
+            <result property="ev_15" column="ev_15"/>
+            <result property="ev_16" column="ev_16"/>
+            <result property="ev_17" column="ev_17"/>
+            <result property="ev_18" column="ev_18"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_system_set_six.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_system_set_six.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_system_set_six.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_system_set_six.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+        </select>
+        <select id="cz_system_set_six.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_system_set_six]
+        </select>
+		<select id="cz_system_set_six.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_system_set_six] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_system_set_six.GetById" parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six] WHERE ()
+        </select>
+
+        <select id="cz_system_set_six.GetListByWhere"  parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="single_number_isdown" prepend="AND">
+                    [single_number_isdown] = #single_number_isdown#
+                </isNotNull>
+                <isNotNull property="is_tmab" prepend="AND">
+                    [is_tmab] = #is_tmab#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="is_hideuser" prepend="AND">
+                    [is_hideuser] = #is_hideuser#
+                </isNotNull>
+                <isNotNull property="max_odds_isopen" prepend="AND">
+                    [max_odds_isopen] = #max_odds_isopen#
+                </isNotNull>
+                <isNotNull property="ev_0" prepend="AND">
+                    [ev_0] = #ev_0#
+                </isNotNull>
+                <isNotNull property="ev_1" prepend="AND">
+                    [ev_1] = #ev_1#
+                </isNotNull>
+                <isNotNull property="ev_2" prepend="AND">
+                    [ev_2] = #ev_2#
+                </isNotNull>
+                <isNotNull property="ev_3" prepend="AND">
+                    [ev_3] = #ev_3#
+                </isNotNull>
+                <isNotNull property="ev_4" prepend="AND">
+                    [ev_4] = #ev_4#
+                </isNotNull>
+                <isNotNull property="ev_5" prepend="AND">
+                    [ev_5] = #ev_5#
+                </isNotNull>
+                <isNotNull property="ev_6" prepend="AND">
+                    [ev_6] = #ev_6#
+                </isNotNull>
+                <isNotNull property="ev_7" prepend="AND">
+                    [ev_7] = #ev_7#
+                </isNotNull>
+                <isNotNull property="ev_8" prepend="AND">
+                    [ev_8] = #ev_8#
+                </isNotNull>
+                <isNotNull property="ev_9" prepend="AND">
+                    [ev_9] = #ev_9#
+                </isNotNull>
+                <isNotNull property="ev_10" prepend="AND">
+                    [ev_10] = #ev_10#
+                </isNotNull>
+                <isNotNull property="ev_11" prepend="AND">
+                    [ev_11] = #ev_11#
+                </isNotNull>
+                <isNotNull property="ev_12" prepend="AND">
+                    [ev_12] = #ev_12#
+                </isNotNull>
+                <isNotNull property="ev_13" prepend="AND">
+                    [ev_13] = #ev_13#
+                </isNotNull>
+                <isNotNull property="ev_14" prepend="AND">
+                    [ev_14] = #ev_14#
+                </isNotNull>
+                <isNotNull property="ev_15" prepend="AND">
+                    [ev_15] = #ev_15#
+                </isNotNull>
+                <isNotNull property="ev_16" prepend="AND">
+                    [ev_16] = #ev_16#
+                </isNotNull>
+                <isNotNull property="ev_17" prepend="AND">
+                    [ev_17] = #ev_17#
+                </isNotNull>
+                <isNotNull property="ev_18" prepend="AND">
+                    [ev_18] = #ev_18#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_system_set_six.GetListByWhereStr"  parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_system_set_six.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="single_number_isdown" prepend="AND">
+                    [single_number_isdown] = #single_number_isdown#
+                </isNotNull>
+                <isNotNull property="is_tmab" prepend="AND">
+                    [is_tmab] = #is_tmab#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="is_hideuser" prepend="AND">
+                    [is_hideuser] = #is_hideuser#
+                </isNotNull>
+                <isNotNull property="max_odds_isopen" prepend="AND">
+                    [max_odds_isopen] = #max_odds_isopen#
+                </isNotNull>
+                <isNotNull property="ev_0" prepend="AND">
+                    [ev_0] = #ev_0#
+                </isNotNull>
+                <isNotNull property="ev_1" prepend="AND">
+                    [ev_1] = #ev_1#
+                </isNotNull>
+                <isNotNull property="ev_2" prepend="AND">
+                    [ev_2] = #ev_2#
+                </isNotNull>
+                <isNotNull property="ev_3" prepend="AND">
+                    [ev_3] = #ev_3#
+                </isNotNull>
+                <isNotNull property="ev_4" prepend="AND">
+                    [ev_4] = #ev_4#
+                </isNotNull>
+                <isNotNull property="ev_5" prepend="AND">
+                    [ev_5] = #ev_5#
+                </isNotNull>
+                <isNotNull property="ev_6" prepend="AND">
+                    [ev_6] = #ev_6#
+                </isNotNull>
+                <isNotNull property="ev_7" prepend="AND">
+                    [ev_7] = #ev_7#
+                </isNotNull>
+                <isNotNull property="ev_8" prepend="AND">
+                    [ev_8] = #ev_8#
+                </isNotNull>
+                <isNotNull property="ev_9" prepend="AND">
+                    [ev_9] = #ev_9#
+                </isNotNull>
+                <isNotNull property="ev_10" prepend="AND">
+                    [ev_10] = #ev_10#
+                </isNotNull>
+                <isNotNull property="ev_11" prepend="AND">
+                    [ev_11] = #ev_11#
+                </isNotNull>
+                <isNotNull property="ev_12" prepend="AND">
+                    [ev_12] = #ev_12#
+                </isNotNull>
+                <isNotNull property="ev_13" prepend="AND">
+                    [ev_13] = #ev_13#
+                </isNotNull>
+                <isNotNull property="ev_14" prepend="AND">
+                    [ev_14] = #ev_14#
+                </isNotNull>
+                <isNotNull property="ev_15" prepend="AND">
+                    [ev_15] = #ev_15#
+                </isNotNull>
+                <isNotNull property="ev_16" prepend="AND">
+                    [ev_16] = #ev_16#
+                </isNotNull>
+                <isNotNull property="ev_17" prepend="AND">
+                    [ev_17] = #ev_17#
+                </isNotNull>
+                <isNotNull property="ev_18" prepend="AND">
+                    [ev_18] = #ev_18#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_system_set_six.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_system_set_six.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="single_number_isdown" prepend="AND">
+                    [single_number_isdown] = #single_number_isdown#
+                </isNotNull>
+                <isNotNull property="is_tmab" prepend="AND">
+                    [is_tmab] = #is_tmab#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="is_hideuser" prepend="AND">
+                    [is_hideuser] = #is_hideuser#
+                </isNotNull>
+                <isNotNull property="max_odds_isopen" prepend="AND">
+                    [max_odds_isopen] = #max_odds_isopen#
+                </isNotNull>
+                <isNotNull property="ev_0" prepend="AND">
+                    [ev_0] = #ev_0#
+                </isNotNull>
+                <isNotNull property="ev_1" prepend="AND">
+                    [ev_1] = #ev_1#
+                </isNotNull>
+                <isNotNull property="ev_2" prepend="AND">
+                    [ev_2] = #ev_2#
+                </isNotNull>
+                <isNotNull property="ev_3" prepend="AND">
+                    [ev_3] = #ev_3#
+                </isNotNull>
+                <isNotNull property="ev_4" prepend="AND">
+                    [ev_4] = #ev_4#
+                </isNotNull>
+                <isNotNull property="ev_5" prepend="AND">
+                    [ev_5] = #ev_5#
+                </isNotNull>
+                <isNotNull property="ev_6" prepend="AND">
+                    [ev_6] = #ev_6#
+                </isNotNull>
+                <isNotNull property="ev_7" prepend="AND">
+                    [ev_7] = #ev_7#
+                </isNotNull>
+                <isNotNull property="ev_8" prepend="AND">
+                    [ev_8] = #ev_8#
+                </isNotNull>
+                <isNotNull property="ev_9" prepend="AND">
+                    [ev_9] = #ev_9#
+                </isNotNull>
+                <isNotNull property="ev_10" prepend="AND">
+                    [ev_10] = #ev_10#
+                </isNotNull>
+                <isNotNull property="ev_11" prepend="AND">
+                    [ev_11] = #ev_11#
+                </isNotNull>
+                <isNotNull property="ev_12" prepend="AND">
+                    [ev_12] = #ev_12#
+                </isNotNull>
+                <isNotNull property="ev_13" prepend="AND">
+                    [ev_13] = #ev_13#
+                </isNotNull>
+                <isNotNull property="ev_14" prepend="AND">
+                    [ev_14] = #ev_14#
+                </isNotNull>
+                <isNotNull property="ev_15" prepend="AND">
+                    [ev_15] = #ev_15#
+                </isNotNull>
+                <isNotNull property="ev_16" prepend="AND">
+                    [ev_16] = #ev_16#
+                </isNotNull>
+                <isNotNull property="ev_17" prepend="AND">
+                    [ev_17] = #ev_17#
+                </isNotNull>
+                <isNotNull property="ev_18" prepend="AND">
+                    [ev_18] = #ev_18#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_system_set_six.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_system_set_six.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_system_set_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="single_number_isdown" prepend="AND">
+                    [single_number_isdown] = #single_number_isdown#
+                </isNotNull>
+                <isNotNull property="is_tmab" prepend="AND">
+                    [is_tmab] = #is_tmab#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="is_hideuser" prepend="AND">
+                    [is_hideuser] = #is_hideuser#
+                </isNotNull>
+                <isNotNull property="max_odds_isopen" prepend="AND">
+                    [max_odds_isopen] = #max_odds_isopen#
+                </isNotNull>
+                <isNotNull property="ev_0" prepend="AND">
+                    [ev_0] = #ev_0#
+                </isNotNull>
+                <isNotNull property="ev_1" prepend="AND">
+                    [ev_1] = #ev_1#
+                </isNotNull>
+                <isNotNull property="ev_2" prepend="AND">
+                    [ev_2] = #ev_2#
+                </isNotNull>
+                <isNotNull property="ev_3" prepend="AND">
+                    [ev_3] = #ev_3#
+                </isNotNull>
+                <isNotNull property="ev_4" prepend="AND">
+                    [ev_4] = #ev_4#
+                </isNotNull>
+                <isNotNull property="ev_5" prepend="AND">
+                    [ev_5] = #ev_5#
+                </isNotNull>
+                <isNotNull property="ev_6" prepend="AND">
+                    [ev_6] = #ev_6#
+                </isNotNull>
+                <isNotNull property="ev_7" prepend="AND">
+                    [ev_7] = #ev_7#
+                </isNotNull>
+                <isNotNull property="ev_8" prepend="AND">
+                    [ev_8] = #ev_8#
+                </isNotNull>
+                <isNotNull property="ev_9" prepend="AND">
+                    [ev_9] = #ev_9#
+                </isNotNull>
+                <isNotNull property="ev_10" prepend="AND">
+                    [ev_10] = #ev_10#
+                </isNotNull>
+                <isNotNull property="ev_11" prepend="AND">
+                    [ev_11] = #ev_11#
+                </isNotNull>
+                <isNotNull property="ev_12" prepend="AND">
+                    [ev_12] = #ev_12#
+                </isNotNull>
+                <isNotNull property="ev_13" prepend="AND">
+                    [ev_13] = #ev_13#
+                </isNotNull>
+                <isNotNull property="ev_14" prepend="AND">
+                    [ev_14] = #ev_14#
+                </isNotNull>
+                <isNotNull property="ev_15" prepend="AND">
+                    [ev_15] = #ev_15#
+                </isNotNull>
+                <isNotNull property="ev_16" prepend="AND">
+                    [ev_16] = #ev_16#
+                </isNotNull>
+                <isNotNull property="ev_17" prepend="AND">
+                    [ev_17] = #ev_17#
+                </isNotNull>
+                <isNotNull property="ev_18" prepend="AND">
+                    [ev_18] = #ev_18#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="cz_system_set_six.GetAllListOrder" parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18] 
+            FROM [dbo].[cz_system_set_six]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_system_set_six.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18]
+            FROM [dbo].[cz_system_set_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="single_number_isdown" prepend="AND">
+                    [single_number_isdown] = #single_number_isdown#
+                </isNotNull>
+                <isNotNull property="is_tmab" prepend="AND">
+                    [is_tmab] = #is_tmab#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="is_hideuser" prepend="AND">
+                    [is_hideuser] = #is_hideuser#
+                </isNotNull>
+                <isNotNull property="max_odds_isopen" prepend="AND">
+                    [max_odds_isopen] = #max_odds_isopen#
+                </isNotNull>
+                <isNotNull property="ev_0" prepend="AND">
+                    [ev_0] = #ev_0#
+                </isNotNull>
+                <isNotNull property="ev_1" prepend="AND">
+                    [ev_1] = #ev_1#
+                </isNotNull>
+                <isNotNull property="ev_2" prepend="AND">
+                    [ev_2] = #ev_2#
+                </isNotNull>
+                <isNotNull property="ev_3" prepend="AND">
+                    [ev_3] = #ev_3#
+                </isNotNull>
+                <isNotNull property="ev_4" prepend="AND">
+                    [ev_4] = #ev_4#
+                </isNotNull>
+                <isNotNull property="ev_5" prepend="AND">
+                    [ev_5] = #ev_5#
+                </isNotNull>
+                <isNotNull property="ev_6" prepend="AND">
+                    [ev_6] = #ev_6#
+                </isNotNull>
+                <isNotNull property="ev_7" prepend="AND">
+                    [ev_7] = #ev_7#
+                </isNotNull>
+                <isNotNull property="ev_8" prepend="AND">
+                    [ev_8] = #ev_8#
+                </isNotNull>
+                <isNotNull property="ev_9" prepend="AND">
+                    [ev_9] = #ev_9#
+                </isNotNull>
+                <isNotNull property="ev_10" prepend="AND">
+                    [ev_10] = #ev_10#
+                </isNotNull>
+                <isNotNull property="ev_11" prepend="AND">
+                    [ev_11] = #ev_11#
+                </isNotNull>
+                <isNotNull property="ev_12" prepend="AND">
+                    [ev_12] = #ev_12#
+                </isNotNull>
+                <isNotNull property="ev_13" prepend="AND">
+                    [ev_13] = #ev_13#
+                </isNotNull>
+                <isNotNull property="ev_14" prepend="AND">
+                    [ev_14] = #ev_14#
+                </isNotNull>
+                <isNotNull property="ev_15" prepend="AND">
+                    [ev_15] = #ev_15#
+                </isNotNull>
+                <isNotNull property="ev_16" prepend="AND">
+                    [ev_16] = #ev_16#
+                </isNotNull>
+                <isNotNull property="ev_17" prepend="AND">
+                    [ev_17] = #ev_17#
+                </isNotNull>
+                <isNotNull property="ev_18" prepend="AND">
+                    [ev_18] = #ev_18#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_system_set_six.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_system_set_six">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18]
+            FROM [dbo].[cz_system_set_six]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_system_set_six.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_system_set_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="single_number_isdown" prepend="AND">
+                    [single_number_isdown] = #single_number_isdown#
+                </isNotNull>
+                <isNotNull property="is_tmab" prepend="AND">
+                    [is_tmab] = #is_tmab#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="is_hideuser" prepend="AND">
+                    [is_hideuser] = #is_hideuser#
+                </isNotNull>
+                <isNotNull property="max_odds_isopen" prepend="AND">
+                    [max_odds_isopen] = #max_odds_isopen#
+                </isNotNull>
+                <isNotNull property="ev_0" prepend="AND">
+                    [ev_0] = #ev_0#
+                </isNotNull>
+                <isNotNull property="ev_1" prepend="AND">
+                    [ev_1] = #ev_1#
+                </isNotNull>
+                <isNotNull property="ev_2" prepend="AND">
+                    [ev_2] = #ev_2#
+                </isNotNull>
+                <isNotNull property="ev_3" prepend="AND">
+                    [ev_3] = #ev_3#
+                </isNotNull>
+                <isNotNull property="ev_4" prepend="AND">
+                    [ev_4] = #ev_4#
+                </isNotNull>
+                <isNotNull property="ev_5" prepend="AND">
+                    [ev_5] = #ev_5#
+                </isNotNull>
+                <isNotNull property="ev_6" prepend="AND">
+                    [ev_6] = #ev_6#
+                </isNotNull>
+                <isNotNull property="ev_7" prepend="AND">
+                    [ev_7] = #ev_7#
+                </isNotNull>
+                <isNotNull property="ev_8" prepend="AND">
+                    [ev_8] = #ev_8#
+                </isNotNull>
+                <isNotNull property="ev_9" prepend="AND">
+                    [ev_9] = #ev_9#
+                </isNotNull>
+                <isNotNull property="ev_10" prepend="AND">
+                    [ev_10] = #ev_10#
+                </isNotNull>
+                <isNotNull property="ev_11" prepend="AND">
+                    [ev_11] = #ev_11#
+                </isNotNull>
+                <isNotNull property="ev_12" prepend="AND">
+                    [ev_12] = #ev_12#
+                </isNotNull>
+                <isNotNull property="ev_13" prepend="AND">
+                    [ev_13] = #ev_13#
+                </isNotNull>
+                <isNotNull property="ev_14" prepend="AND">
+                    [ev_14] = #ev_14#
+                </isNotNull>
+                <isNotNull property="ev_15" prepend="AND">
+                    [ev_15] = #ev_15#
+                </isNotNull>
+                <isNotNull property="ev_16" prepend="AND">
+                    [ev_16] = #ev_16#
+                </isNotNull>
+                <isNotNull property="ev_17" prepend="AND">
+                    [ev_17] = #ev_17#
+                </isNotNull>
+                <isNotNull property="ev_18" prepend="AND">
+                    [ev_18] = #ev_18#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="cz_system_set_six.Insert" parameterClass="cz_system_set_six" resultClass="Int32">
+            INSERT INTO [dbo].[cz_system_set_six] (
+            [single_number_isdown],[is_tmab],[lottery_type],[add_time],[is_hideuser],[max_odds_isopen],[ev_0],[ev_1],[ev_2],[ev_3],[ev_4],[ev_5],[ev_6],[ev_7],[ev_8],[ev_9],[ev_10],[ev_11],[ev_12],[ev_13],[ev_14],[ev_15],[ev_16],[ev_17],[ev_18]
+            ) VALUES (
+            #single_number_isdown#,#is_tmab#,#lottery_type#,#add_time#,#is_hideuser#,#max_odds_isopen#,#ev_0#,#ev_1#,#ev_2#,#ev_3#,#ev_4#,#ev_5#,#ev_6#,#ev_7#,#ev_8#,#ev_9#,#ev_10#,#ev_11#,#ev_12#,#ev_13#,#ev_14#,#ev_15#,#ev_16#,#ev_17#,#ev_18#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_system_set_six.Update" parameterClass="cz_system_set_six">
+            UPDATE [dbo].[cz_system_set_six] SET
+            [single_number_isdown] = #single_number_isdown#,[is_tmab] = #is_tmab#,[lottery_type] = #lottery_type#,[add_time] = #add_time#,[is_hideuser] = #is_hideuser#,[max_odds_isopen] = #max_odds_isopen#,[ev_0] = #ev_0#,[ev_1] = #ev_1#,[ev_2] = #ev_2#,[ev_3] = #ev_3#,[ev_4] = #ev_4#,[ev_5] = #ev_5#,[ev_6] = #ev_6#,[ev_7] = #ev_7#,[ev_8] = #ev_8#,[ev_9] = #ev_9#,[ev_10] = #ev_10#,[ev_11] = #ev_11#,[ev_12] = #ev_12#,[ev_13] = #ev_13#,[ev_14] = #ev_14#,[ev_15] = #ev_15#,[ev_16] = #ev_16#,[ev_17] = #ev_17#,[ev_18] = #ev_18#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="cz_system_set_six.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_system_set_six] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_system_set_six.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_system_set_six]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_system_set_six.DeleteByEntity" parameterClass="cz_system_set_six">
+            DELETE FROM [dbo].[cz_system_set_six]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="cz_system_set_six.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_system_set_six]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_system_set_six.ClearData">
+            truncate table [cz_system_set_six]
+        </statement>
+    </statements>
+</sqlMap>

@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 
 namespace LotterySystem.BLL
@@ -7,6 +8,11 @@ namespace LotterySystem.BLL
         public DataTable IsPhaseClose()
         {
             throw new System.NotImplementedException();
+        }
+
+        public DataTable IsOpenPhaseByTime(DateTime now)
+        {
+            throw new NotImplementedException();
         }
     }
 }

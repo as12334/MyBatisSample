@@ -52,6 +52,11 @@ namespace Data.Implements
             return updateFields;
         }
 
+        public cz_users GetUserInfoByUName(string str)
+        {
+            throw new NotImplementedException();
+        }
+
 //        查询所有上级
         public IList<cz_users> upperUsers(string u_name)
         {

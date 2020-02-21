@@ -31,5 +31,20 @@ namespace LotterySystem.Common
         {
             throw new NotImplementedException();
         }
+
+        public static string GetWeekByDate(DateTime toDateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static object GetPKBJLPlaytypeColorTxt(string toString)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static DateTime StampToDateTime(string compareTime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

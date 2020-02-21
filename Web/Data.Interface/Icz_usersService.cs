@@ -13,5 +13,6 @@ namespace Data.Interface
         int UpUserPwd(string toString, string str8, string ramSalt);
         int UpdateUserPwdStutas(string toString);
         cz_users GetUserInfoByUName(string str);
+        cz_users GetUserInfoByUID(string text);
     }
 }

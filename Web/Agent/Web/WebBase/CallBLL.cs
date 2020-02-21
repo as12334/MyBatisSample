@@ -20,6 +20,11 @@ namespace Agent.Web.WebBase
         public static Icz_stat_onlineService CzStatOnlineService;
         public static Icz_stat_top_onlineService CzStatTopOnlineService;
         public static Icz_saleset_sixService CzSalesetSixService;
+        public static Icz_system_set_kc_exService CzSystemSetKcExService;
+        public static Icz_system_set_sixService CzSystemSetSixService;
+        public static Icz_bet_kcService CzBetKcService;
+        public static Icz_jp_oddsService CzJpOddsService;
+        public static Icz_rate_sixService CzRateSixService;
 
 //        public static HashSet<string> redisHelper;
         public static object redisHelper { get; set; }
@@ -74,6 +79,26 @@ namespace Agent.Web.WebBase
             if (CzLotteryService == null)
             {
                 CzLotteryService = new cz_lotteryService();
+            }            
+            if (CzSystemSetKcExService == null)
+            {
+                CzSystemSetKcExService = new cz_system_set_kc_exService();
+            }
+            if (CzSystemSetSixService == null)
+            {
+                CzSystemSetSixService = new cz_system_set_sixService();
+            } 
+            if (CzBetKcService == null)
+            {
+                CzBetKcService = new cz_bet_kcService();
+            }
+            if (CzJpOddsService == null)
+            {
+                CzJpOddsService = new cz_jp_oddsService();
+            }      
+            if (CzRateSixService == null)
+            {
+                CzRateSixService = new cz_rate_sixService();
             }
             
         }

@@ -1,8 +1,8 @@
 using System.Data;
 using System.Web;
 using LotterySystem.Model;
+using redisTool;
 using ServiceStack.Redis;
-using Utils;
 
 namespace LotterySystem.Common.Redis
 {
@@ -26,6 +26,11 @@ namespace LotterySystem.Common.Redis
         public static void SetPublicFileCache(string czLotteryFilecachekey, DataTable table, object getPublicForderPath)
         {
             //todo 
+        }
+
+        public static void SetPublicFileCacheDependency(string allAutoJpFilecachekey, object dataTable, object getPublicForderPath)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

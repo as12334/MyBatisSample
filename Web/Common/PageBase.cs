@@ -27,6 +27,10 @@ namespace LotterySystem.Common
             message.Add("u100006","您的上级帐号已经被冻结,请与管理员联系！");
             return message[code];
         }
+        protected string GetGameNameByID(string toString)
+        {
+            throw new NotImplementedException();
+        }
 
         public static bool IsLockedTimeout(string loginName, string type)
         {
@@ -156,6 +160,7 @@ namespace LotterySystem.Common
 
         protected static void SetBrowerFlag(string browserCode)
         {
+            HttpContext.Current.Session["lottery_session_img_code_brower"] = browserCode;
             //todo
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -34,6 +35,16 @@ namespace Agent.Web.WebBase
             }
             return "";
         }
+        public string GroupShowHrefString(int master_id, string order_num, string is_payment, string optwindow, string atz)
+        {
+            string text = (!master_id.Equals(1)) ? "kc" : "six";
+            return $"<a class='green groupshow' style='text-decoration:underline;' href='javascript:;' data-href='/ReportSearch/GroupShow_{text}.aspx?orderid={order_num}&ispay={is_payment}&ow={optwindow}&atz={atz}' >Ô”¼š</a>";
+        }
+        protected string get_BetTime_KC()
+        {
+            throw new NotImplementedException();
+        }
+
         public void MemberPageBase_Load(object sender, EventArgs e)
         {
             DateTime now;
@@ -133,6 +144,123 @@ namespace Agent.Web.WebBase
                 CookieHelper.SetCookie("userreturnbackurl", HttpContext.Current.Request.ServerVariables["Path_Info"] + "?" + HttpContext.Current.Request.ServerVariables["Query_String"]);
             }
         }
+        public string Permission_Ashx_ZJ(agent_userinfo_session model, string perName)
+        {
+            //IL_004e: Unknown result type (might be due to invalid IL or missing references)
+            //IL_0054: Expected O, but got Unknown
+            string result = "";
+            if (model.get_u_type().ToLower().Equals("zj") && model.get_users_child_session() != null && model.get_users_child_session().get_permissions_name().IndexOf(perName) < 0)
+            {
+                ReturnResult val = new ReturnResult();
+                val.set_success(400);
+                val.set_tipinfo(PageBase.GetMessageByCache("u100013", "MessageHint"));
+                result = JsonHandle.ObjectToJson((object)val);
+            }
+            return result;
+        }
+public bool IsHideUser_kc()
+		{
+			string str = HttpContext.Current.Session["user_name"].ToString();
+			agent_userinfo_session val = HttpContext.Current.Session[str + "lottery_session_user_info"] as agent_userinfo_session;
+			if (val.get_users_child_session() != null)
+			{
+				cz_system_set_kc_ex model = CallBLL.CzSystemSetKcExService.GetModel(1);
+				string value = "po_2_1";
+				if (!val.get_u_type().Equals("zj"))
+				{
+					value = "po_6_1";
+				}
+				if (val.get_users_child_session().get_permissions_name().IndexOf(value) < 0 && model.get_is_hideuser().Equals(1))
+				{
+					return true;
+				}
+				return false;
+			}
+			return false;
+		}
+
+		public string IsHideUser_kc(string u_name)
+		{
+			if (u_name.Equals("-"))
+			{
+				return " - ";
+			}
+			string str = HttpContext.Current.Session["user_name"].ToString();
+			agent_userinfo_session val = HttpContext.Current.Session[str + "lottery_session_user_info"] as agent_userinfo_session;
+			if (val.get_users_child_session() != null)
+			{
+				cz_system_set_kc_ex model = CallBLL.CzSystemSetKcExService.GetModel(1);
+				string value = "po_2_1";
+				if (!val.get_u_type().Equals("zj"))
+				{
+					value = "po_6_1";
+				}
+				if (val.get_users_child_session().get_permissions_name().IndexOf(value) < 0 && model.get_is_hideuser().Equals(1))
+				{
+					return " - ";
+				}
+				return u_name;
+			}
+			return u_name;
+		}
+
+		public bool IsHideUser_six()
+		{
+			string str = HttpContext.Current.Session["user_name"].ToString();
+			agent_userinfo_session val = HttpContext.Current.Session[str + "lottery_session_user_info"] as agent_userinfo_session;
+			if (val.get_users_child_session() != null)
+			{
+				cz_system_set_six model = CallBLL.CzSystemSetSixService.GetModel(1);
+				string value = "po_2_1";
+				if (!val.get_u_type().Equals("zj"))
+				{
+					value = "po_6_1";
+				}
+				if (val.get_users_child_session().get_permissions_name().IndexOf(value) < 0 && model.get_is_hideuser().Equals(1))
+				{
+					return true;
+				}
+				return false;
+			}
+			return false;
+		}
+
+		public string IsHideUser_six(string u_name)
+		{
+			string str = HttpContext.Current.Session["user_name"].ToString();
+			agent_userinfo_session val = HttpContext.Current.Session[str + "lottery_session_user_info"] as agent_userinfo_session;
+			if (val.get_users_child_session() != null)
+			{
+				cz_system_set_six model = CallBLL.CzSystemSetSixService.GetModel(1);
+				string value = "po_2_1";
+				if (!val.get_u_type().Equals("zj"))
+				{
+					value = "po_6_1";
+				}
+				if (val.get_users_child_session().get_permissions_name().IndexOf(value) < 0 && model.get_is_hideuser().Equals(1))
+				{
+					return "-";
+				}
+				return u_name;
+			}
+			return u_name;
+		}
+
+        public string Permission_Ashx_DL(agent_userinfo_session model, string perName)
+        {
+            //IL_004b: Unknown result type (might be due to invalid IL or missing references)
+            //IL_0051: Expected O, but got Unknown
+            string result = "";
+            if (!model.get_u_type().ToLower().Equals("zj") && model.get_users_child_session() != null && model.get_users_child_session().get_permissions_name().IndexOf(perName) < 0)
+            {
+                ReturnResult val = new ReturnResult();
+                val.set_success(400);
+                val.set_tipinfo(PageBase.GetMessageByCache("u100013", "MessageHint"));
+                result = JsonHandle.ObjectToJson((object)val);
+            }
+            return result;
+        }
+
         public static void stat_top_online(string loginname)
         {
             string str = "Online_Stat";
@@ -283,6 +411,286 @@ namespace Agent.Web.WebBase
             }
         }
         
+        private void fixed_list(ref List<object> obj, DataRow[] rows)
+        {
+            int num = 5;
+            int num2 = 0;
+            foreach (DataRow item in rows)
+            {
+                if (num2 == num)
+                {
+                    break;
+                }
+                obj.Add(item);
+                num2++;
+            }
+        }
+        public List<object> GetAutoJPForTable(string lottery_ids, string compareTime, ref DateTime dt)
+		{
+			if (string.IsNullOrEmpty(lottery_ids))
+			{
+				return null;
+			}
+			DataTable dataTable;
+			if (CacheHelper.GetCache("all_auto_jp_FileCacheKey") == null)
+			{
+				dataTable = get_jp_talbe();
+				CacheHelper.SetPublicFileCacheDependency("all_auto_jp_FileCacheKey", (object)dataTable, PageBase.GetPublicForderPath(ConfigurationManager.AppSettings["AutoJPCachesFileName"]));
+			}
+			else
+			{
+				dataTable = (CacheHelper.GetCache("all_auto_jp_FileCacheKey") as DataTable);
+			}
+			if (dataTable == null)
+			{
+				return null;
+			}
+			string[] array = lottery_ids.Split(',');
+			List<object> obj = new List<object>();
+			string[] array2 = array;
+			foreach (string arg in array2)
+			{
+				DataRow[] rows;
+				if (string.IsNullOrEmpty(compareTime))
+				{
+					rows = dataTable.Select($" lottery_type={arg} ", " add_time desc");
+					fixed_list(ref obj, rows);
+					continue;
+				}
+				DateTime dateTime = Utils.StampToDateTime(compareTime);
+				rows = dataTable.Select($" lottery_type={arg} and add_time >= #{dateTime}# ", " add_time desc ");
+				DataRow[] array3 = rows;
+				foreach (DataRow item in array3)
+				{
+					obj.Add(item);
+				}
+			}
+			List<object> list = new List<object>();
+			if (obj.Count <= 0)
+			{
+				return null;
+			}
+			foreach (DataRow item2 in obj)
+			{
+				string value = "";
+				if ("92638,92639,92640,92641,92642,92643".IndexOf(item2["odds_id"].ToString()) > -1)
+				{
+				}
+				Dictionary<string, object> dictionary = new Dictionary<string, object>();
+				dictionary.Add("category", value);
+				dictionary.Add("lottery_id", item2["lottery_type"].ToString());
+				dictionary.Add("lottery_name", this.GetGameNameByID(item2["lottery_type"].ToString()));
+				dictionary.Add("play_name", item2["play_name"].ToString());
+				dictionary.Add("put_val", item2["put_amount"].ToString());
+				dictionary.Add("odds", item2["odds"].ToString());
+				dictionary.Add("old_odds", item2["old_odds"].ToString());
+				dictionary.Add("new_odds", item2["new_odds"].ToString());
+				dictionary.Add("phase", item2["phase"].ToString());
+				dictionary.Add("add_time", item2["add_time"].ToString());
+				list.Add(new Dictionary<string, object>(dictionary));
+			}
+			return list;
+		}
+        public bool IsUpperLowerLevels(string u_name, string s_utype, string s_uname)
+        {
+            if (s_utype.Equals("zj"))
+            {
+                return true;
+            }
+            DataTable dataTable = CallBLL.CzRateKcService.UpperLowerLevels(u_name, s_utype, s_uname);
+            if (dataTable == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        private ArrayList get_current_lottery()
+        {
+            ArrayList arrayList = new ArrayList();
+            DataTable lotteryList = GetLotteryList();
+            if (lotteryList != null)
+            {
+                foreach (DataRow row in lotteryList.Rows)
+                {
+                    arrayList.Add(row["id"].ToString());
+                }
+            }
+            return arrayList;
+        }
+
+        public int get_current_master_id()
+        {
+            int result = 0;
+            ArrayList current_lottery = get_current_lottery();
+            int count = current_lottery.Count;
+            if (current_lottery.Contains(100.ToString()))
+            {
+                if (count == 1)
+                {
+                    result = 1;
+                }
+            }
+            else
+            {
+                result = 2;
+            }
+            return result;
+        }
+        private DataTable get_jp_talbe()
+        {
+            string text = string.Join(",", get_current_lottery().ToArray());
+            string text2 = string.Join(",", get_current_phase_id().ToArray());
+            return CallBLL.CzJpOddsService.GetTableInfo(text2, text);
+        }
+private ArrayList get_current_phase_id()
+		{
+			ArrayList arrayList = new ArrayList();
+			DataTable dataTable = CallBLL.cz_phase_kl10_bll.IsOpenPhaseByTime(DateTime.Now);
+			if (dataTable != null)
+			{
+				string value = dataTable.Rows[0]["p_id"].ToString();
+				arrayList.Add(value);
+			}
+//			dataTable = CallBLL.cz_phase_cqsc_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value2 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value2);
+//			}
+//			dataTable = CallBLL.cz_phase_kl8_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value3 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value3);
+//			}
+//			dataTable = CallBLL.cz_phase_jsk3_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value4 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value4);
+//			}
+//			dataTable = CallBLL.cz_phase_xync_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value5 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value5);
+//			}
+//			dataTable = CallBLL.cz_phase_pk10_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value6 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value6);
+//			}
+//			dataTable = CallBLL.cz_phase_k8sc_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value7 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value7);
+//			}
+//			dataTable = CallBLL.cz_phase_pcdd_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value8 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value8);
+//			}
+//			dataTable = CallBLL.cz_phase_pkbjl_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value9 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value9);
+//			}
+//			dataTable = CallBLL.cz_phase_xyft5_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value10 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value10);
+//			}
+//			dataTable = CallBLL.cz_phase_jscar_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value11 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value11);
+//			}
+//			cz_phase_six currentPhase = CallBLL.cz_phase_six_bll.GetCurrentPhase();
+//			if (currentPhase != null)
+//			{
+//				string value12 = currentPhase.get_p_id().ToString();
+//				arrayList.Add(value12);
+//			}
+//			dataTable = CallBLL.cz_phase_speed5_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value13 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value13);
+//			}
+//			dataTable = CallBLL.cz_phase_jscqsc_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value14 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value14);
+//			}
+//			dataTable = CallBLL.cz_phase_jspk10_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value15 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value15);
+//			}
+//			dataTable = CallBLL.cz_phase_jssfc_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value16 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value16);
+//			}
+//			dataTable = CallBLL.cz_phase_jsft2_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value17 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value17);
+//			}
+//			dataTable = CallBLL.cz_phase_car168_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value18 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value18);
+//			}
+//			dataTable = CallBLL.cz_phase_ssc168_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value19 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value19);
+//			}
+//			dataTable = CallBLL.cz_phase_vrcar_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value20 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value20);
+//			}
+//			dataTable = CallBLL.cz_phase_vrssc_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value21 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value21);
+//			}
+//			dataTable = CallBLL.cz_phase_xyftoa_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value22 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value22);
+//			}
+//			dataTable = CallBLL.cz_phase_xyftsg_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value23 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value23);
+//			}
+//			dataTable = CallBLL.cz_phase_happycar_bll.IsOpenPhaseByTime(DateTime.Now);
+//			if (dataTable != null)
+//			{
+//				string value24 = dataTable.Rows[0]["p_id"].ToString();
+//				arrayList.Add(value24);
+//			}
+			return arrayList;
+		}
         protected static void update_online()
         {
             string str = "online_User_Key";

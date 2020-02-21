@@ -10,5 +10,6 @@ namespace Data.Interface
     {
         cz_rate_kc GetRateKCByUserName(string getUName);
         DataTable GetUserOpOdds(string getUName);
+        DataTable UpperLowerLevels(string uName, string sUtype, string sUname);
     }
 }

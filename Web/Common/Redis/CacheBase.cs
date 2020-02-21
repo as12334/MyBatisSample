@@ -7,7 +7,7 @@ using System.Web;
 using ServiceStack.Redis;
 using System.Data;
 
-namespace Utils
+namespace redisTool
 {
     public static class CacheBase<T>
     {

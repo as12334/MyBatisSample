@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_jp_odds"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_jp_odds" type="Entity.cz_jp_odds, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_jp_odds">
+            <result property="add_time" column="add_time"/>
+            <result property="odds_id" column="odds_id"/>
+            <result property="phase_id" column="phase_id"/>
+            <result property="play_name" column="play_name"/>
+            <result property="put_amount" column="put_amount"/>
+            <result property="odds" column="odds"/>
+            <result property="lottery_type" column="lottery_type"/>
+            <result property="phase" column="phase"/>
+            <result property="old_odds" column="old_odds"/>
+            <result property="new_odds" column="new_odds"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="add_time" column="add_time"/>
+            <result property="odds_id" column="odds_id"/>
+            <result property="phase_id" column="phase_id"/>
+            <result property="play_name" column="play_name"/>
+            <result property="put_amount" column="put_amount"/>
+            <result property="odds" column="odds"/>
+            <result property="lottery_type" column="lottery_type"/>
+            <result property="phase" column="phase"/>
+            <result property="old_odds" column="old_odds"/>
+            <result property="new_odds" column="new_odds"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_jp_odds.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_jp_odds.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_jp_odds.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_jp_odds.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+        </select>
+        <select id="cz_jp_odds.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_jp_odds]
+        </select>
+		<select id="cz_jp_odds.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_jp_odds] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_jp_odds.GetById" parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds] WHERE ()
+        </select>
+
+        <select id="cz_jp_odds.GetListByWhere"  parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            <dynamic prepend="WHERE">
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="odds_id" prepend="AND">
+                    [odds_id] = #odds_id#
+                </isNotNull>
+                <isNotNull property="phase_id" prepend="AND">
+                    [phase_id] = #phase_id#
+                </isNotNull>
+                <isNotNull property="play_name" prepend="AND">
+                    [play_name] = #play_name#
+                </isNotNull>
+                <isNotNull property="put_amount" prepend="AND">
+                    [put_amount] = #put_amount#
+                </isNotNull>
+                <isNotNull property="odds" prepend="AND">
+                    [odds] = #odds#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="old_odds" prepend="AND">
+                    [old_odds] = #old_odds#
+                </isNotNull>
+                <isNotNull property="new_odds" prepend="AND">
+                    [new_odds] = #new_odds#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_jp_odds.GetListByWhereStr"  parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_jp_odds.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            <dynamic prepend="WHERE">
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="odds_id" prepend="AND">
+                    [odds_id] = #odds_id#
+                </isNotNull>
+                <isNotNull property="phase_id" prepend="AND">
+                    [phase_id] = #phase_id#
+                </isNotNull>
+                <isNotNull property="play_name" prepend="AND">
+                    [play_name] = #play_name#
+                </isNotNull>
+                <isNotNull property="put_amount" prepend="AND">
+                    [put_amount] = #put_amount#
+                </isNotNull>
+                <isNotNull property="odds" prepend="AND">
+                    [odds] = #odds#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="old_odds" prepend="AND">
+                    [old_odds] = #old_odds#
+                </isNotNull>
+                <isNotNull property="new_odds" prepend="AND">
+                    [new_odds] = #new_odds#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_jp_odds.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_jp_odds.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            <dynamic prepend="WHERE">
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="odds_id" prepend="AND">
+                    [odds_id] = #odds_id#
+                </isNotNull>
+                <isNotNull property="phase_id" prepend="AND">
+                    [phase_id] = #phase_id#
+                </isNotNull>
+                <isNotNull property="play_name" prepend="AND">
+                    [play_name] = #play_name#
+                </isNotNull>
+                <isNotNull property="put_amount" prepend="AND">
+                    [put_amount] = #put_amount#
+                </isNotNull>
+                <isNotNull property="odds" prepend="AND">
+                    [odds] = #odds#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="old_odds" prepend="AND">
+                    [old_odds] = #old_odds#
+                </isNotNull>
+                <isNotNull property="new_odds" prepend="AND">
+                    [new_odds] = #new_odds#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_jp_odds.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_jp_odds.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_jp_odds]
+            <dynamic prepend="WHERE">
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="odds_id" prepend="AND">
+                    [odds_id] = #odds_id#
+                </isNotNull>
+                <isNotNull property="phase_id" prepend="AND">
+                    [phase_id] = #phase_id#
+                </isNotNull>
+                <isNotNull property="play_name" prepend="AND">
+                    [play_name] = #play_name#
+                </isNotNull>
+                <isNotNull property="put_amount" prepend="AND">
+                    [put_amount] = #put_amount#
+                </isNotNull>
+                <isNotNull property="odds" prepend="AND">
+                    [odds] = #odds#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="old_odds" prepend="AND">
+                    [old_odds] = #old_odds#
+                </isNotNull>
+                <isNotNull property="new_odds" prepend="AND">
+                    [new_odds] = #new_odds#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="cz_jp_odds.GetAllListOrder" parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds] 
+            FROM [dbo].[cz_jp_odds]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_jp_odds.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds]
+            FROM [dbo].[cz_jp_odds]
+            <dynamic prepend="WHERE">
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="odds_id" prepend="AND">
+                    [odds_id] = #odds_id#
+                </isNotNull>
+                <isNotNull property="phase_id" prepend="AND">
+                    [phase_id] = #phase_id#
+                </isNotNull>
+                <isNotNull property="play_name" prepend="AND">
+                    [play_name] = #play_name#
+                </isNotNull>
+                <isNotNull property="put_amount" prepend="AND">
+                    [put_amount] = #put_amount#
+                </isNotNull>
+                <isNotNull property="odds" prepend="AND">
+                    [odds] = #odds#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="old_odds" prepend="AND">
+                    [old_odds] = #old_odds#
+                </isNotNull>
+                <isNotNull property="new_odds" prepend="AND">
+                    [new_odds] = #new_odds#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_jp_odds.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_jp_odds">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds]
+            FROM [dbo].[cz_jp_odds]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_jp_odds.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_jp_odds]
+            <dynamic prepend="WHERE">
+                <isNotNull property="add_time" prepend="AND">
+                    [add_time] = #add_time#
+                </isNotNull>
+                <isNotNull property="odds_id" prepend="AND">
+                    [odds_id] = #odds_id#
+                </isNotNull>
+                <isNotNull property="phase_id" prepend="AND">
+                    [phase_id] = #phase_id#
+                </isNotNull>
+                <isNotNull property="play_name" prepend="AND">
+                    [play_name] = #play_name#
+                </isNotNull>
+                <isNotNull property="put_amount" prepend="AND">
+                    [put_amount] = #put_amount#
+                </isNotNull>
+                <isNotNull property="odds" prepend="AND">
+                    [odds] = #odds#
+                </isNotNull>
+                <isNotNull property="lottery_type" prepend="AND">
+                    [lottery_type] = #lottery_type#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="old_odds" prepend="AND">
+                    [old_odds] = #old_odds#
+                </isNotNull>
+                <isNotNull property="new_odds" prepend="AND">
+                    [new_odds] = #new_odds#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="cz_jp_odds.Insert" parameterClass="cz_jp_odds" resultClass="Int32">
+            INSERT INTO [dbo].[cz_jp_odds] (
+            [add_time],[odds_id],[phase_id],[play_name],[put_amount],[odds],[lottery_type],[phase],[old_odds],[new_odds]
+            ) VALUES (
+            #add_time#,#odds_id#,#phase_id#,#play_name#,#put_amount#,#odds#,#lottery_type#,#phase#,#old_odds#,#new_odds#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_jp_odds.Update" parameterClass="cz_jp_odds">
+            UPDATE [dbo].[cz_jp_odds] SET
+            [add_time] = #add_time#,[odds_id] = #odds_id#,[phase_id] = #phase_id#,[play_name] = #play_name#,[put_amount] = #put_amount#,[odds] = #odds#,[lottery_type] = #lottery_type#,[phase] = #phase#,[old_odds] = #old_odds#,[new_odds] = #new_odds#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="cz_jp_odds.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_jp_odds] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_jp_odds.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_jp_odds]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_jp_odds.DeleteByEntity" parameterClass="cz_jp_odds">
+            DELETE FROM [dbo].[cz_jp_odds]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="cz_jp_odds.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_jp_odds]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_jp_odds.ClearData">
+            truncate table [cz_jp_odds]
+        </statement>
+    </statements>
+</sqlMap>
