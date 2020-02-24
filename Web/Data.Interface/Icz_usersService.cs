@@ -14,5 +14,6 @@ namespace Data.Interface
         int UpdateUserPwdStutas(string toString);
         cz_users GetUserInfoByUName(string str);
         cz_users GetUserInfoByUID(string text);
+        int UpdateSkin(string text2, string text);
     }
 }

@@ -25,6 +25,7 @@ namespace Agent.Web.WebBase
         public static Icz_bet_kcService CzBetKcService;
         public static Icz_jp_oddsService CzJpOddsService;
         public static Icz_rate_sixService CzRateSixService;
+        public static Icz_rate_sixService CzRateSixService;
 
 //        public static HashSet<string> redisHelper;
         public static object redisHelper { get; set; }

@@ -41,27 +41,7 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-          <EmbeddedResource Include="Mapper\BasicMapper\cz_users.xml" />
-          <EmbeddedResource Include="Mapper\BasicMapper\cz_login_log.xml" />   
-          <EmbeddedResource Include="Mapper\BasicMapper\cz_rate_kc.xml" />
-          <EmbeddedResource Include="Mapper\BasicMapper\cz_users_child.xml" />
-          <EmbeddedResource Include="Mapper\BasicMapper\cz_user_psw_err_log.xml" />
-          <EmbeddedResource Include="Mapper\BasicMapper\cz_admin_sysconfig.xml" />
-            <EmbeddedResource Include="Mapper\BasicMapper\cz_stat_online.xml" />
-            <EmbeddedResource Include="Mapper\BasicMapper\cz_stat_top_online.xml" />
-            <EmbeddedResource Include="Mapper\BasicMapper\cz_admin_subsystem.xml" />
-            <EmbeddedResource Include="Mapper\BasicMapper\zk_subsys.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_saleset_six.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_lottery.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_system_set_kc_ex.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_bet_kc.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_jp_odds.xml" />
-        <EmbeddedResource Include="Mapper\BasicMapper\cz_system_set_six.xml" />
-
-
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="Mapper\BasicMapper\cz_rate_six.xml" />
+          <EmbeddedResource Include="BasicMapper\*.xml" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

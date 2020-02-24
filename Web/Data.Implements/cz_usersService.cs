@@ -57,6 +57,16 @@ namespace Data.Implements
             throw new NotImplementedException();
         }
 
+        public cz_users GetUserInfoByUID(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateSkin(string text2, string text)
+        {
+            throw new NotImplementedException();
+        }
+
 //        查询所有上级
         public IList<cz_users> upperUsers(string u_name)
         {

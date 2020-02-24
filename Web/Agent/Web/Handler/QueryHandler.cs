@@ -453,9 +453,9 @@ namespace Agent.Web.Handler
 			DataTable dataTable = null;
 			switch (num)
 			{
-			case 0:
-				dataTable = CallBLL.cz_play_kl10_bll.GetPlay();
-				break;
+//			case 0:
+//				dataTable = CallBLL.cz_play_kl10_bll.GetPlay();
+//				break;
 //			case 1:
 //				dataTable = CallBLL.cz_play_cqsc_bll.GetPlay();
 //				break;
@@ -571,10 +571,10 @@ namespace Agent.Web.Handler
 			DataTable dataTable2 = null;
 			switch (num)
 			{
-			case 0:
-				dataTable = CallBLL.cz_phase_kl10_bll.GetPhaseByQueryDate(text);
-				dataTable2 = CallBLL.cz_play_kl10_bll.GetPlay();
-				break;
+//			case 0:
+//				dataTable = CallBLL.cz_phase_kl10_bll.GetPhaseByQueryDate(text);
+//				dataTable2 = CallBLL.cz_play_kl10_bll.GetPlay();
+//				break;
 //			case 1:
 //				dataTable = CallBLL.cz_phase_cqsc_bll.GetPhaseByQueryDate(text);
 //				dataTable2 = CallBLL.cz_play_cqsc_bll.GetPlay();
@@ -761,11 +761,11 @@ namespace Agent.Web.Handler
 			if (context.Session["child_user_name"] != null)
 			{
 				text2 = val2.get_users_child_session().get_u_id().ToString();
-				num = CallBLL.cz_users_child_bll.UpdateSkin(text2, text);
+				num = CallBLL.CzUsersChildService.UpdateSkin(text2, text);
 			}
 			else
 			{
-				num = CallBLL.cz_users_bll.UpdateSkin(text2, text);
+				num = CallBLL.CzUsersService.UpdateSkin(text2, text);
 			}
 			if (num > 0)
 			{
@@ -796,6 +796,8 @@ namespace Agent.Web.Handler
 			}
 			context.Response.End();
 		}
+
+	
 
 		public void get_user_rate(HttpContext context, ref string strResult)
 		{
@@ -957,7 +959,7 @@ namespace Agent.Web.Handler
 			}
 			if (array2.Length > 0)
 			{
-				DataTable rateByUserID = CallBLL.cz_rate_kc_bll.GetRateByUserID(text);
+				DataTable rateByUserID = CallBLL.CzRateKcService.GetRateByUserID(text);
 				if (rateByUserID == null)
 				{
 					return;
@@ -2761,22 +2763,22 @@ namespace Agent.Web.Handler
 			string text3 = "";
 			if (num.Equals(100))
 			{
-				DataTable currentPhase = CallBLL.cz_phase_six_bll.GetCurrentPhase("1");
-				if (currentPhase != null || currentPhase.Rows.Count > 0)
-				{
-					DateTime now = DateTime.Now;
-					string text4 = currentPhase.Rows[0]["sn_stop_date"].ToString();
-					if (now < DateTime.Parse(text4))
-					{
-						text2 = "2";
-						text3 = Convert.ToDateTime(text4).ToString("yyyy-MM-dd HH:mm:ss");
-					}
-					else
-					{
-						text2 = "0";
-						text3 = "-";
-					}
-				}
+//				DataTable currentPhase = CallBLL.cz_phase_six_bll.GetCurrentPhase("1");
+//				if (currentPhase != null || currentPhase.Rows.Count > 0)
+//				{
+//					DateTime now = DateTime.Now;
+//					string text4 = currentPhase.Rows[0]["sn_stop_date"].ToString();
+//					if (now < DateTime.Parse(text4))
+//					{
+//						text2 = "2";
+//						text3 = Convert.ToDateTime(text4).ToString("yyyy-MM-dd HH:mm:ss");
+//					}
+//					else
+//					{
+//						text2 = "0";
+//						text3 = "-";
+//					}
+//				}
 			}
 			else
 			{
@@ -2786,72 +2788,72 @@ namespace Agent.Web.Handler
 				case 0:
 					dataTable = CallBLL.cz_phase_kl10_bll.IsPhaseClose();
 					break;
-				case 1:
-					dataTable = CallBLL.cz_phase_cqsc_bll.IsPhaseClose();
-					break;
-				case 2:
-					dataTable = CallBLL.cz_phase_pk10_bll.IsPhaseClose();
-					break;
-				case 3:
-					dataTable = CallBLL.cz_phase_xync_bll.IsPhaseClose();
-					break;
-				case 4:
-					dataTable = CallBLL.cz_phase_jsk3_bll.IsPhaseClose();
-					break;
-				case 5:
-					dataTable = CallBLL.cz_phase_kl8_bll.IsPhaseClose();
-					break;
-				case 6:
-					dataTable = CallBLL.cz_phase_k8sc_bll.IsPhaseClose();
-					break;
-				case 7:
-					dataTable = CallBLL.cz_phase_pcdd_bll.IsPhaseClose();
-					break;
-				case 8:
-					dataTable = CallBLL.cz_phase_pkbjl_bll.IsPhaseClose();
-					break;
-				case 9:
-					dataTable = CallBLL.cz_phase_xyft5_bll.IsPhaseClose();
-					break;
-				case 10:
-					dataTable = CallBLL.cz_phase_jscar_bll.IsPhaseClose();
-					break;
-				case 11:
-					dataTable = CallBLL.cz_phase_speed5_bll.IsPhaseClose();
-					break;
-				case 13:
-					dataTable = CallBLL.cz_phase_jscqsc_bll.IsPhaseClose();
-					break;
-				case 12:
-					dataTable = CallBLL.cz_phase_jspk10_bll.IsPhaseClose();
-					break;
-				case 14:
-					dataTable = CallBLL.cz_phase_jssfc_bll.IsPhaseClose();
-					break;
-				case 15:
-					dataTable = CallBLL.cz_phase_jsft2_bll.IsPhaseClose();
-					break;
-				case 16:
-					dataTable = CallBLL.cz_phase_car168_bll.IsPhaseClose();
-					break;
-				case 17:
-					dataTable = CallBLL.cz_phase_ssc168_bll.IsPhaseClose();
-					break;
-				case 18:
-					dataTable = CallBLL.cz_phase_vrcar_bll.IsPhaseClose();
-					break;
-				case 19:
-					dataTable = CallBLL.cz_phase_vrssc_bll.IsPhaseClose();
-					break;
-				case 20:
-					dataTable = CallBLL.cz_phase_xyftoa_bll.IsPhaseClose();
-					break;
-				case 21:
-					dataTable = CallBLL.cz_phase_xyftsg_bll.IsPhaseClose();
-					break;
-				case 22:
-					dataTable = CallBLL.cz_phase_happycar_bll.IsPhaseClose();
-					break;
+//				case 1:
+//					dataTable = CallBLL.cz_phase_cqsc_bll.IsPhaseClose();
+//					break;
+//				case 2:
+//					dataTable = CallBLL.cz_phase_pk10_bll.IsPhaseClose();
+//					break;
+//				case 3:
+//					dataTable = CallBLL.cz_phase_xync_bll.IsPhaseClose();
+//					break;
+//				case 4:
+//					dataTable = CallBLL.cz_phase_jsk3_bll.IsPhaseClose();
+//					break;
+//				case 5:
+//					dataTable = CallBLL.cz_phase_kl8_bll.IsPhaseClose();
+//					break;
+//				case 6:
+//					dataTable = CallBLL.cz_phase_k8sc_bll.IsPhaseClose();
+//					break;
+//				case 7:
+//					dataTable = CallBLL.cz_phase_pcdd_bll.IsPhaseClose();
+//					break;
+//				case 8:
+//					dataTable = CallBLL.cz_phase_pkbjl_bll.IsPhaseClose();
+//					break;
+//				case 9:
+//					dataTable = CallBLL.cz_phase_xyft5_bll.IsPhaseClose();
+//					break;
+//				case 10:
+//					dataTable = CallBLL.cz_phase_jscar_bll.IsPhaseClose();
+//					break;
+//				case 11:
+//					dataTable = CallBLL.cz_phase_speed5_bll.IsPhaseClose();
+//					break;
+//				case 13:
+//					dataTable = CallBLL.cz_phase_jscqsc_bll.IsPhaseClose();
+//					break;
+//				case 12:
+//					dataTable = CallBLL.cz_phase_jspk10_bll.IsPhaseClose();
+//					break;
+//				case 14:
+//					dataTable = CallBLL.cz_phase_jssfc_bll.IsPhaseClose();
+//					break;
+//				case 15:
+//					dataTable = CallBLL.cz_phase_jsft2_bll.IsPhaseClose();
+//					break;
+//				case 16:
+//					dataTable = CallBLL.cz_phase_car168_bll.IsPhaseClose();
+//					break;
+//				case 17:
+//					dataTable = CallBLL.cz_phase_ssc168_bll.IsPhaseClose();
+//					break;
+//				case 18:
+//					dataTable = CallBLL.cz_phase_vrcar_bll.IsPhaseClose();
+//					break;
+//				case 19:
+//					dataTable = CallBLL.cz_phase_vrssc_bll.IsPhaseClose();
+//					break;
+//				case 20:
+//					dataTable = CallBLL.cz_phase_xyftoa_bll.IsPhaseClose();
+//					break;
+//				case 21:
+//					dataTable = CallBLL.cz_phase_xyftsg_bll.IsPhaseClose();
+//					break;
+//				case 22:
+//					dataTable = CallBLL.cz_phase_happycar_bll.IsPhaseClose();
+//					break;
 				}
 				if (dataTable != null && dataTable.Rows.Count > 0)
 				{

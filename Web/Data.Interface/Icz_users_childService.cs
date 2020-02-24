@@ -11,5 +11,6 @@ namespace Data.Interface
         int UpUserPwd(string toString, string psw, string ramSalt);
         int UpdateUserPwdStutas(string status);
         string GetPermissionsName(string toString);
+        int UpdateSkin(string text2, string text);
     }
 }

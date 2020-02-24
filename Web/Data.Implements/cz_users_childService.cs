@@ -50,5 +50,10 @@ namespace Data.Implements
             
             throw new NotImplementedException();
         }
+
+        public int UpdateSkin(string text2, string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

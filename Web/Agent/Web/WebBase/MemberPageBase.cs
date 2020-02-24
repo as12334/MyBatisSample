@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 using BuilderDALSQL;
 using Entity;
 using LotterySystem.Common;
@@ -517,7 +518,80 @@ public bool IsHideUser_kc()
             }
             return arrayList;
         }
-
+        protected void checkLoginByHandler(int ha)
+		{
+			//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a6: Expected O, but got Unknown
+			//IL_014b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0151: Expected O, but got Unknown
+			//IL_0320: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0326: Expected O, but got Unknown
+			string text = LSRequest.qq("browserCode");
+			bool flag = false;
+			if (HttpContext.Current.Session["lottery_session_img_code_brower"] != null && !string.IsNullOrEmpty(text))
+			{
+				flag = ((HttpContext.Current.Session["lottery_session_img_code_brower"].ToString().ToLower() != text.ToLower()) ? true : false);
+			}
+			if (HttpContext.Current.Session["user_name"] == null || flag)
+			{
+				Session.Abandon();
+				ReturnResult val = new ReturnResult();
+				val.set_success(300);
+				val.set_tipinfo("請重新登錄！");
+				string s = JsonHandle.ObjectToJson((object)val);
+				HttpContext.Current.Response.ContentType = "application/json";
+				HttpContext.Current.Response.Write(s);
+				HttpContext.Current.Response.End();
+			}
+			string children_name = get_children_name();
+			if (PageBase.IsNeedPopBrower((children_name == "") ? HttpContext.Current.Session["user_name"].ToString() : children_name))
+			{
+				Session.Abandon();
+				ReturnResult val = new ReturnResult();
+				val.set_success(300);
+				val.set_tipinfo("請重新登錄！");
+				string s = JsonHandle.ObjectToJson((object)val);
+				HttpContext.Current.Response.ContentType = "application/json";
+				HttpContext.Current.Response.Write(s);
+				HttpContext.Current.Response.End();
+			}
+			string text2 = HttpContext.Current.Session["user_name"].ToString();
+			agent_userinfo_session val2 = HttpContext.Current.Session[text2 + "lottery_session_user_info"] as agent_userinfo_session;
+			if (FileCacheHelper.get_RedisStatOnline().Equals(1) || FileCacheHelper.get_RedisStatOnline().Equals(2))
+			{
+				bool flag2 = false;
+				if (val2.get_users_child_session() != null && val2.get_users_child_session().get_is_admin().Equals(1))
+				{
+					flag2 = true;
+				}
+				if (!flag2)
+				{
+					if (FileCacheHelper.get_RedisStatOnline().Equals(1))
+					{
+//						this.CheckIsOut((children_name == "") ? text2 : children_name);
+					}
+					else if (FileCacheHelper.get_RedisStatOnline().Equals(2))
+					{
+//						this.CheckIsOutStack((children_name == "") ? text2 : children_name);
+					}
+				}
+			}
+			else if (this.IsUserOut((children_name == "") ? HttpContext.Current.Session["user_name"].ToString() : children_name))
+			{
+				Session.Abandon();
+				ReturnResult val = new ReturnResult();
+				val.set_success(100);
+				val.set_tipinfo("");
+				string s = JsonHandle.ObjectToJson((object)val);
+				HttpContext.Current.Response.ContentType = "application/json";
+				HttpContext.Current.Response.Write(s);
+				HttpContext.Current.Response.End();
+			}
+		}
+        protected string get_six_schedule()
+        {
+            throw new NotImplementedException();
+        }
         public int get_current_master_id()
         {
             int result = 0;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Data.Implements
@@ -15,5 +16,10 @@ namespace Data.Implements
         public cz_rate_sixService(string language) : base(language) { }
 
         #endregion
+
+        public DataTable GetRateByUserID(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

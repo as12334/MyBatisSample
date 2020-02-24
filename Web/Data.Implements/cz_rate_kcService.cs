@@ -26,5 +26,15 @@ namespace Data.Implements
         {
             throw new NotImplementedException();
         }
+
+        public DataTable UpperLowerLevels(string uName, string sUtype, string sUname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataTable GetRateByUserID(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
