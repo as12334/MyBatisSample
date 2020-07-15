@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_lottery"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_lottery" type="Entity.cz_lottery, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_lottery">
+            <result property="id" column="id"/>
+            <result property="lottery_name" column="lottery_name"/>
+            <result property="night_flag" column="night_flag"/>
+            <result property="code" column="code"/>
+            <result property="master_id" column="master_id"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="id" column="id"/>
+            <result property="lottery_name" column="lottery_name"/>
+            <result property="night_flag" column="night_flag"/>
+            <result property="code" column="code"/>
+            <result property="master_id" column="master_id"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_lottery.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_lottery.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_lottery.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_lottery.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+        </select>
+        <select id="cz_lottery.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_lottery]
+        </select>
+		<select id="cz_lottery.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_lottery] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_lottery.GetById" parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery] WHERE ()
+        </select>
+
+        <select id="cz_lottery.GetListByWhere"  parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            <dynamic prepend="WHERE">
+                <isNotNull property="id" prepend="AND">
+                    [id] = #id#
+                </isNotNull>
+                <isNotNull property="lottery_name" prepend="AND">
+                    [lottery_name] = #lottery_name#
+                </isNotNull>
+                <isNotNull property="night_flag" prepend="AND">
+                    [night_flag] = #night_flag#
+                </isNotNull>
+                <isNotNull property="code" prepend="AND">
+                    [code] = #code#
+                </isNotNull>
+                <isNotNull property="master_id" prepend="AND">
+                    [master_id] = #master_id#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_lottery.GetListByWhereStr"  parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_lottery.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            <dynamic prepend="WHERE">
+                <isNotNull property="id" prepend="AND">
+                    [id] = #id#
+                </isNotNull>
+                <isNotNull property="lottery_name" prepend="AND">
+                    [lottery_name] = #lottery_name#
+                </isNotNull>
+                <isNotNull property="night_flag" prepend="AND">
+                    [night_flag] = #night_flag#
+                </isNotNull>
+                <isNotNull property="code" prepend="AND">
+                    [code] = #code#
+                </isNotNull>
+                <isNotNull property="master_id" prepend="AND">
+                    [master_id] = #master_id#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_lottery.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_lottery.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            <dynamic prepend="WHERE">
+                <isNotNull property="id" prepend="AND">
+                    [id] = #id#
+                </isNotNull>
+                <isNotNull property="lottery_name" prepend="AND">
+                    [lottery_name] = #lottery_name#
+                </isNotNull>
+                <isNotNull property="night_flag" prepend="AND">
+                    [night_flag] = #night_flag#
+                </isNotNull>
+                <isNotNull property="code" prepend="AND">
+                    [code] = #code#
+                </isNotNull>
+                <isNotNull property="master_id" prepend="AND">
+                    [master_id] = #master_id#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_lottery.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_lottery.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_lottery]
+            <dynamic prepend="WHERE">
+                <isNotNull property="id" prepend="AND">
+                    [id] = #id#
+                </isNotNull>
+                <isNotNull property="lottery_name" prepend="AND">
+                    [lottery_name] = #lottery_name#
+                </isNotNull>
+                <isNotNull property="night_flag" prepend="AND">
+                    [night_flag] = #night_flag#
+                </isNotNull>
+                <isNotNull property="code" prepend="AND">
+                    [code] = #code#
+                </isNotNull>
+                <isNotNull property="master_id" prepend="AND">
+                    [master_id] = #master_id#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="cz_lottery.GetAllListOrder" parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            [id],[lottery_name],[night_flag],[code],[master_id] 
+            FROM [dbo].[cz_lottery]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_lottery.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [id],[lottery_name],[night_flag],[code],[master_id]
+            FROM [dbo].[cz_lottery]
+            <dynamic prepend="WHERE">
+                <isNotNull property="id" prepend="AND">
+                    [id] = #id#
+                </isNotNull>
+                <isNotNull property="lottery_name" prepend="AND">
+                    [lottery_name] = #lottery_name#
+                </isNotNull>
+                <isNotNull property="night_flag" prepend="AND">
+                    [night_flag] = #night_flag#
+                </isNotNull>
+                <isNotNull property="code" prepend="AND">
+                    [code] = #code#
+                </isNotNull>
+                <isNotNull property="master_id" prepend="AND">
+                    [master_id] = #master_id#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_lottery.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_lottery">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [id],[lottery_name],[night_flag],[code],[master_id]
+            FROM [dbo].[cz_lottery]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_lottery.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_lottery]
+            <dynamic prepend="WHERE">
+                <isNotNull property="id" prepend="AND">
+                    [id] = #id#
+                </isNotNull>
+                <isNotNull property="lottery_name" prepend="AND">
+                    [lottery_name] = #lottery_name#
+                </isNotNull>
+                <isNotNull property="night_flag" prepend="AND">
+                    [night_flag] = #night_flag#
+                </isNotNull>
+                <isNotNull property="code" prepend="AND">
+                    [code] = #code#
+                </isNotNull>
+                <isNotNull property="master_id" prepend="AND">
+                    [master_id] = #master_id#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="cz_lottery.Insert" parameterClass="cz_lottery" resultClass="Int32">
+            INSERT INTO [dbo].[cz_lottery] (
+            [id],[lottery_name],[night_flag],[code],[master_id]
+            ) VALUES (
+            #id#,#lottery_name#,#night_flag#,#code#,#master_id#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_lottery.Update" parameterClass="cz_lottery">
+            UPDATE [dbo].[cz_lottery] SET
+            [id] = #id#,[lottery_name] = #lottery_name#,[night_flag] = #night_flag#,[code] = #code#,[master_id] = #master_id#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="cz_lottery.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_lottery] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_lottery.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_lottery]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_lottery.DeleteByEntity" parameterClass="cz_lottery">
+            DELETE FROM [dbo].[cz_lottery]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="cz_lottery.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_lottery]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_lottery.ClearData">
+            truncate table [cz_lottery]
+        </statement>
+    </statements>
+</sqlMap>

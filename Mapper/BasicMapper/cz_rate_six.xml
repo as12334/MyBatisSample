@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_rate_six"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_rate_six" type="Entity.cz_rate_six, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_rate_six">
+            <result property="u_name" column="u_name"/>
+            <result property="u_type" column="u_type"/>
+            <result property="dl_name" column="dl_name"/>
+            <result property="zd_name" column="zd_name"/>
+            <result property="gd_name" column="gd_name"/>
+            <result property="fgs_name" column="fgs_name"/>
+            <result property="dl_rate" column="dl_rate"/>
+            <result property="zd_rate" column="zd_rate"/>
+            <result property="gd_rate" column="gd_rate"/>
+            <result property="fgs_rate" column="fgs_rate"/>
+            <result property="zj_rate" column="zj_rate"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="u_name" column="u_name"/>
+            <result property="u_type" column="u_type"/>
+            <result property="dl_name" column="dl_name"/>
+            <result property="zd_name" column="zd_name"/>
+            <result property="gd_name" column="gd_name"/>
+            <result property="fgs_name" column="fgs_name"/>
+            <result property="dl_rate" column="dl_rate"/>
+            <result property="zd_rate" column="zd_rate"/>
+            <result property="gd_rate" column="gd_rate"/>
+            <result property="fgs_rate" column="fgs_rate"/>
+            <result property="zj_rate" column="zj_rate"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_rate_six.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_rate_six.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_rate_six.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_rate_six.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+        </select>
+        <select id="cz_rate_six.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_rate_six]
+        </select>
+		<select id="cz_rate_six.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_rate_six] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_rate_six.GetById" parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six] WHERE ()
+        </select>
+
+        <select id="cz_rate_six.GetListByWhere"  parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="dl_name" prepend="AND">
+                    [dl_name] = #dl_name#
+                </isNotNull>
+                <isNotNull property="zd_name" prepend="AND">
+                    [zd_name] = #zd_name#
+                </isNotNull>
+                <isNotNull property="gd_name" prepend="AND">
+                    [gd_name] = #gd_name#
+                </isNotNull>
+                <isNotNull property="fgs_name" prepend="AND">
+                    [fgs_name] = #fgs_name#
+                </isNotNull>
+                <isNotNull property="dl_rate" prepend="AND">
+                    [dl_rate] = #dl_rate#
+                </isNotNull>
+                <isNotNull property="zd_rate" prepend="AND">
+                    [zd_rate] = #zd_rate#
+                </isNotNull>
+                <isNotNull property="gd_rate" prepend="AND">
+                    [gd_rate] = #gd_rate#
+                </isNotNull>
+                <isNotNull property="fgs_rate" prepend="AND">
+                    [fgs_rate] = #fgs_rate#
+                </isNotNull>
+                <isNotNull property="zj_rate" prepend="AND">
+                    [zj_rate] = #zj_rate#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_rate_six.GetListByWhereStr"  parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_rate_six.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="dl_name" prepend="AND">
+                    [dl_name] = #dl_name#
+                </isNotNull>
+                <isNotNull property="zd_name" prepend="AND">
+                    [zd_name] = #zd_name#
+                </isNotNull>
+                <isNotNull property="gd_name" prepend="AND">
+                    [gd_name] = #gd_name#
+                </isNotNull>
+                <isNotNull property="fgs_name" prepend="AND">
+                    [fgs_name] = #fgs_name#
+                </isNotNull>
+                <isNotNull property="dl_rate" prepend="AND">
+                    [dl_rate] = #dl_rate#
+                </isNotNull>
+                <isNotNull property="zd_rate" prepend="AND">
+                    [zd_rate] = #zd_rate#
+                </isNotNull>
+                <isNotNull property="gd_rate" prepend="AND">
+                    [gd_rate] = #gd_rate#
+                </isNotNull>
+                <isNotNull property="fgs_rate" prepend="AND">
+                    [fgs_rate] = #fgs_rate#
+                </isNotNull>
+                <isNotNull property="zj_rate" prepend="AND">
+                    [zj_rate] = #zj_rate#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_rate_six.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_rate_six.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="dl_name" prepend="AND">
+                    [dl_name] = #dl_name#
+                </isNotNull>
+                <isNotNull property="zd_name" prepend="AND">
+                    [zd_name] = #zd_name#
+                </isNotNull>
+                <isNotNull property="gd_name" prepend="AND">
+                    [gd_name] = #gd_name#
+                </isNotNull>
+                <isNotNull property="fgs_name" prepend="AND">
+                    [fgs_name] = #fgs_name#
+                </isNotNull>
+                <isNotNull property="dl_rate" prepend="AND">
+                    [dl_rate] = #dl_rate#
+                </isNotNull>
+                <isNotNull property="zd_rate" prepend="AND">
+                    [zd_rate] = #zd_rate#
+                </isNotNull>
+                <isNotNull property="gd_rate" prepend="AND">
+                    [gd_rate] = #gd_rate#
+                </isNotNull>
+                <isNotNull property="fgs_rate" prepend="AND">
+                    [fgs_rate] = #fgs_rate#
+                </isNotNull>
+                <isNotNull property="zj_rate" prepend="AND">
+                    [zj_rate] = #zj_rate#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_rate_six.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_rate_six.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_rate_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="dl_name" prepend="AND">
+                    [dl_name] = #dl_name#
+                </isNotNull>
+                <isNotNull property="zd_name" prepend="AND">
+                    [zd_name] = #zd_name#
+                </isNotNull>
+                <isNotNull property="gd_name" prepend="AND">
+                    [gd_name] = #gd_name#
+                </isNotNull>
+                <isNotNull property="fgs_name" prepend="AND">
+                    [fgs_name] = #fgs_name#
+                </isNotNull>
+                <isNotNull property="dl_rate" prepend="AND">
+                    [dl_rate] = #dl_rate#
+                </isNotNull>
+                <isNotNull property="zd_rate" prepend="AND">
+                    [zd_rate] = #zd_rate#
+                </isNotNull>
+                <isNotNull property="gd_rate" prepend="AND">
+                    [gd_rate] = #gd_rate#
+                </isNotNull>
+                <isNotNull property="fgs_rate" prepend="AND">
+                    [fgs_rate] = #fgs_rate#
+                </isNotNull>
+                <isNotNull property="zj_rate" prepend="AND">
+                    [zj_rate] = #zj_rate#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="cz_rate_six.GetAllListOrder" parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate] 
+            FROM [dbo].[cz_rate_six]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_rate_six.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate]
+            FROM [dbo].[cz_rate_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="dl_name" prepend="AND">
+                    [dl_name] = #dl_name#
+                </isNotNull>
+                <isNotNull property="zd_name" prepend="AND">
+                    [zd_name] = #zd_name#
+                </isNotNull>
+                <isNotNull property="gd_name" prepend="AND">
+                    [gd_name] = #gd_name#
+                </isNotNull>
+                <isNotNull property="fgs_name" prepend="AND">
+                    [fgs_name] = #fgs_name#
+                </isNotNull>
+                <isNotNull property="dl_rate" prepend="AND">
+                    [dl_rate] = #dl_rate#
+                </isNotNull>
+                <isNotNull property="zd_rate" prepend="AND">
+                    [zd_rate] = #zd_rate#
+                </isNotNull>
+                <isNotNull property="gd_rate" prepend="AND">
+                    [gd_rate] = #gd_rate#
+                </isNotNull>
+                <isNotNull property="fgs_rate" prepend="AND">
+                    [fgs_rate] = #fgs_rate#
+                </isNotNull>
+                <isNotNull property="zj_rate" prepend="AND">
+                    [zj_rate] = #zj_rate#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_rate_six.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_rate_six">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate]
+            FROM [dbo].[cz_rate_six]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_rate_six.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_rate_six]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="u_type" prepend="AND">
+                    [u_type] = #u_type#
+                </isNotNull>
+                <isNotNull property="dl_name" prepend="AND">
+                    [dl_name] = #dl_name#
+                </isNotNull>
+                <isNotNull property="zd_name" prepend="AND">
+                    [zd_name] = #zd_name#
+                </isNotNull>
+                <isNotNull property="gd_name" prepend="AND">
+                    [gd_name] = #gd_name#
+                </isNotNull>
+                <isNotNull property="fgs_name" prepend="AND">
+                    [fgs_name] = #fgs_name#
+                </isNotNull>
+                <isNotNull property="dl_rate" prepend="AND">
+                    [dl_rate] = #dl_rate#
+                </isNotNull>
+                <isNotNull property="zd_rate" prepend="AND">
+                    [zd_rate] = #zd_rate#
+                </isNotNull>
+                <isNotNull property="gd_rate" prepend="AND">
+                    [gd_rate] = #gd_rate#
+                </isNotNull>
+                <isNotNull property="fgs_rate" prepend="AND">
+                    [fgs_rate] = #fgs_rate#
+                </isNotNull>
+                <isNotNull property="zj_rate" prepend="AND">
+                    [zj_rate] = #zj_rate#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="cz_rate_six.Insert" parameterClass="cz_rate_six" resultClass="Int32">
+            INSERT INTO [dbo].[cz_rate_six] (
+            [u_name],[u_type],[dl_name],[zd_name],[gd_name],[fgs_name],[dl_rate],[zd_rate],[gd_rate],[fgs_rate],[zj_rate]
+            ) VALUES (
+            #u_name#,#u_type#,#dl_name#,#zd_name#,#gd_name#,#fgs_name#,#dl_rate#,#zd_rate#,#gd_rate#,#fgs_rate#,#zj_rate#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_rate_six.Update" parameterClass="cz_rate_six">
+            UPDATE [dbo].[cz_rate_six] SET
+            [u_name] = #u_name#,[u_type] = #u_type#,[dl_name] = #dl_name#,[zd_name] = #zd_name#,[gd_name] = #gd_name#,[fgs_name] = #fgs_name#,[dl_rate] = #dl_rate#,[zd_rate] = #zd_rate#,[gd_rate] = #gd_rate#,[fgs_rate] = #fgs_rate#,[zj_rate] = #zj_rate#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="cz_rate_six.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_rate_six] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_rate_six.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_rate_six]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_rate_six.DeleteByEntity" parameterClass="cz_rate_six">
+            DELETE FROM [dbo].[cz_rate_six]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="cz_rate_six.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_rate_six]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_rate_six.ClearData">
+            truncate table [cz_rate_six]
+        </statement>
+    </statements>
+</sqlMap>

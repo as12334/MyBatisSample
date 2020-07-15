@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_users_child"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_users_child" type="Entity.cz_users_child, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_users_child">
+            <result property="u_id" column="u_id"/>
+            <result property="u_name" column="u_name"/>
+            <result property="salt" column="salt"/>
+            <result property="u_nicker" column="u_nicker"/>
+            <result property="u_skin" column="u_skin"/>
+            <result property="u_psw" column="u_psw"/>
+            <result property="parent_u_name" column="parent_u_name"/>
+            <result property="add_date" column="add_date"/>
+            <result property="last_changedate" column="last_changedate"/>
+            <result property="status" column="status"/>
+            <result property="permissions_name" column="permissions_name"/>
+            <result property="retry_times" column="retry_times"/>
+            <result property="is_admin" column="is_admin"/>
+            <result property="is_changed" column="is_changed"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="u_id" column="u_id"/>
+            <result property="u_name" column="u_name"/>
+            <result property="salt" column="salt"/>
+            <result property="u_nicker" column="u_nicker"/>
+            <result property="u_skin" column="u_skin"/>
+            <result property="u_psw" column="u_psw"/>
+            <result property="parent_u_name" column="parent_u_name"/>
+            <result property="add_date" column="add_date"/>
+            <result property="last_changedate" column="last_changedate"/>
+            <result property="status" column="status"/>
+            <result property="permissions_name" column="permissions_name"/>
+            <result property="retry_times" column="retry_times"/>
+            <result property="is_admin" column="is_admin"/>
+            <result property="is_changed" column="is_changed"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_users_child.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_users_child.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_users_child.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_users_child.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+        </select>
+        <select id="cz_users_child.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_users_child]
+        </select>
+		<select id="cz_users_child.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_users_child] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_users_child.GetById" parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child] WHERE ()
+        </select>
+
+        <select id="cz_users_child.GetListByWhere"  parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+                <isNotNull property="parent_u_name" prepend="AND">
+                    [parent_u_name] = #parent_u_name#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="status" prepend="AND">
+                    [status] = #status#
+                </isNotNull>
+                <isNotNull property="permissions_name" prepend="AND">
+                    [permissions_name] = #permissions_name#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="is_admin" prepend="AND">
+                    [is_admin] = #is_admin#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_users_child.GetListByWhereStr"  parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_users_child.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+                <isNotNull property="parent_u_name" prepend="AND">
+                    [parent_u_name] = #parent_u_name#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="status" prepend="AND">
+                    [status] = #status#
+                </isNotNull>
+                <isNotNull property="permissions_name" prepend="AND">
+                    [permissions_name] = #permissions_name#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="is_admin" prepend="AND">
+                    [is_admin] = #is_admin#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_users_child.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users_child.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+                <isNotNull property="parent_u_name" prepend="AND">
+                    [parent_u_name] = #parent_u_name#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="status" prepend="AND">
+                    [status] = #status#
+                </isNotNull>
+                <isNotNull property="permissions_name" prepend="AND">
+                    [permissions_name] = #permissions_name#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="is_admin" prepend="AND">
+                    [is_admin] = #is_admin#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_users_child.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_users_child.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_users_child]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+                <isNotNull property="parent_u_name" prepend="AND">
+                    [parent_u_name] = #parent_u_name#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="status" prepend="AND">
+                    [status] = #status#
+                </isNotNull>
+                <isNotNull property="permissions_name" prepend="AND">
+                    [permissions_name] = #permissions_name#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="is_admin" prepend="AND">
+                    [is_admin] = #is_admin#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="cz_users_child.GetAllListOrder" parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed] 
+            FROM [dbo].[cz_users_child]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users_child.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed]
+            FROM [dbo].[cz_users_child]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+                <isNotNull property="parent_u_name" prepend="AND">
+                    [parent_u_name] = #parent_u_name#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="status" prepend="AND">
+                    [status] = #status#
+                </isNotNull>
+                <isNotNull property="permissions_name" prepend="AND">
+                    [permissions_name] = #permissions_name#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="is_admin" prepend="AND">
+                    [is_admin] = #is_admin#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_users_child.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_users_child">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed]
+            FROM [dbo].[cz_users_child]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_users_child.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_users_child]
+            <dynamic prepend="WHERE">
+                <isNotNull property="u_id" prepend="AND">
+                    [u_id] = #u_id#
+                </isNotNull>
+                <isNotNull property="u_name" prepend="AND">
+                    [u_name] = #u_name#
+                </isNotNull>
+                <isNotNull property="salt" prepend="AND">
+                    [salt] = #salt#
+                </isNotNull>
+                <isNotNull property="u_nicker" prepend="AND">
+                    [u_nicker] = #u_nicker#
+                </isNotNull>
+                <isNotNull property="u_skin" prepend="AND">
+                    [u_skin] = #u_skin#
+                </isNotNull>
+                <isNotNull property="u_psw" prepend="AND">
+                    [u_psw] = #u_psw#
+                </isNotNull>
+                <isNotNull property="parent_u_name" prepend="AND">
+                    [parent_u_name] = #parent_u_name#
+                </isNotNull>
+                <isNotNull property="add_date" prepend="AND">
+                    [add_date] = #add_date#
+                </isNotNull>
+                <isNotNull property="last_changedate" prepend="AND">
+                    [last_changedate] = #last_changedate#
+                </isNotNull>
+                <isNotNull property="status" prepend="AND">
+                    [status] = #status#
+                </isNotNull>
+                <isNotNull property="permissions_name" prepend="AND">
+                    [permissions_name] = #permissions_name#
+                </isNotNull>
+                <isNotNull property="retry_times" prepend="AND">
+                    [retry_times] = #retry_times#
+                </isNotNull>
+                <isNotNull property="is_admin" prepend="AND">
+                    [is_admin] = #is_admin#
+                </isNotNull>
+                <isNotNull property="is_changed" prepend="AND">
+                    [is_changed] = #is_changed#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="cz_users_child.Insert" parameterClass="cz_users_child" resultClass="Int32">
+            INSERT INTO [dbo].[cz_users_child] (
+            [u_id],[u_name],[salt],[u_nicker],[u_skin],[u_psw],[parent_u_name],[add_date],[last_changedate],[status],[permissions_name],[retry_times],[is_admin],[is_changed]
+            ) VALUES (
+            #u_id#,#u_name#,#salt#,#u_nicker#,#u_skin#,#u_psw#,#parent_u_name#,#add_date#,#last_changedate#,#status#,#permissions_name#,#retry_times#,#is_admin#,#is_changed#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_users_child.Update" parameterClass="cz_users_child">
+            UPDATE [dbo].[cz_users_child] SET
+            [u_id] = #u_id#,[u_name] = #u_name#,[salt] = #salt#,[u_nicker] = #u_nicker#,[u_skin] = #u_skin#,[u_psw] = #u_psw#,[parent_u_name] = #parent_u_name#,[add_date] = #add_date#,[last_changedate] = #last_changedate#,[status] = #status#,[permissions_name] = #permissions_name#,[retry_times] = #retry_times#,[is_admin] = #is_admin#,[is_changed] = #is_changed#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="cz_users_child.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_users_child] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_users_child.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_users_child]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_users_child.DeleteByEntity" parameterClass="cz_users_child">
+            DELETE FROM [dbo].[cz_users_child]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="cz_users_child.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_users_child]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_users_child.ClearData">
+            truncate table [cz_users_child]
+        </statement>
+    </statements>
+</sqlMap>

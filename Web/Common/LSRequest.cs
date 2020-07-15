@@ -56,5 +56,10 @@ namespace LotterySystem.Common
             }
             return result;
         }
+
+        public static HttpCookie GetReportCookies()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

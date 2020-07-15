@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="sysdiagrams"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="sysdiagrams" type="Entity.sysdiagrams, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="sysdiagrams">
+            <result property="name" column="name"/>
+            <result property="principal_id" column="principal_id"/>
+            <result property="diagram_id" column="diagram_id"/>
+            <result property="version" column="version"/>
+            <result property="definition" column="definition"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="name" column="name"/>
+            <result property="principal_id" column="principal_id"/>
+            <result property="diagram_id" column="diagram_id"/>
+            <result property="version" column="version"/>
+            <result property="definition" column="definition"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="sysdiagrams.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="sysdiagrams.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="sysdiagrams.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="sysdiagrams.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+        </select>
+        <select id="sysdiagrams.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[sysdiagrams]
+        </select>
+		<select id="sysdiagrams.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[sysdiagrams] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="sysdiagrams.GetById" parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams] WHERE ([diagram_id] = #diagram_id#)
+        </select>
+
+        <select id="sysdiagrams.GetListByWhere"  parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            <dynamic prepend="WHERE">
+                <isNotNull property="name" prepend="AND">
+                    [name] = #name#
+                </isNotNull>
+                <isNotNull property="principal_id" prepend="AND">
+                    [principal_id] = #principal_id#
+                </isNotNull>
+                <isNotNull property="diagram_id" prepend="AND">
+                    [diagram_id] = #diagram_id#
+                </isNotNull>
+                <isNotNull property="version" prepend="AND">
+                    [version] = #version#
+                </isNotNull>
+                <isNotNull property="definition" prepend="AND">
+                    [definition] = #definition#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="sysdiagrams.GetListByWhereStr"  parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="sysdiagrams.GetListByWhereAndOrder"  parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            <dynamic prepend="WHERE">
+                <isNotNull property="name" prepend="AND">
+                    [name] = #name#
+                </isNotNull>
+                <isNotNull property="principal_id" prepend="AND">
+                    [principal_id] = #principal_id#
+                </isNotNull>
+                <isNotNull property="diagram_id" prepend="AND">
+                    [diagram_id] = #diagram_id#
+                </isNotNull>
+                <isNotNull property="version" prepend="AND">
+                    [version] = #version#
+                </isNotNull>
+                <isNotNull property="definition" prepend="AND">
+                    [definition] = #definition#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="sysdiagrams.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="sysdiagrams.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            <dynamic prepend="WHERE">
+                <isNotNull property="name" prepend="AND">
+                    [name] = #name#
+                </isNotNull>
+                <isNotNull property="principal_id" prepend="AND">
+                    [principal_id] = #principal_id#
+                </isNotNull>
+                <isNotNull property="diagram_id" prepend="AND">
+                    [diagram_id] = #diagram_id#
+                </isNotNull>
+                <isNotNull property="version" prepend="AND">
+                    [version] = #version#
+                </isNotNull>
+                <isNotNull property="definition" prepend="AND">
+                    [definition] = #definition#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="sysdiagrams.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="sysdiagrams.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[sysdiagrams]
+            <dynamic prepend="WHERE">
+                <isNotNull property="name" prepend="AND">
+                    [name] = #name#
+                </isNotNull>
+                <isNotNull property="principal_id" prepend="AND">
+                    [principal_id] = #principal_id#
+                </isNotNull>
+                <isNotNull property="diagram_id" prepend="AND">
+                    [diagram_id] = #diagram_id#
+                </isNotNull>
+                <isNotNull property="version" prepend="AND">
+                    [version] = #version#
+                </isNotNull>
+                <isNotNull property="definition" prepend="AND">
+                    [definition] = #definition#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="sysdiagrams.GetAllListOrder" parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            [name],[principal_id],[diagram_id],[version],[definition] 
+            FROM [dbo].[sysdiagrams]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="sysdiagrams.GetTopNListWhereOrder" parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [name],[principal_id],[diagram_id],[version],[definition]
+            FROM [dbo].[sysdiagrams]
+            <dynamic prepend="WHERE">
+                <isNotNull property="name" prepend="AND">
+                    [name] = #name#
+                </isNotNull>
+                <isNotNull property="principal_id" prepend="AND">
+                    [principal_id] = #principal_id#
+                </isNotNull>
+                <isNotNull property="diagram_id" prepend="AND">
+                    [diagram_id] = #diagram_id#
+                </isNotNull>
+                <isNotNull property="version" prepend="AND">
+                    [version] = #version#
+                </isNotNull>
+                <isNotNull property="definition" prepend="AND">
+                    [definition] = #definition#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="sysdiagrams.GetTopNListWhereOrderStr" parameterClass="map" resultClass="sysdiagrams">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [name],[principal_id],[diagram_id],[version],[definition]
+            FROM [dbo].[sysdiagrams]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="sysdiagrams.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[sysdiagrams]
+            <dynamic prepend="WHERE">
+                <isNotNull property="name" prepend="AND">
+                    [name] = #name#
+                </isNotNull>
+                <isNotNull property="principal_id" prepend="AND">
+                    [principal_id] = #principal_id#
+                </isNotNull>
+                <isNotNull property="diagram_id" prepend="AND">
+                    [diagram_id] = #diagram_id#
+                </isNotNull>
+                <isNotNull property="version" prepend="AND">
+                    [version] = #version#
+                </isNotNull>
+                <isNotNull property="definition" prepend="AND">
+                    [definition] = #definition#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="sysdiagrams.Insert" parameterClass="sysdiagrams" resultClass="Int32">
+            INSERT INTO [dbo].[sysdiagrams] (
+            [name],[principal_id],[version],[definition]
+            ) VALUES (
+            #name#,#principal_id#,#version#,#definition#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="sysdiagrams.Update" parameterClass="sysdiagrams">
+            UPDATE [dbo].[sysdiagrams] SET
+            [name] = #name#,[principal_id] = #principal_id#,[version] = #version#,[definition] = #definition#
+            WHERE
+            ([diagram_id] = #diagram_id#)
+            SELECT @@rowcount
+        </update>
+
+		<update id="sysdiagrams.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[sysdiagrams] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="sysdiagrams.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[sysdiagrams]
+            WHERE
+            ([diagram_id] = #diagram_id#)
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="sysdiagrams.DeleteByEntity" parameterClass="sysdiagrams">
+            DELETE FROM [dbo].[sysdiagrams]
+            WHERE
+            ([diagram_id] = #diagram_id#)
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="sysdiagrams.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[sysdiagrams]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="sysdiagrams.ClearData">
+            truncate table [sysdiagrams]
+        </statement>
+    </statements>
+</sqlMap>

@@ -14,5 +14,10 @@ namespace LotterySystem.BLL
         {
             throw new NotImplementedException();
         }
+
+        public DataSet GetCurrentByPhase(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

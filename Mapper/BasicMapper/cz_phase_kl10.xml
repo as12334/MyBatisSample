@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="cz_phase_kl10"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="cz_phase_kl10" type="Entity.cz_phase_kl10, Entity" />
+    </alias>
+    <parameterMaps>
+        <parameterMap id="MesnacPaggingParameters" class="map">
+            <parameter property="TableName" column="TableName" />
+            <parameter property="ReturnFields" column="ReturnFields" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageIndex" column="PageIndex" />
+            <parameter property="Where" column="Where" />
+            <parameter property="Orderfld" column="Orderfld" />
+            <parameter property="OrderType" column="OrderType" />
+        </parameterMap>
+        <parameterMap id="PagerShowParameters" class="map">
+            <parameter property="QueryStr" column="QueryStr" />
+            <parameter property="PageSize" column="PageSize" />
+            <parameter property="PageCurrent" column="PageCurrent" />
+            <parameter property="FdShow" column="FdShow" />
+            <parameter property="FdOrder" column="FdOrder" />
+            <parameter property="Rows" column="Rows" direction="Output"/>
+        </parameterMap>
+    </parameterMaps>
+    <resultMaps>
+        <!--分页结果映射，返回实体List数据 begin-->
+        <resultMap id="EntityResult" class="cz_phase_kl10">
+            <result property="open_date" column="open_date"/>
+            <result property="stop_date" column="stop_date"/>
+            <result property="phase" column="phase"/>
+            <result property="isopen" column="isopen"/>
+            <result property="openning" column="openning"/>
+            <result property="endtime" column="endtime"/>
+            <result property="n1" column="n1"/>
+            <result property="n2" column="n2"/>
+            <result property="n3" column="n3"/>
+            <result property="n4" column="n4"/>
+            <result property="n5" column="n5"/>
+            <result property="n6" column="n6"/>
+            <result property="n7" column="n7"/>
+            <result property="n8" column="n8"/>
+
+        </resultMap>
+        <resultMap id="PageEntityResult" class="map">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回实体List数据 end-->
+        <!--分页结果映射，返回DataSet数据 begin-->
+        <resultMap id="TableResult" class="Row">
+            <result property="open_date" column="open_date"/>
+            <result property="stop_date" column="stop_date"/>
+            <result property="phase" column="phase"/>
+            <result property="isopen" column="isopen"/>
+            <result property="openning" column="openning"/>
+            <result property="endtime" column="endtime"/>
+            <result property="n1" column="n1"/>
+            <result property="n2" column="n2"/>
+            <result property="n3" column="n3"/>
+            <result property="n4" column="n4"/>
+            <result property="n5" column="n5"/>
+            <result property="n6" column="n6"/>
+            <result property="n7" column="n7"/>
+            <result property="n8" column="n8"/>
+
+        </resultMap>
+        <resultMap id="PageTableResult" class="Row">
+            <result property="PageCount" column="PageCount" />
+            <result property="RecordCount" column="RecordCount" />
+        </resultMap>
+        <!--分页结果映射，返回DataSet数据 end-->
+    </resultMaps>
+    <statements>
+        <procedure id="cz_phase_kl10.GetPageDataMesnacPagging" parameterMap="MesnacPaggingParameters" resultMap="EntityResult,PageEntityResult">
+            MesnacPaging
+        </procedure>
+        <procedure id="cz_phase_kl10.GetPageDataPagerShow" parameterMap="PagerShowParameters" resultMap="EntityResult">
+            PagerShow
+        </procedure>
+        <procedure id="cz_phase_kl10.GetPageDataSet" parameterMap="MesnacPaggingParameters" resultMap="TableResult,PageTableResult">
+            MesnacPaging
+        </procedure>
+        <select id="cz_phase_kl10.GetPageDataByReader" parameterMap="MesnacPaggingParameters">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+        </select>
+        <select id="cz_phase_kl10.GetRowCount" parameterClass="map" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_phase_kl10]
+        </select>
+		<select id="cz_phase_kl10.GetRowCountByWhere" parameterClass="String" resultClass="int">
+            SELECT COUNT(*) FROM [dbo].[cz_phase_kl10] WHERE 1 = 1 AND ($where$)
+        </select>
+        <select id="cz_phase_kl10.GetById" parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10] WHERE ()
+        </select>
+
+        <select id="cz_phase_kl10.GetListByWhere"  parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            <dynamic prepend="WHERE">
+                <isNotNull property="open_date" prepend="AND">
+                    [open_date] = #open_date#
+                </isNotNull>
+                <isNotNull property="stop_date" prepend="AND">
+                    [stop_date] = #stop_date#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="isopen" prepend="AND">
+                    [isopen] = #isopen#
+                </isNotNull>
+                <isNotNull property="openning" prepend="AND">
+                    [openning] = #openning#
+                </isNotNull>
+                <isNotNull property="endtime" prepend="AND">
+                    [endtime] = #endtime#
+                </isNotNull>
+                <isNotNull property="n1" prepend="AND">
+                    [n1] = #n1#
+                </isNotNull>
+                <isNotNull property="n2" prepend="AND">
+                    [n2] = #n2#
+                </isNotNull>
+                <isNotNull property="n3" prepend="AND">
+                    [n3] = #n3#
+                </isNotNull>
+                <isNotNull property="n4" prepend="AND">
+                    [n4] = #n4#
+                </isNotNull>
+                <isNotNull property="n5" prepend="AND">
+                    [n5] = #n5#
+                </isNotNull>
+                <isNotNull property="n6" prepend="AND">
+                    [n6] = #n6#
+                </isNotNull>
+                <isNotNull property="n7" prepend="AND">
+                    [n7] = #n7#
+                </isNotNull>
+                <isNotNull property="n8" prepend="AND">
+                    [n8] = #n8#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_phase_kl10.GetListByWhereStr"  parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_phase_kl10.GetListByWhereAndOrder"  parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            <dynamic prepend="WHERE">
+                <isNotNull property="open_date" prepend="AND">
+                    [open_date] = #open_date#
+                </isNotNull>
+                <isNotNull property="stop_date" prepend="AND">
+                    [stop_date] = #stop_date#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="isopen" prepend="AND">
+                    [isopen] = #isopen#
+                </isNotNull>
+                <isNotNull property="openning" prepend="AND">
+                    [openning] = #openning#
+                </isNotNull>
+                <isNotNull property="endtime" prepend="AND">
+                    [endtime] = #endtime#
+                </isNotNull>
+                <isNotNull property="n1" prepend="AND">
+                    [n1] = #n1#
+                </isNotNull>
+                <isNotNull property="n2" prepend="AND">
+                    [n2] = #n2#
+                </isNotNull>
+                <isNotNull property="n3" prepend="AND">
+                    [n3] = #n3#
+                </isNotNull>
+                <isNotNull property="n4" prepend="AND">
+                    [n4] = #n4#
+                </isNotNull>
+                <isNotNull property="n5" prepend="AND">
+                    [n5] = #n5#
+                </isNotNull>
+                <isNotNull property="n6" prepend="AND">
+                    [n6] = #n6#
+                </isNotNull>
+                <isNotNull property="n7" prepend="AND">
+                    [n7] = #n7#
+                </isNotNull>
+                <isNotNull property="n8" prepend="AND">
+                    [n8] = #n8#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_phase_kl10.GetListByWhereAndOrderStr"  parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_phase_kl10.GetDataSetByWhere"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            <dynamic prepend="WHERE">
+                <isNotNull property="open_date" prepend="AND">
+                    [open_date] = #open_date#
+                </isNotNull>
+                <isNotNull property="stop_date" prepend="AND">
+                    [stop_date] = #stop_date#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="isopen" prepend="AND">
+                    [isopen] = #isopen#
+                </isNotNull>
+                <isNotNull property="openning" prepend="AND">
+                    [openning] = #openning#
+                </isNotNull>
+                <isNotNull property="endtime" prepend="AND">
+                    [endtime] = #endtime#
+                </isNotNull>
+                <isNotNull property="n1" prepend="AND">
+                    [n1] = #n1#
+                </isNotNull>
+                <isNotNull property="n2" prepend="AND">
+                    [n2] = #n2#
+                </isNotNull>
+                <isNotNull property="n3" prepend="AND">
+                    [n3] = #n3#
+                </isNotNull>
+                <isNotNull property="n4" prepend="AND">
+                    [n4] = #n4#
+                </isNotNull>
+                <isNotNull property="n5" prepend="AND">
+                    [n5] = #n5#
+                </isNotNull>
+                <isNotNull property="n6" prepend="AND">
+                    [n6] = #n6#
+                </isNotNull>
+                <isNotNull property="n7" prepend="AND">
+                    [n7] = #n7#
+                </isNotNull>
+                <isNotNull property="n8" prepend="AND">
+                    [n8] = #n8#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+
+		<select id="cz_phase_kl10.GetDataSetByWhereStr"  parameterClass="map" resultClass="Row">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            WHERE 1 = 1 AND ($where$)
+        </select>
+
+        <select id="cz_phase_kl10.GetDataSetByFieldsAndParams"  parameterClass="map" remapResults="true" resultClass="Row">
+            SELECT
+            $ColumnNames$
+            FROM [dbo].[cz_phase_kl10]
+            <dynamic prepend="WHERE">
+                <isNotNull property="open_date" prepend="AND">
+                    [open_date] = #open_date#
+                </isNotNull>
+                <isNotNull property="stop_date" prepend="AND">
+                    [stop_date] = #stop_date#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="isopen" prepend="AND">
+                    [isopen] = #isopen#
+                </isNotNull>
+                <isNotNull property="openning" prepend="AND">
+                    [openning] = #openning#
+                </isNotNull>
+                <isNotNull property="endtime" prepend="AND">
+                    [endtime] = #endtime#
+                </isNotNull>
+                <isNotNull property="n1" prepend="AND">
+                    [n1] = #n1#
+                </isNotNull>
+                <isNotNull property="n2" prepend="AND">
+                    [n2] = #n2#
+                </isNotNull>
+                <isNotNull property="n3" prepend="AND">
+                    [n3] = #n3#
+                </isNotNull>
+                <isNotNull property="n4" prepend="AND">
+                    [n4] = #n4#
+                </isNotNull>
+                <isNotNull property="n5" prepend="AND">
+                    [n5] = #n5#
+                </isNotNull>
+                <isNotNull property="n6" prepend="AND">
+                    [n6] = #n6#
+                </isNotNull>
+                <isNotNull property="n7" prepend="AND">
+                    [n7] = #n7#
+                </isNotNull>
+                <isNotNull property="n8" prepend="AND">
+                    [n8] = #n8#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <select id="cz_phase_kl10.GetAllListOrder" parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8] 
+            FROM [dbo].[cz_phase_kl10]
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_phase_kl10.GetTopNListWhereOrder" parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8]
+            FROM [dbo].[cz_phase_kl10]
+            <dynamic prepend="WHERE">
+                <isNotNull property="open_date" prepend="AND">
+                    [open_date] = #open_date#
+                </isNotNull>
+                <isNotNull property="stop_date" prepend="AND">
+                    [stop_date] = #stop_date#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="isopen" prepend="AND">
+                    [isopen] = #isopen#
+                </isNotNull>
+                <isNotNull property="openning" prepend="AND">
+                    [openning] = #openning#
+                </isNotNull>
+                <isNotNull property="endtime" prepend="AND">
+                    [endtime] = #endtime#
+                </isNotNull>
+                <isNotNull property="n1" prepend="AND">
+                    [n1] = #n1#
+                </isNotNull>
+                <isNotNull property="n2" prepend="AND">
+                    [n2] = #n2#
+                </isNotNull>
+                <isNotNull property="n3" prepend="AND">
+                    [n3] = #n3#
+                </isNotNull>
+                <isNotNull property="n4" prepend="AND">
+                    [n4] = #n4#
+                </isNotNull>
+                <isNotNull property="n5" prepend="AND">
+                    [n5] = #n5#
+                </isNotNull>
+                <isNotNull property="n6" prepend="AND">
+                    [n6] = #n6#
+                </isNotNull>
+                <isNotNull property="n7" prepend="AND">
+                    [n7] = #n7#
+                </isNotNull>
+                <isNotNull property="n8" prepend="AND">
+                    [n8] = #n8#
+                </isNotNull>
+            </dynamic>
+
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+		<select id="cz_phase_kl10.GetTopNListWhereOrderStr" parameterClass="map" resultClass="cz_phase_kl10">
+            SELECT 
+            <isPropertyAvailable property="Top" prepend="">
+            Top (#Top#)
+            </isPropertyAvailable>
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8]
+            FROM [dbo].[cz_phase_kl10]
+            WHERE 1 = 1 AND ($where$)
+            <isPropertyAvailable property="OrderBy" prepend="">
+                order by $OrderBy$
+            </isPropertyAvailable>
+        </select>
+
+        <select id="cz_phase_kl10.GetMaxValueByProperty"  parameterClass="map" resultClass="map">
+            SELECT max($ColumnName$) FROM [dbo].[cz_phase_kl10]
+            <dynamic prepend="WHERE">
+                <isNotNull property="open_date" prepend="AND">
+                    [open_date] = #open_date#
+                </isNotNull>
+                <isNotNull property="stop_date" prepend="AND">
+                    [stop_date] = #stop_date#
+                </isNotNull>
+                <isNotNull property="phase" prepend="AND">
+                    [phase] = #phase#
+                </isNotNull>
+                <isNotNull property="isopen" prepend="AND">
+                    [isopen] = #isopen#
+                </isNotNull>
+                <isNotNull property="openning" prepend="AND">
+                    [openning] = #openning#
+                </isNotNull>
+                <isNotNull property="endtime" prepend="AND">
+                    [endtime] = #endtime#
+                </isNotNull>
+                <isNotNull property="n1" prepend="AND">
+                    [n1] = #n1#
+                </isNotNull>
+                <isNotNull property="n2" prepend="AND">
+                    [n2] = #n2#
+                </isNotNull>
+                <isNotNull property="n3" prepend="AND">
+                    [n3] = #n3#
+                </isNotNull>
+                <isNotNull property="n4" prepend="AND">
+                    [n4] = #n4#
+                </isNotNull>
+                <isNotNull property="n5" prepend="AND">
+                    [n5] = #n5#
+                </isNotNull>
+                <isNotNull property="n6" prepend="AND">
+                    [n6] = #n6#
+                </isNotNull>
+                <isNotNull property="n7" prepend="AND">
+                    [n7] = #n7#
+                </isNotNull>
+                <isNotNull property="n8" prepend="AND">
+                    [n8] = #n8#
+                </isNotNull>
+            </dynamic>
+
+        </select>
+        
+        <insert id="cz_phase_kl10.Insert" parameterClass="cz_phase_kl10" resultClass="Int32">
+            INSERT INTO [dbo].[cz_phase_kl10] (
+            [open_date],[stop_date],[phase],[isopen],[openning],[endtime],[n1],[n2],[n3],[n4],[n5],[n6],[n7],[n8]
+            ) VALUES (
+            #open_date#,#stop_date#,#phase#,#isopen#,#openning#,#endtime#,#n1#,#n2#,#n3#,#n4#,#n5#,#n6#,#n7#,#n8#
+            )
+            SELECT @@IDENTITY
+        </insert>
+
+        <update id="cz_phase_kl10.Update" parameterClass="cz_phase_kl10">
+            UPDATE [dbo].[cz_phase_kl10] SET
+            [open_date] = #open_date#,[stop_date] = #stop_date#,[phase] = #phase#,[isopen] = #isopen#,[openning] = #openning#,[endtime] = #endtime#,[n1] = #n1#,[n2] = #n2#,[n3] = #n3#,[n4] = #n4#,[n5] = #n5#,[n6] = #n6#,[n7] = #n7#,[n8] = #n8#
+            WHERE
+            ()
+            SELECT @@rowcount
+        </update>
+
+		<update id="cz_phase_kl10.UpdateFields" parameterClass="map">
+            UPDATE [dbo].[cz_phase_kl10] SET
+            $FieldSetValue$
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </update>
+
+        <delete id="cz_phase_kl10.Delete" parameterClass="int32">
+            DELETE FROM [dbo].[cz_phase_kl10]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+        <delete id="cz_phase_kl10.DeleteByEntity" parameterClass="cz_phase_kl10">
+            DELETE FROM [dbo].[cz_phase_kl10]
+            WHERE
+            ()
+            SELECT @@rowcount
+        </delete>
+
+		<delete id="cz_phase_kl10.DeleteByWhere" parameterClass="String">
+            DELETE FROM [dbo].[cz_phase_kl10]
+            WHERE 1 = 1 AND ($where$)
+            SELECT @@rowcount
+        </delete>
+
+        <statement id="cz_phase_kl10.ClearData">
+            truncate table [cz_phase_kl10]
+        </statement>
+    </statements>
+</sqlMap>
